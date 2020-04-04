@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="row-auto border border" id="messageInput">
+      <div class="row-auto border border" id="messageInput" v-if="chatConversation_id">
           <div class="input-group">
             <div class="input-group-prepend" style="width: auto">
               <span class="input-group-text">deine <br> Nachricht</span>
@@ -150,10 +150,9 @@
 }
 #messageInput
 {
-  position: fixed;
-  top:90%;
-  width: 60%;
-  left:20%;
+  position: relative;
+  bottom:0%;
+  width: 100%;
 
 }
 #messagebox

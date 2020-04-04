@@ -2039,7 +2039,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#messageInput\n{\n  position: fixed;\n  top:90%;\n  width: 60%;\n  left:20%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n}\n@media(max-height: 300px)\n{\n#messagebox\n  {\n    background-color: red;\n    height : 15em;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n}\n@media(max-height: 300px)\n{\n#messagebox\n  {\n    background-color: red;\n    height : 15em;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -20349,51 +20349,59 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "row-auto border border",
-            attrs: { id: "messageInput" }
-          },
-          [
-            _c("div", { staticClass: "input-group" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "textarea", value: "" },
-                domProps: { value: _vm.message },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
+        _vm.chatConversation_id
+          ? _c(
+              "div",
+              {
+                staticClass: "row-auto border border",
+                attrs: { id: "messageInput" }
+              },
+              [
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.message,
+                        expression: "message"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "textarea", value: "" },
+                    domProps: { value: _vm.message },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.sendMessage(_vm.chatConversation_id)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.message = $event.target.value
+                      }
                     }
-                    return _vm.sendMessage(_vm.chatConversation_id)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.message = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm._m(1)
-            ])
-          ]
-        )
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
+          : _vm._e()
       ])
     ]
   )
