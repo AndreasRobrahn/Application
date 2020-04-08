@@ -37,6 +37,7 @@ Route::get('/truncateALL', 'ConfigController@truncateAll')->name('config.truncat
 //chat routes
 
 Route::get('/conversations', 'ConversationsController@index')->name('conversations.get');
+Route::post('/startConversation', 'ConversationsController@startConversation')->name('conversations.start');
 Route::get('/messages/conId/{id}', 'ConversationsController@show')->name('conversations.get');
 Route::post('/sendMessage', 'ConversationsController@update')->name('conversations.sendMessage');
 

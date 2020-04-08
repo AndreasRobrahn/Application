@@ -1951,13 +1951,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['version'],
   data: function data() {
     return {
       messages: null,
       conversations: null,
       chatConversation_id: null,
-      message: ''
+      message: '',
+      conversation_username: '',
+      conversation_id: '',
+      conversation_key: ''
     };
   },
   computed: {
@@ -2018,9 +2050,36 @@ __webpack_require__.r(__webpack_exports__);
           _this3.getMessages(id);
 
           _this3.message = '';
+        })["catch"](function (error) {
+          console.log(error);
         });
       } // console.log(this.message)
 
+    },
+    startConversation: function startConversation() {
+      var _this4 = this;
+
+      if (!this.conversation_username) {
+        alert('bitte username eingeben, dieser wert ist notwendig');
+        return 0;
+      }
+
+      if (!this.conversation_key) {
+        alert('bitte key eingeben, dieser wert ist notwendig');
+        return 0;
+      }
+
+      var user = this.conversation_username;
+      var key = this.conversation_key;
+      var params = new URLSearchParams();
+      params.append("user", user);
+      params.append("key", key);
+      axios.post('/startConversation', params).then(function (response) {
+        _this4.changeConID(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      console.log('axios');
     }
   }
 });
@@ -20557,35 +20616,39 @@ var render = function() {
     "div",
     { staticClass: "row", staticStyle: { "padding-top": "1em" } },
     [
-      _c("div", { staticClass: "col-sm-4 mb-2 border border" }, [
-        _vm._v("\n      Konversationen\n      "),
-        _c(
-          "div",
-          { staticClass: "list-group" },
-          _vm._l(_vm.conversations, function(conversation) {
-            return _c(
-              "li",
-              {
-                staticClass: "list-group-item list-group-item-action",
-                class: { active: conversation.id == _vm.chatConversation_id },
-                on: {
-                  click: function($event) {
-                    return _vm.changeConID(conversation.id)
-                  }
-                }
-              },
-              [_vm._v(" " + _vm._s(conversation.member1) + " ")]
+      _vm.version == "admin"
+        ? _c("div", { staticClass: "col-sm-4 mb-2 border border" }, [
+            _vm._v("\n      Konversationen\n      "),
+            _c(
+              "div",
+              { staticClass: "list-group" },
+              _vm._l(_vm.conversations, function(conversation) {
+                return _c(
+                  "li",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    class: {
+                      active: conversation.id == _vm.chatConversation_id
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.changeConID(conversation.id)
+                      }
+                    }
+                  },
+                  [_vm._v(" " + _vm._s(conversation.member1) + " ")]
+                )
+              }),
+              0
             )
-          }),
-          0
-        )
-      ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "col border border" }, [
-        _vm._v("\n      Nachrichtenverlauf\n      "),
-        _c("div", { staticClass: "row" }, [
-          _vm.chatConversation_id
-            ? _c(
+        _vm.chatConversation_id
+          ? _c("div", { staticClass: "row" }, [
+              _vm._v("\n        Nachrichtenverlauf\n        "),
+              _c(
                 "div",
                 {
                   staticClass: "border border",
@@ -20628,8 +20691,122 @@ var render = function() {
                 }),
                 0
               )
-            : _vm._e()
-        ]),
+            ])
+          : _vm.version != "admin"
+          ? _c("div", { staticClass: "row" }, [
+              _vm._v(
+                "\n        Bitte gebe die Conversation-ID an oder starte eine neue\n        "
+              ),
+              _c(
+                "div",
+                {
+                  staticClass: "border border",
+                  staticStyle: { width: "100%" },
+                  attrs: { id: "UserInput" }
+                },
+                [
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_username,
+                            expression: "conversation_username"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Username" },
+                        domProps: { value: _vm.conversation_username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_username = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_id,
+                            expression: "conversation_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Konversations ID"
+                        },
+                        domProps: { value: _vm.conversation_id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_id = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_key,
+                            expression: "conversation_key"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Key" },
+                        domProps: { value: _vm.conversation_key },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_key = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.startConversation()
+                            }
+                          }
+                        },
+                        [_vm._v("neue Konversation starten")]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _vm.chatConversation_id
           ? _c(
@@ -20640,7 +20817,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -20679,7 +20856,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm._m(2)
                 ])
               ]
             )
@@ -20689,6 +20866,18 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Konversation suchen")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -1,7 +1,7 @@
 <template>
   <div class="row" style="padding-top:1em">
 
-    <div class="col-sm-4 mb-2 border border">
+    <div class="col-sm-4 mb-2 border border" v-if="version == 'admin'">
       Konversationen
       <div class="list-group">
         <li class="list-group-item list-group-item-action" v-on:click="changeConID(conversation.id)" v-bind:class="{active : conversation.id == chatConversation_id}" v-for="conversation in conversations"> {{conversation.member1}} </li>
@@ -10,15 +10,43 @@
         <li class="list-group-item" v-for="conversation in conversations"> {{conversation.member1}} </li>
       </ul> -->
     </div>
+
     <div class="col border border">
-      Nachrichtenverlauf
-      <div  class="row">
-        <div id="messagebox" v-if="chatConversation_id" class="border border" style="width: 100%;">
+
+      <div  class="row" v-if="chatConversation_id">
+        Nachrichtenverlauf
+        <div id="messagebox"  class="border border" style="width: 100%;">
           <div v-bind:class="{'d-flex justify-content-start p-1': message.direction == 1, 'd-flex justify-content-end p-1' : message.direction == 0}"v-for="message in messages">
             <div  class = "card text-white" v-bind:class="{'bg-secondary': message.direction == 1, 'bg-primary text-right' : message.direction == 0}" style="width: 90%">
               <div class="card-body">
                 {{message.message}}
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div  class="row" v-else-if="version != 'admin'">
+        Bitte gebe die Conversation-ID an oder starte eine neue
+        <div id="UserInput"  class="border border" style="width: 100%;">
+          <div class="row m-2 p-2">
+            <div class="col">
+              <input type="text" v-model="conversation_username" class="form-control" placeholder="Username">
+            </div>
+          </div>
+          <div class="row m-2 p-2">
+            <div class="col">
+              <input type="text" v-model="conversation_id" class="form-control" placeholder="Konversations ID">
+            </div>
+            <div class="col">
+              <input type="text" v-model="conversation_key" class="form-control" placeholder="Key">
+            </div>
+          </div>
+          <div class="row m-2 p-2">
+            <div class="col">
+              <button type="submit" class="btn btn-primary">Konversation suchen</button>
+            </div>
+            <div class="col">
+              <button type="submit" class="btn btn-primary" v-on:click="startConversation()">neue Konversation starten</button>
             </div>
           </div>
         </div>
@@ -44,12 +72,17 @@
 <script>
     export default {
 
+      props:  ['version'],
+
         data: function(){
           return {
             messages: null,
             conversations: null,
             chatConversation_id: null,
-            message: ''
+            message: '',
+            conversation_username: '',
+            conversation_id: '',
+            conversation_key: '',
           }
         },
         computed:{
@@ -128,10 +161,45 @@
                 this.getMessages(id)
                 this.message = ''
 
-              })
+              }).catch(function(error) {
+                  console.log(error);
+                });
             }
 
             // console.log(this.message)
+          },
+          startConversation(){
+
+            if(!this.conversation_username)
+            {
+              alert('bitte username eingeben, dieser wert ist notwendig')
+              return 0
+            }
+            if(!this.conversation_key)
+            {
+              alert('bitte key eingeben, dieser wert ist notwendig')
+              return 0
+            }
+
+            let user = this.conversation_username
+            let key = this.conversation_key
+
+            var params = new URLSearchParams()
+            params.append("user", user)
+            params.append("key", key)
+
+            axios.
+            post('/startConversation', params)
+            .then(response => {
+              this.changeConID(response.data)
+
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+
+            console.log('axios')
+
           }
         }
     }

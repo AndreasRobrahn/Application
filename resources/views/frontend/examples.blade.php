@@ -18,7 +18,7 @@
   {{$step = ''}}
 
 <div class="tab-content" id="myTabContent" >
-  <div class="tab-pane fade " id="chat" role="tabpanel" aria-labelledby="chat-tab">
+  <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
     <div class="d-flex p-2 flex-column" >
       <div class="card text-center main">
         <div class="card-header">
@@ -35,7 +35,7 @@
             <input type="text" name="key"> Key
             <input type="submit" > Absenden
         @endif
-            <Chat user="@if($step) 1 @else 0 @endif"></Chat>
+            <Chat version="user"></Chat>
         </div>
         <div class="card-footer text-muted">
           Realisiert mit Laravel, vue.js und Bootstrap und MySQL
@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane fade show active" id="roles" role="tabpanel" aria-labelledby="roles-tab">
+  <div class="tab-pane fade " id="roles" role="tabpanel" aria-labelledby="roles-tab">
           <div class="d-flex p-2 flex-column">
           <div class="card text-center main">
             <div class="card-header">

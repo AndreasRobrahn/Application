@@ -18,7 +18,7 @@
         @yield('additional_css')
     </head>
     <body class="p-3 mb-2 bg-white text-dark">
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height" id="app">
           @yield('content')
         </div>
         @yield('additional_js')

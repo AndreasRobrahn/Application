@@ -84,6 +84,29 @@ class ConversationsController extends Controller
         $message->save();
         // $message->direction = 0;
     }
+    public function startConversation(Request $request)
+    {
+      $conversation = new Conversation;
+      $conversation->member1 = $request->user;
+      $conversation->key = $request->key;
+
+      $conversation->save();
+
+      $message2 = new Message;
+      $message2->conversation_id = $conversation->id;
+      $message2->direction = 0;
+      $message2->message = 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen';
+      $message2->save();
+
+      $message = new Message;
+      $message->conversation_id = $conversation->id;
+      $message->direction = 0;
+      $message->message = 'Hallo '. $request->user;
+      $message->save();
+      
+      return $conversation->id;
+
+    }
 
     /**
      * Remove the specified resource from storage.

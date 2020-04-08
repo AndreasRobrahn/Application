@@ -10,7 +10,7 @@
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Seeds</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Models</a>
+      <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="contact" aria-selected="false">Chat</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
@@ -41,7 +41,9 @@
 
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+      <Chat version="admin"></Chat>
+    </div>
   </div>
 
 </div>
