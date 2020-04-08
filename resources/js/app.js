@@ -13,6 +13,7 @@ window.axios.defaults.headers.common = {
 
 // Vue.component('welcome', require('./components/welcome.vue').default);
 Vue.component('chat', require('./components/Chat.vue').default);
+Vue.component('userrolessystem', require('./components/UserAndRoles.vue').default);
 
 const app = new Vue(
   {

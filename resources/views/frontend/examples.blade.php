@@ -2,11 +2,10 @@
 
 @section('content')
 
-
-<div class="container">
+<div class="container pt-2">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true">Chat</a>
+      <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="true">Chat</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="roles-tab" data-toggle="tab" href="#roles" role="tab" aria-controls="roles" aria-selected="false">Benutzerrechte</a>
@@ -18,10 +17,10 @@
 
   {{$step = ''}}
 
-<div class="tab-content h-100" id="myTabContent">
-  <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-    <div class="d-flex p-2 flex-column">
-      <div class="card text-center" >
+<div class="tab-content" id="myTabContent" >
+  <div class="tab-pane fade " id="chat" role="tabpanel" aria-labelledby="chat-tab">
+    <div class="d-flex p-2 flex-column" >
+      <div class="card text-center main">
         <div class="card-header">
           Chat (nur moglich in meine Richtung)
         </div>
@@ -35,25 +34,52 @@
             <input type="number" name="ConvID"> Konversationsid
             <input type="text" name="key"> Key
             <input type="submit" > Absenden
-
         @endif
             <Chat user="@if($step) 1 @else 0 @endif"></Chat>
         </div>
         <div class="card-footer text-muted">
-          Realisiert mit Laravel, vue.js und Bootstrap
+          Realisiert mit Laravel, vue.js und Bootstrap und MySQL
         </div>
       </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
-    in Bearbeitung
-  </div>
+  <div class="tab-pane fade show active" id="roles" role="tabpanel" aria-labelledby="roles-tab">
+          <div class="d-flex p-2 flex-column">
+          <div class="card text-center main">
+            <div class="card-header">
+              Ein kleines Nutzer und Rechte System
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Funktionsweise: du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen,<br>
+                in Karteikarte 3 kannst du sehen wie das ganze funktioniert. <br>
+
+                Alle Daten werden beim Neuladen der Seite wieder gelöscht</h5>
+                <hr>
+              <userrolessystem></userrolessystem>
+            </div>
+            <div class="card-footer text-muted">
+              Realisiert mit Laravel, vue.js und Bootstrap und MySQL
+            </div>
+          </div>
+        </div>
+      </div>
+
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
   </div>
 </div>
-
 </div>
+@endsection
+
+@section('additional_css')
+
+<style type="text/css">
+.main
+  {
+    height: 45em;
+  }
+</style>
+
 @endsection
 
 @section('additional_js')

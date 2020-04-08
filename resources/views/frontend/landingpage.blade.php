@@ -11,7 +11,7 @@
     <h5><a class="nav-link text-white" href="#">Weisheiten des Andreas Robrahn</a></h5>
   </li>
   <li class="nav-item">
-    <h5><a class="nav-link text-white" href="#">Progammierbeispiele</a></h5>
+    <h5><a class="nav-link text-white" href="{{route('frontend.examples')}}">Progammierbeispiele</a></h5>
   </li>
 
 </ul>

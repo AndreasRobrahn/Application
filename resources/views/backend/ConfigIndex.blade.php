@@ -1,7 +1,7 @@
 @extends('backend.general_layout')
 
 @section('content')
-<div="container">
+<div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Migrations</a>
@@ -17,11 +17,12 @@
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <h1> Migrations</h1>
       <div class="row">
-
         <div class="col">
-
           <a href="{{route('config.migrate')}}" class="btn btn-info">Migrate</a>
         </div>
+      </div>
+      <hr>
+      <div class="row">
         <div class="col">
           <div class="form-group">
             <label for="tablename">Gebe den Dateinnamen an</label>
@@ -30,14 +31,19 @@
           </div>
           <button id="submitMigrateReset" class="btn btn-info">Migrate Reset Table</button>
         </div>
+      </div>
+      <hr>
+      <div class="row">
         <div class="col">
           <a href="{{route('config.truncate.all')}}" class="btn btn-info">TruncateALL</a>
         </div>
       </div>
+
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
+
 </div>
 @endsection
 

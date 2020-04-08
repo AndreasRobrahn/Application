@@ -15,10 +15,7 @@
         <script  src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
         <script  src="js/app.js"></script>
         <!-- Styles -->
-        <style>
-
-
-        </style>
+        @yield('additional_css')
     </head>
     <body class="p-3 mb-2 bg-white text-dark">
         <div class="flex-center position-ref full-height">

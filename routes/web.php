@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.landingpage');
 });
 
 Route::view('/landingpage', 'frontend.landingpage');
-Route::view('/examples', 'frontend.examples');
+Route::get('/examples', function(){
+
+  \DB::table('exampleuser')->truncate();
+  \DB::table('exampleusers_rights')->truncate();
+  return view('frontend.examples');
+})->name('frontend.examples');
+
 Route::view('/curriculum', 'frontend.curriculum');
 Route::view('/aboutme', 'frontend.curriculum');
 
@@ -33,3 +39,10 @@ Route::get('/truncateALL', 'ConfigController@truncateAll')->name('config.truncat
 Route::get('/conversations', 'ConversationsController@index')->name('conversations.get');
 Route::get('/messages/conId/{id}', 'ConversationsController@show')->name('conversations.get');
 Route::post('/sendMessage', 'ConversationsController@update')->name('conversations.sendMessage');
+
+//roles and rights
+Route::post('/user/create', 'UserController@store')->name('exampleuser.create');
+Route::get('/users/index', 'UserController@index')->name('exampleuser.index');
+Route::post('/users/rights', 'UserController@rights')->name('exampleuser.rights');
+
+Route::get('/test', 'UserController@index');

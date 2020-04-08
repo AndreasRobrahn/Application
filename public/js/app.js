@@ -2027,6 +2027,288 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      active_tab: 1,
+      users: null,
+      current_user: null,
+      rights: null,
+      user_roles: null,
+      username: 'dein username',
+      email: ''
+    }, _defineProperty(_ref, "rights", null), _defineProperty(_ref, "checkedRights", []), _defineProperty(_ref, "message", 'Dies ist eine Beispielaugabe, der Text kann entsprechend ihrer Rechte bearbeitet werden"'), _defineProperty(_ref, "message2", 'Dies ist eine Beispielaugabe, der Text kann entsprechend ihrer Rechte bearbeitet werden"'), _defineProperty(_ref, "message3", 'Dies ist eine Beispielaugabe, der Text kann entsprechend ihrer Rechte bearbeitet werden"'), _defineProperty(_ref, "isDisabled1", false), _ref;
+  },
+  computed: {},
+  mounted: function mounted() {
+    this.getUsers();
+  },
+  methods: {
+    disabled: function disabled(right) {
+      if (this.checkUserRights(this.current_user, right)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    changeTab: function changeTab(val) {
+      // console.log(val)
+      this.current_user = null;
+      this.active_tab = val;
+    },
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios.get("/users/index").then(function (response) {
+        // console.log(response.data)
+        _this.users = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createUser: function createUser() {
+      var _this2 = this;
+
+      var params = new URLSearchParams();
+
+      if (this.username) {
+        params.append("username", this.username);
+
+        if (this.email) {
+          params.append("email", this.email);
+        } else {
+          params.append("email", 0);
+        }
+
+        axios.post("/user/create", params).then(function (response) {
+          if (response.data == 'too many users') {
+            alert('keine weiteren user moglich');
+          }
+
+          _this2.username = '';
+          _this2.email = '';
+
+          _this2.getUsers();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        alert('kein usernamen eingegeben');
+      }
+    },
+    setUserRights: function setUserRights() {
+      var _this3 = this;
+
+      var checkboxes = document.getElementsByClassName('form-check-input');
+      var rights = new Array(); // console.log(checkboxes)
+
+      var counter = 0;
+
+      for (var element in checkboxes) {
+        var checkbox = checkboxes[element];
+
+        if (checkbox.checked) {
+          // let rights = new Array()
+          var datastring = new Array(checkbox.dataset.userid + '-' + checkbox.dataset.task + '_' + checkbox.dataset.right); //
+          // console.log(rightstring)
+
+          rights[counter] = datastring;
+          counter++;
+        }
+      }
+
+      var params = new URLSearchParams();
+      params.append("arrayOfRights", rights);
+      axios.post("/users/rights", params).then(function (response) {
+        console.log(response.data);
+        _this3.rights = response.data;
+
+        _this3.getUsers();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    changeCurrentUser: function changeCurrentUser(user) {
+      this.current_user = user;
+      console.log(this.current_user);
+    },
+    checkUserRights: function checkUserRights(user, right) {
+      // console.log(user)
+      if (!user.rights) {
+        return false;
+      } else {
+        if (user.rightsarray.includes(right)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Chat.vue?vue&type=style&index=0&lang=css& ***!
@@ -20447,6 +20729,801 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("ul", { staticClass: "nav nav-pills nav-fill" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                class: { active: _vm.active_tab == 1 },
+                on: {
+                  click: function($event) {
+                    return _vm.changeTab(1)
+                  }
+                }
+              },
+              [_vm._v("User")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                class: { active: _vm.active_tab == 2 },
+                on: {
+                  click: function($event) {
+                    return _vm.changeTab(2)
+                  }
+                }
+              },
+              [_vm._v("User Rechte festlegen")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                class: { active: _vm.active_tab == 3 },
+                on: {
+                  click: function($event) {
+                    return _vm.changeTab(3)
+                  }
+                }
+              },
+              [_vm._v("der Aufgabenbereich nach festgelegten Rechten")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm.active_tab == 1
+          ? _c("div", { staticClass: "d-flex flex-column" }, [
+              _c("div", { staticClass: "container mt-2" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-6 p-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "username" } }, [
+                        _vm._v("Username")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.username,
+                            expression: "username"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "username",
+                          id: "exampleInputEmail1",
+                          "aria-describedby": "emailHelp",
+                          required: ""
+                        },
+                        domProps: { value: _vm.username },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.createUser()
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.username = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "test" } }, [
+                        _vm._v("Email (optional)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "email", name: "email", id: "email" },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.createUser()
+                          }
+                        }
+                      },
+                      [_vm._v("Test User anlegen")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-6 p-2" }, [
+                    _c("table", { staticClass: "table table-dark" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.users, function(user) {
+                          return _c("tr", [
+                            _c("th", { attrs: { scope: "row" } }),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(user.username))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(user.email))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(user.rightsarray))])
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          : _vm.active_tab == 2
+          ? _c("div", { staticClass: "d-flex flex-column" }, [
+              _c("div", { staticClass: "container mt-2" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col p-2" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-dark table-bordered" },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.users, function(user) {
+                            return _c("tr", [
+                              _c("th", { attrs: { scope: "row" } }, [
+                                _vm._v(_vm._s(user.username))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task1",
+                                    "data-task": "task1",
+                                    "data-right": "read",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "1",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "1"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "1",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("lesen")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task1",
+                                    "data-task": "task1",
+                                    "data-right": "write",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "2",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "2"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "2",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("bearbeiten")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task2",
+                                    "data-task": "task2",
+                                    "data-right": "read",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "3",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "3"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "3",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("lesen")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task2",
+                                    "data-task": "task2",
+                                    "data-right": "write",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "4",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "4"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "4",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("bearbeiten")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task3",
+                                    "data-task": "task3",
+                                    "data-right": "read",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "5",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "5"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "5",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("lesen")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.checkedRights,
+                                      expression: "checkedRights"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "task3",
+                                    "data-task": "task3",
+                                    "data-right": "write",
+                                    "data-userid": user.id
+                                  },
+                                  domProps: {
+                                    value: user.username + "6",
+                                    checked: Array.isArray(_vm.checkedRights)
+                                      ? _vm._i(
+                                          _vm.checkedRights,
+                                          user.username + "6"
+                                        ) > -1
+                                      : _vm.checkedRights
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.checkedRights,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = user.username + "6",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.checkedRights = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.checkedRights = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.checkedRights = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v("bearbeiten")
+                              ])
+                            ])
+                          }),
+                          0
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary btn-lg btn-block",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.setUserRights()
+                          }
+                        }
+                      },
+                      [_vm._v("Rechte festlegen")]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm.active_tab == 3
+          ? _c("div", { staticClass: "d-flex flex-column" }, [
+              _c("div", { staticClass: "row pt-4 " }, [
+                _c(
+                  "div",
+                  { staticClass: "col text-center" },
+                  [
+                    _vm._v("\n            Eingeloggt als User:\n            "),
+                    _vm._l(_vm.users, function(user) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass:
+                            "custom-control custom-radio custom-control-inline"
+                        },
+                        [
+                          _c("input", {
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              type: "radio",
+                              id: "user",
+                              id: user.id,
+                              name: "user"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeCurrentUser(user)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "user", for: user.id }
+                            },
+                            [_vm._v(_vm._s(user.username))]
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _vm.current_user
+                ? _c("div", { staticClass: "row pt-4" }, [
+                    _c("div", { staticClass: "col-4" }, [
+                      _vm.checkUserRights(_vm.current_user, "task1_read")
+                        ? _c("div", { staticClass: "card" }, [
+                            _c("div", { staticClass: "card-header" }, [
+                              _vm._v(
+                                "\n                Aufgabe 1\n              "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-body" }, [
+                              _c("h5", { staticClass: "card-title" }, [
+                                _vm._v(
+                                  "Beispielaufgabe, lesbar und bearbeitbar mit den entsprechenden Rechten"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.message,
+                                    expression: "message"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "textarea",
+                                  disabled: _vm.disabled("task1_write")
+                                },
+                                domProps: { value: _vm.message },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.message = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-4" }, [
+                      _vm.checkUserRights(_vm.current_user, "task2_read")
+                        ? _c("div", { staticClass: "card" }, [
+                            _c("div", { staticClass: "card-header" }, [
+                              _vm._v(
+                                "\n                Aufgabe 2\n              "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-body" }, [
+                              _c("h5", { staticClass: "card-title" }, [
+                                _vm._v(
+                                  "Beispielaufgabe, lesbar und bearbeitbar mit den entsprechenden Rechten"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.message2,
+                                    expression: "message2"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "textarea",
+                                  disabled: _vm.disabled("task2_write")
+                                },
+                                domProps: { value: _vm.message2 },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.message2 = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-4" }, [
+                      _vm.checkUserRights(_vm.current_user, "task3_read")
+                        ? _c("div", { staticClass: "card" }, [
+                            _c("div", { staticClass: "card-header" }, [
+                              _vm._v(
+                                "\n                Aufgabe 3\n              "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-body" }, [
+                              _c("h5", { staticClass: "card-title" }, [
+                                _vm._v(
+                                  "Beispielaufgabe, lesbar und bearbeitbar mit den entsprechenden Rechten"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.message3,
+                                    expression: "message3"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "textarea",
+                                  disabled: _vm.disabled("task3_write")
+                                },
+                                domProps: { value: _vm.message3 },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.message3 = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Username")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Rechte")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("User")]),
+        _vm._v(" "),
+        _c("th", { attrs: { colspan: "2" } }, [_vm._v("Aufgabe1")]),
+        _vm._v(" "),
+        _c("th", { attrs: { colspan: "2" } }, [_vm._v("Aufgabe2")]),
+        _vm._v(" "),
+        _c("th", { attrs: { colspan: "2" } }, [_vm._v("Aufgabe3")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -32629,6 +33706,7 @@ window.axios.defaults.headers.common = {
 }; // Vue.component('welcome', require('./components/welcome.vue').default);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('userrolessystem', __webpack_require__(/*! ./components/UserAndRoles.vue */ "./resources/js/components/UserAndRoles.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
@@ -32749,6 +33827,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UserAndRoles.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/UserAndRoles.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserAndRoles.vue?vue&type=template&id=1a750b7c& */ "./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c&");
+/* harmony import */ var _UserAndRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserAndRoles.vue?vue&type=script&lang=js& */ "./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UserAndRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UserAndRoles.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAndRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserAndRoles.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAndRoles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAndRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserAndRoles.vue?vue&type=template&id=1a750b7c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserAndRoles.vue?vue&type=template&id=1a750b7c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserAndRoles_vue_vue_type_template_id_1a750b7c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
