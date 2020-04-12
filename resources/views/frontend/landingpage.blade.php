@@ -18,7 +18,7 @@
 <div class="container">
   <div class="row" style="padding:10em">
     <div class="col">
-      <img src="https://i.pinimg.com/originals/46/b5/81/46b581ffa67067aa1efc67aeed18efab.jpg">
+      <img src="">
     </div>
     <div class="col">
       <p class="text-justify text-primary text-wrap font-weight-bold"> Sehr geehrter Besucher. Vermutlich bist du aufgrund meiner Bewerbung hier. Auf dieser Seite kannst du dir einen besserer Uberblick uber meine Faigkeiten und Arbeitshistorie machen. Viel Spaß, Andreas Robrahn</p>
