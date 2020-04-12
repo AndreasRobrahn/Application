@@ -2047,7 +2047,7 @@ __webpack_require__.r(__webpack_exports__);
         params.append("conid", id);
         params.append("message", message);
 
-        if (this.version) {
+        if (this.version == 'admin') {
           params.append("admin", 1);
         }
 
