@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{csrf_token()}}">
+        
         <title>Config</title>
 
         <!-- Bootstrap css -->
@@ -13,7 +14,7 @@
         <script  src="js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap js -->
         <script  src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-        <script  src="js/app.js"></script>
+
         <!-- Styles -->
         @yield('additional_css')
     </head>
@@ -22,5 +23,6 @@
           @yield('content')
         </div>
         @yield('additional_js')
+        <script  src="js/app.js"></script>
     </body>
 </html>
