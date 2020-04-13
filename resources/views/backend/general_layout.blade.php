@@ -13,7 +13,7 @@
         <script  src="js/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap js -->
         <script  src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-        <script  src="js/app.js"></script>
+
         <!-- Styles -->
         @yield('additional_css')
     </head>
@@ -21,6 +21,7 @@
         <div class="flex-center position-ref full-height" id="app">
           @yield('content')
         </div>
+          <script  src="js/app.js"></script>
         @yield('additional_js')
     </body>
 </html>
