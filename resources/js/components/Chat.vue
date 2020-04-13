@@ -155,6 +155,11 @@
               params.append("conid", id)
               params.append("message", message)
 
+              if(this.version == 'admin')
+              {
+                params.append("admin", 1)
+              }
+
               axios.
               post('/sendMessage', params)
               .then(response => {

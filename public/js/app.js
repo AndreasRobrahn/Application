@@ -2046,6 +2046,11 @@ __webpack_require__.r(__webpack_exports__);
         var params = new URLSearchParams();
         params.append("conid", id);
         params.append("message", message);
+
+        if (this.version == 'admin') {
+          params.append("admin", 1);
+        }
+
         axios.post('/sendMessage', params).then(function (response) {
           _this3.getMessages(id);
 

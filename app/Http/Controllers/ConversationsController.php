@@ -79,7 +79,15 @@ class ConversationsController extends Controller
         // return response()->json($request);
         $message = new Message;
         $message->conversation_id = $request->conid;
-        $message->direction = 1;
+
+        if($request->admin)
+        {
+          $message->direction = 0;
+        }
+        else {
+          $message->direction = 1;
+        }
+
         $message->message = $request->message;
         $message->save();
         // $message->direction = 0;
@@ -103,7 +111,7 @@ class ConversationsController extends Controller
       $message->direction = 0;
       $message->message = 'Hallo '. $request->user;
       $message->save();
-      
+
       return $conversation->id;
 
     }
