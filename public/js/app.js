@@ -2013,13 +2013,11 @@ __webpack_require__.r(__webpack_exports__);
       conversations: null
     };
   },
-  computed: {
-    activeConversation: function activeConversation() {}
-  },
   mounted: function mounted() {
     console.log('chat mounted, version:' + this.version);
-    this.getConversations; // setInterval(this.getConversations,2000)
-    // setInterval(this.test,2000)
+    this.getConversations(); // setInterval(this.getConversations,2000)
+
+    setInterval(this.test, 2000);
   },
   created: function created() {// this.getConversations
   },
@@ -38718,11 +38716,7 @@ var render = function() {
             _vm._v("\n      Konversationen\n      "),
             _c("hr"),
             _vm._v(
-              "\n      " +
-                _vm._s(_vm.conversations) +
-                "\n      " +
-                _vm._s(_vm.conversations1) +
-                "\n\n\n\n          "
+              "\n      " + _vm._s(_vm.conversations) + "\n\n\n\n\n          "
             )
           ])
         : _vm._e(),

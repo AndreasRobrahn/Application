@@ -5,7 +5,7 @@
       Konversationen
       <hr>
       {{conversations}}
-      {{conversations1}}
+
 
 
 
@@ -106,17 +106,13 @@
             conversations: null
           }
         },
-        computed:{
-          activeConversation(){
-
-          }
-        },
+        
         mounted() {
 
           console.log('chat mounted, version:' + this.version)
-          this.getConversations
+          this.getConversations()
           // setInterval(this.getConversations,2000)
-          // setInterval(this.test,2000)
+          setInterval(this.test,2000)
         },
         created(){
             // this.getConversations
