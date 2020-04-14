@@ -27,6 +27,8 @@ Route::get('/examples', function(){
 
 Route::view('/curriculum', 'frontend.curriculum');
 Route::view('/aboutme', 'frontend.curriculum');
+Route::view('/adminchat', 'backend.adminchat');
+
 
 // the backendcontroller
 Route::get('/config', 'ConfigController@indexConfig')->name('config.index');
@@ -47,3 +49,7 @@ Route::get('/users/index', 'UserController@index')->name('exampleuser.index');
 Route::post('/users/rights', 'UserController@rights')->name('exampleuser.rights');
 
 Route::get('/test', 'UserController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
