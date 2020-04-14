@@ -2014,12 +2014,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('chat mounted, version:' + this.version);
-    this.getConversations(); // setInterval(this.getConversations,2000)
+    console.log('chat mounted, version:' + this.version); // setInterval(this.getConversations,2000)
 
     setInterval(this.test, 2000);
   },
-  created: function created() {// this.getConversations
+  created: function created() {
+    this.getConversations();
   },
   methods: {
     changeConID: function changeConID(id) {

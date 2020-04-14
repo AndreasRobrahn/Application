@@ -106,16 +106,16 @@
             conversations: null
           }
         },
-        
+
         mounted() {
 
           console.log('chat mounted, version:' + this.version)
-          this.getConversations()
+
           // setInterval(this.getConversations,2000)
           setInterval(this.test,2000)
         },
         created(){
-            // this.getConversations
+            this.getConversations()
         },
 
         methods:{
