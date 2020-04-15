@@ -18,11 +18,7 @@
 <div class="container">
   <div class="row" style="padding:10em">
     <div class="col">
-<<<<<<< HEAD
       <img src="{{ asset('images/ARobrahn.jpg')}}" style="max-width: 500px">
-=======
-      <img src="">
->>>>>>> c163b84d424b2bda131b04ddc4b6fc1fe90288ec
     </div>
     <div class="col">
       <p class="text-justify text-primary text-wrap font-weight-bold"> Sehr geehrter Besucher. Vermutlich bist du aufgrund meiner Bewerbung hier. Auf dieser Seite kannst du dir einen besserer Uberblick uber meine Faigkeiten und Arbeitshistorie machen. Viel Spaß, Andreas Robrahn</p>

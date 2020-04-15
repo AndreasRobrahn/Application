@@ -15,7 +15,7 @@ class ConversationsController extends Controller
      */
     public function index()
     {
-        $conversations = Conversation::all();
+        $conversations = Conversation::with('lastMessage')->get();
 
         return response()->json($conversations);
     }
