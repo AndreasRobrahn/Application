@@ -1996,10 +1996,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -2014,9 +2010,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('chat mounted, version:' + this.version); // setInterval(this.getConversations,2000)
-
-    setInterval(this.test, 2000);
+    console.log('chat mounted, version:' + this.version);
+    setInterval(this.getConversations, 2000); // setInterval(this.test,2000)
   },
   created: function created() {
     this.getConversations();
@@ -2095,8 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       console.log('axios');
     },
-    test: function test() {
-      console.log(this.conversations);
+    test: function test() {// console.log(this.conversations)
     }
   }
 });
@@ -38712,13 +38706,39 @@ var render = function() {
     { staticClass: "row", staticStyle: { "padding-top": "1em" } },
     [
       _vm.version == "admin"
-        ? _c("div", { staticClass: "col-sm-4 border border" }, [
-            _vm._v("\n      Konversationen\n      "),
-            _c("hr"),
-            _vm._v(
-              "\n      " + _vm._s(_vm.conversations) + "\n\n\n\n\n          "
-            )
-          ])
+        ? _c(
+            "div",
+            { staticClass: "col-sm-4 border border" },
+            [
+              _vm._v("\n      Konversationen\n      "),
+              _c("hr"),
+              _vm._v(" "),
+              _vm._l(_vm.conversations, function(conversation) {
+                return _c(
+                  "div",
+                  { staticClass: "card", attrs: { id: "profile-card" } },
+                  [
+                    _c("div", { staticClass: "row no-gutters" }, [
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-7" }, [
+                        _c("div", { staticClass: "card-header" }, [
+                          _c("p", [_vm._v(_vm._s(conversation.created_at))])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("h5", { staticClass: "card-title" }, [
+                            _vm._v(_vm._s(conversation.member1))
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "col border border" }, [
@@ -38862,7 +38882,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row m-2 p-2" }, [
-                    _vm._m(0),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("div", { staticClass: "col" }, [
                       _c(
@@ -38894,7 +38914,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -38933,7 +38953,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(3)
                 ])
               ]
             )
@@ -38943,6 +38963,21 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-md-5", staticStyle: { background: "#868e96" } },
+      [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: "images/sample.svg", alt: "..." }
+        })
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

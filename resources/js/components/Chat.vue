@@ -4,26 +4,22 @@
     <div class="col-sm-4 border border" v-if="version == 'admin'">
       Konversationen
       <hr>
-      {{conversations}}
-
-
-
-
-          <!-- <div class="card" id="profile-card" v-for="conversation in conversations">
-            <div class="row no-gutters">
-                <div class="col-md-5" style="background: #868e96;">
-                    <img src="images/sample.svg" class="img-fluid" alt="...">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h5 class="card-title">Alice Liddel</h5>
-
-
-                    </div>
-                </div>
+        <div class="card" id="profile-card" v-for="conversation in conversations">
+          <div class="row no-gutters">
+            <div class="col-md-5" style="background: #868e96;">
+              <img src="images/sample.svg" class="img-fluid" alt="...">
             </div>
-        </div> -->
-    </div>
+            <div class="col-md-7">
+              <div class="card-header">
+                <p>{{conversation.created_at}}</p>
+              </div>
+            <div class="card-body">
+              <h5 class="card-title">{{conversation.member1}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 
     <!-- <div class="col-sm-4 mb-2 border border" v-if="version == 'admin'">
       Konversationen
@@ -111,8 +107,9 @@
 
           console.log('chat mounted, version:' + this.version)
 
-          // setInterval(this.getConversations,2000)
-          setInterval(this.test,2000)
+          setInterval(this.getConversations,2000)
+
+          // setInterval(this.test,2000)
         },
         created(){
             this.getConversations()
@@ -215,7 +212,7 @@
           },
           test()
           {
-            console.log(this.conversations)
+            // console.log(this.conversations)
           }
         }
     }
