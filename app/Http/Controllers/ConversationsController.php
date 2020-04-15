@@ -17,7 +17,7 @@ class ConversationsController extends Controller
     {
         $conversations = Conversation::all();
 
-        return $conversations->toJson();
+        return response()->json($conversations);
     }
 
     /**

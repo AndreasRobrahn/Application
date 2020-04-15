@@ -1,15 +1,32 @@
 <template>
-  <div class="row" style="padding-top:1em">
 
-    <div class="col-sm-4 mb-2 border border" v-if="version == 'admin'">
+  <div class="row" style="padding-top:1em">
+    <div class="col-sm-4 border border" v-if="version == 'admin'">
+      Konversationen
+      <hr>
+        <div class="card" id="profile-card" v-for="conversation in conversations">
+          <div class="row no-gutters">
+            <div class="col-md-5" style="background: #868e96;">
+              <img src="images/sample.svg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-md-7">
+              <div class="card-header">
+                <p>{{conversation.created_at}}</p>
+              </div>
+            <div class="card-body">
+              <h5 class="card-title">{{conversation.member1}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!-- <div class="col-sm-4 mb-2 border border" v-if="version == 'admin'">
       Konversationen
       <div class="list-group">
-        <li class="list-group-item list-group-item-action" v-on:click="changeConID(conversation.id)" v-bind:class="{active : conversation.id == chatConversation_id}" v-for="conversation in conversations"> {{conversation.member1}} </li>
+        <li class="list-group-item list-group-item-action" v-on:click="changeConID(conversation.id)" v-bind:class="{active : conversation.id == chatConversation_id}" v-for="conversation in conversations">test</li>
       </div>
-      <!-- <ul class="list-group">
-        <li class="list-group-item" v-for="conversation in conversations"> {{conversation.member1}} </li>
-      </ul> -->
-    </div>
+    </div> -->
 
     <div class="col border border">
 
@@ -77,40 +94,25 @@
         data: function(){
           return {
             messages: null,
-            conversations: null,
             chatConversation_id: null,
             message: '',
             conversation_username: '',
             conversation_id: '',
             conversation_key: '',
+            conversations: null
           }
         },
-        computed:{
-          activeConversation(){
 
-          }
-          // conversationsComputed(){
-          //     axios
-          //       .get("/conversations")
-          //       .then(response => {
-          //         this.conversations = response.data
-          //         return this.conversations
-          //       })
-          //       .catch(function(error) {
-          //         console.log(error);
-          //       });
-          //     }
-        },
         mounted() {
-          this.getConversations()
-          // console.log($('meta[name="csrf-token"]').attr('content'))
 
-          // var params3 = new URLSearchParams();
-          // params3.append("id", data);
+          console.log('chat mounted, version:' + this.version)
 
+          setInterval(this.getConversations,2000)
+
+          // setInterval(this.test,2000)
         },
         created(){
-
+            this.getConversations()
         },
 
         methods:{
@@ -134,8 +136,10 @@
             axios
               .get("/conversations")
               .then(response => {
-                this.conversations = response.data
-                return this.conversations
+                this.conversations = response.data;
+                // console.log(this.conversations);
+                // return response.data
+
               })
               .catch(function(error) {
                 console.log(error);
@@ -205,6 +209,10 @@
 
             console.log('axios')
 
+          },
+          test()
+          {
+            // console.log(this.conversations)
           }
         }
     }
@@ -220,6 +228,14 @@
 {
   padding-left : 89%;
   color: white;
+}
+.col-sm-4 border border
+{
+  height: 90%
+}
+#profile-card
+{
+  height:3em;
 }
 #messageInput
 {

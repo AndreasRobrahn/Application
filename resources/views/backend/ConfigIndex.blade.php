@@ -40,10 +40,8 @@
       </div>
 
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-    <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-      <Chat version="admin"></Chat>
-    </div>
+    
+
   </div>
 
 </div>
