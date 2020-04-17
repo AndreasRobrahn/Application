@@ -29,7 +29,6 @@
     </div> -->
 
     <div class="col border border">
-
       <div  class="row" v-if="chatConversation_id">
         Nachrichtenverlauf
         <div id="messagebox"  class="border border" style="width: 100%;">
@@ -60,7 +59,7 @@
           </div>
           <div class="row m-2 p-2">
             <div class="col">
-              <button type="submit" class="btn btn-primary">Konversation suchen</button>
+              <button type="submit" class="btn btn-primary" v-on:click="getConversation()">Konversation suchen</button>
             </div>
             <div class="col">
               <button type="submit" class="btn btn-primary" v-on:click="startConversation()">neue Konversation starten</button>
@@ -106,10 +105,11 @@
         mounted() {
 
           console.log('chat mounted, version:' + this.version)
-
-          setInterval(this.getConversations,2000)
-
-          // setInterval(this.test,2000)
+          if(this.version == 'admin')
+          {
+            setInterval(this.getConversations,2000)
+          }
+        // setInterval(this.test,2000)
         },
         created(){
             this.getConversations()
@@ -201,14 +201,28 @@
             post('/startConversation', params)
             .then(response => {
               this.changeConID(response.data)
+              setInterval(this.getMessages(this.chatConversation_id),2000)
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+            console.log('axios')
+
+          },
+          getConversation()
+          {
+            let key = conversation_key
+            let conid = conversation_id
+            alert(this.id)
+            axios.
+            post('/startConversation', params)
+            .then(response => {
+              this.changeConID(response.data)
 
             })
             .catch(function(error) {
               console.log(error);
             });
-
-            console.log('axios')
-
           },
           test()
           {

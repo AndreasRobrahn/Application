@@ -1995,7 +1995,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -2011,7 +2010,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('chat mounted, version:' + this.version);
-    setInterval(this.getConversations, 2000); // setInterval(this.test,2000)
+
+    if (this.version == 'admin') {
+      setInterval(this.getConversations, 2000);
+    } // setInterval(this.test,2000)
+
   },
   created: function created() {
     this.getConversations();
@@ -2085,10 +2088,24 @@ __webpack_require__.r(__webpack_exports__);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
         _this4.changeConID(response.data);
+
+        setInterval(_this4.getMessages(_this4.chatConversation_id), 2000);
       })["catch"](function (error) {
         console.log(error);
       });
       console.log('axios');
+    },
+    getConversation: function getConversation() {
+      var _this5 = this;
+
+      var key = conversation_key;
+      var conid = conversation_id;
+      alert(this.id);
+      axios.post('/startConversation', params).then(function (response) {
+        _this5.changeConID(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     test: function test() {// console.log(this.conversations)
     }
@@ -38882,7 +38899,21 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row m-2 p-2" }, [
-                    _vm._m(1),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getConversation()
+                            }
+                          }
+                        },
+                        [_vm._v("Konversation suchen")]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col" }, [
                       _c(
@@ -38914,7 +38945,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -38953,7 +38984,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _vm._m(2)
                 ])
               ]
             )
@@ -38977,18 +39008,6 @@ var staticRenderFns = [
         })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Konversation suchen")]
-      )
-    ])
   },
   function() {
     var _vm = this
@@ -52056,7 +52075,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue")["default"]);
-Vue.component('userandroles', __webpack_require__(/*! ./components/UserAndRoles.vue */ "./resources/js/components/UserAndRoles.vue")["default"]);
+Vue.component('userrolessystem', __webpack_require__(/*! ./components/UserAndRoles.vue */ "./resources/js/components/UserAndRoles.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
