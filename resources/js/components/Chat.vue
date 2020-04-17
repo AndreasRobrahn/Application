@@ -1,42 +1,33 @@
 <template>
-
-  <div class="row" style="padding-top:1em">
+  <div class="row" id="chatbox" style="padding-top:1em; height: 50em">
     <div class="col-sm-4 border border" v-if="version == 'admin'">
       Konversationen
       <hr>
-        <div class="card" id="profile-card" v-for="conversation in conversations">
+        <div class="card mb-3" id="profile-card" style="max-width: auto;"  v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
           <div class="row no-gutters">
-            <div class="col-md-5" style="background: #868e96;">
-              <img src="images/sample.svg" class="img-fluid" alt="...">
+            <div class="col-md-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class=" card-img" alt="Hier sollte ein placeholder sein">
             </div>
-            <div class="col-md-7">
-              <div class="card-header">
-                <p>{{conversation.created_at}}</p>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{conversation.member1}}</h5>
+                <p class="card-text">{{conversation.last_message.message}}</p>
+                <p class="card-text"><small>{{conversation.last_message.created_at}}</small></p>
               </div>
-            <div class="card-body">
-              <h5 class="card-title">{{conversation.member1}}</h5>
             </div>
           </div>
         </div>
-      </div>
-  </div>
-
-    <!-- <div class="col-sm-4 mb-2 border border" v-if="version == 'admin'">
-      Konversationen
-      <div class="list-group">
-        <li class="list-group-item list-group-item-action" v-on:click="changeConID(conversation.id)" v-bind:class="{active : conversation.id == chatConversation_id}" v-for="conversation in conversations">test</li>
-      </div>
-    </div> -->
-
+    </div>
     <div class="col border border">
       <div  class="row" v-if="chatConversation_id">
         Nachrichtenverlauf
+        <hr>
         <div id="messagebox"  class="border border" style="width: 100%;">
           <div v-bind:class="{'d-flex justify-content-start p-1': message.direction == 1, 'd-flex justify-content-end p-1' : message.direction == 0}"v-for="message in messages">
-            <div  class = "card text-white" v-bind:class="{'bg-secondary': message.direction == 1, 'bg-primary text-right' : message.direction == 0}" style="width: 90%">
-              <div class="card-body">
+            <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-light text-right' : message.direction == 0}" style="width: auto">
+
                 {{message.message}}
-              </div>
+
             </div>
           </div>
         </div>
@@ -67,20 +58,30 @@
           </div>
         </div>
       </div>
-      <div class="row-auto border border" id="messageInput" v-if="chatConversation_id">
-          <div class="input-group">
-            <div class="input-group-prepend" style="width: auto">
-              <span class="input-group-text">deine <br> Nachricht</span>
-            </div>
-            <textarea class="form-control" v-model="message" v-on:keyup.enter="sendMessage(chatConversation_id)" id="textarea" value=""></textarea>
-            <div class="input-group-append">
-              <span class="input-group-text">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Senden</button>
-              </span>
-            </div>
+      <div class="footer" style="
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;">
+      <div class="input-group">
+          <div class="input-group-prepend" style="width: auto">
+            <span class="input-group-text">deine <br> Nachricht</span>
           </div>
+          <textarea class="form-control" v-model="message" v-on:keyup.enter="sendMessage(chatConversation_id)" id="textarea" value=""></textarea>
+          <div class="input-group-append">
+            <span class="input-group-text">
+                  <button class="btn btn-outline-secondary" type="button" v-on:click="sendMessage(chatConversation_id)" id="button-addon1">Senden</button>
+            </span>
+          </div>
+        </div>
+    </div>
+        </div>
+      <div class="row-auto border border" id="messageInput" v-if="chatConversation_id">
 
-      </div>
+
     </div>
 </div>
 </template>
@@ -103,7 +104,6 @@
         },
 
         mounted() {
-
           console.log('chat mounted, version:' + this.version)
           if(this.version == 'admin')
           {
@@ -146,10 +146,13 @@
               });
           },
           sendMessage(id){
-
             if(!id)
             {
               alert('keine Konversation gewählt')
+            }
+            else if(!this.message )
+            {
+              alert('keine nachricht eingegeben')
             }
             else
             {
@@ -243,13 +246,13 @@
   padding-left : 89%;
   color: white;
 }
-.col-sm-4 border border
+#chatbox
 {
   height: 90%
 }
 #profile-card
 {
-  height:3em;
+  height:8em;
 }
 #messageInput
 {

@@ -22,7 +22,7 @@
         <div class="flex-center position-ref full-height" id="app">
           @yield('content')
         </div>
-     	<script  src="js/app.js"></script>
+          <script  src="js/app.js"></script>
         @yield('additional_js')
     </body>
 </html>
