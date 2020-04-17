@@ -1,6 +1,6 @@
 <template>
-  <div class="row" id="chatbox" style="padding-top:1em; height: 50em">
-    <div class="col-sm-4 border border" v-if="version == 'admin'">
+  <div class="row" id="chatbox" style="padding-top:1em">
+    <div class="col-sm-4 border border" v-if="version == 'admin'" style="overflow:auto; max-height: 40em">
       Konversationen
       <hr>
         <div class="card mb-3" id="profile-card" style="max-width: auto;"  v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
@@ -50,7 +50,7 @@
           </div>
           <div class="row m-2 p-2">
             <div class="col">
-              <button type="submit" class="btn btn-primary">Konversation suchen</button>
+              <button type="submit" class="btn btn-primary" v-on:click="getConversation()">Konversation suchen</button>
             </div>
             <div class="col">
               <button type="submit" class="btn btn-primary" v-on:click="startConversation()">neue Konversation starten</button>
@@ -59,30 +59,26 @@
         </div>
       </div>
       <div class="footer" style="
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: red;
-      color: white;
-      text-align: center;">
-      <div class="input-group">
-          <div class="input-group-prepend" style="width: auto">
-            <span class="input-group-text">deine <br> Nachricht</span>
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;" v-if="chatConversation_id">
+        <div class="input-group">
+            <div class="input-group-prepend" style="width: auto">
+              <span class="input-group-text">deine <br> Nachricht</span>
+            </div>
+            <textarea class="form-control" v-model="message" v-on:keyup.enter="sendMessage(chatConversation_id)" id="textarea" value=""></textarea>
+            <div class="input-group-append">
+              <span class="input-group-text">
+                    <button class="btn btn-outline-secondary" type="button" v-on:click="sendMessage(chatConversation_id)" id="button-addon1">Senden</button>
+              </span>
+            </div>
           </div>
-          <textarea class="form-control" v-model="message" v-on:keyup.enter="sendMessage(chatConversation_id)" id="textarea" value=""></textarea>
-          <div class="input-group-append">
-            <span class="input-group-text">
-                  <button class="btn btn-outline-secondary" type="button" v-on:click="sendMessage(chatConversation_id)" id="button-addon1">Senden</button>
-            </span>
-          </div>
-        </div>
-    </div>
-        </div>
-      <div class="row-auto border border" id="messageInput" v-if="chatConversation_id">
-
-
-    </div>
+      </div>
+  </div>
 </div>
 </template>
 
@@ -99,13 +95,18 @@
             conversation_username: '',
             conversation_id: '',
             conversation_key: '',
-            conversations: null
+            conversations: null,
+            timer: null,
           }
         },
 
         mounted() {
           console.log('chat mounted, version:' + this.version)
-          setInterval(this.getConversations,2000)
+          if(this.version == 'admin')
+          {
+            this.timer = setInterval(this.getConversations,2000)
+          }
+
           // setInterval(this.test,2000)
         },
         created(){
@@ -116,7 +117,11 @@
           changeConID(id)
           {
             this.chatConversation_id = id
-            this.getMessages(id)
+            // clearInterval(this.timer);
+            this.timer = setInterval(() => {
+              this.getMessages(this.chatConversation_id);
+            }, 2000);
+
           },
           getMessages(conid)
           {
@@ -126,10 +131,11 @@
                 this.messages = response.data
               })
               .catch(function(error) {
-                console.log(error);
+                console.log(error.response);
               });
           },
           getConversations(){
+            // console.log('test timer')
             axios
               .get("/conversations")
               .then(response => {
@@ -139,7 +145,7 @@
 
               })
               .catch(function(error) {
-                console.log(error);
+                console.log(error.response);
               });
           },
           sendMessage(id){
@@ -207,8 +213,34 @@
               console.log(error);
             });
 
-            console.log('axios')
+            //console.log('axios')
 
+          },
+          getConversation()
+          {
+            var params = new URLSearchParams()
+            params.append("conid", this.conversation_id)
+            params.append("key", this.conversation_key)
+            params.append("user", this.conversation_username)
+
+            axios.
+            post('/getConversation', params)
+            .then(response => {
+              if(response.data == 0)
+              {
+                console.log(response.data)
+                alert('konversation nicht gefunden')
+              }
+              else {
+                console.log(response.data)
+              }
+              this.changeConID(response.data)
+
+
+            })
+            .catch(function(error) {
+              console.log(error.response.data.message);
+            });
           },
           test()
           {

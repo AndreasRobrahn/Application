@@ -1992,10 +1992,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -2006,42 +2002,53 @@ __webpack_require__.r(__webpack_exports__);
       conversation_username: '',
       conversation_id: '',
       conversation_key: '',
-      conversations: null
+      conversations: null,
+      timer: null
     };
   },
   mounted: function mounted() {
     console.log('chat mounted, version:' + this.version);
-    setInterval(this.getConversations, 2000); // setInterval(this.test,2000)
+
+    if (this.version == 'admin') {
+      this.timer = setInterval(this.getConversations, 2000);
+    } // setInterval(this.test,2000)
+
   },
   created: function created() {
     this.getConversations();
   },
   methods: {
     changeConID: function changeConID(id) {
-      this.chatConversation_id = id;
-      this.getMessages(id);
-    },
-    getMessages: function getMessages(conid) {
       var _this = this;
 
+      this.chatConversation_id = id; // clearInterval(this.timer);
+
+      this.timer = setInterval(function () {
+        _this.getMessages(_this.chatConversation_id);
+      }, 2000);
+    },
+    getMessages: function getMessages(conid) {
+      var _this2 = this;
+
       axios.get("/messages/conId/" + conid).then(function (response) {
-        _this.messages = response.data;
+        _this2.messages = response.data;
       })["catch"](function (error) {
-        console.log(error);
+        console.log(error.response);
       });
     },
     getConversations: function getConversations() {
-      var _this2 = this;
+      var _this3 = this;
 
+      // console.log('test timer')
       axios.get("/conversations").then(function (response) {
-        _this2.conversations = response.data; // console.log(this.conversations);
+        _this3.conversations = response.data; // console.log(this.conversations);
         // return response.data
       })["catch"](function (error) {
-        console.log(error);
+        console.log(error.response);
       });
     },
     sendMessage: function sendMessage(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!id) {
         alert('keine Konversation gewählt');
@@ -2058,9 +2065,9 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         axios.post('/sendMessage', params).then(function (response) {
-          _this3.getMessages(id);
+          _this4.getMessages(id);
 
-          _this3.message = '';
+          _this4.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2068,7 +2075,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     startConversation: function startConversation() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!this.conversation_username) {
         alert('bitte username eingeben, dieser wert ist notwendig');
@@ -2086,11 +2093,30 @@ __webpack_require__.r(__webpack_exports__);
       params.append("user", user);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
-        _this4.changeConID(response.data);
+        _this5.changeConID(response.data);
       })["catch"](function (error) {
         console.log(error);
+      }); //console.log('axios')
+    },
+    getConversation: function getConversation() {
+      var _this6 = this;
+
+      var params = new URLSearchParams();
+      params.append("conid", this.conversation_id);
+      params.append("key", this.conversation_key);
+      params.append("user", this.conversation_username);
+      axios.post('/getConversation', params).then(function (response) {
+        if (response.data == 0) {
+          console.log(response.data);
+          alert('konversation nicht gefunden');
+        } else {
+          console.log(response.data);
+        }
+
+        _this6.changeConID(response.data);
+      })["catch"](function (error) {
+        console.log(error.response.data.message);
       });
-      console.log('axios');
     },
     test: function test() {// console.log(this.conversations)
     }
@@ -20662,14 +20688,17 @@ var render = function() {
     "div",
     {
       staticClass: "row",
-      staticStyle: { "padding-top": "1em", height: "50em" },
+      staticStyle: { "padding-top": "1em" },
       attrs: { id: "chatbox" }
     },
     [
       _vm.version == "admin"
         ? _c(
             "div",
-            { staticClass: "col-sm-4 border border" },
+            {
+              staticClass: "col-sm-4 border border",
+              staticStyle: { overflow: "auto", "max-height": "40em" }
+            },
             [
               _vm._v("\n      Konversationen\n      "),
               _c("hr"),
@@ -20866,7 +20895,21 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row m-2 p-2" }, [
-                    _vm._m(1),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getConversation()
+                            }
+                          }
+                        },
+                        [_vm._v("Konversation suchen")]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col" }, [
                       _c(
@@ -20889,83 +20932,84 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "footer",
-            staticStyle: {
-              position: "fixed",
-              left: "0",
-              bottom: "0",
-              width: "100%",
-              "background-color": "red",
-              color: "white",
-              "text-align": "center"
-            }
-          },
-          [
-            _c("div", { staticClass: "input-group" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "textarea", value: "" },
-                domProps: { value: _vm.message },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.sendMessage(_vm.chatConversation_id)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.message = $event.target.value
-                  }
+        _vm.chatConversation_id
+          ? _c(
+              "div",
+              {
+                staticClass: "footer",
+                staticStyle: {
+                  position: "relative",
+                  left: "0",
+                  bottom: "0",
+                  width: "100%",
+                  "background-color": "red",
+                  color: "white",
+                  "text-align": "center"
                 }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-secondary",
-                      attrs: { type: "button", id: "button-addon1" },
-                      on: {
-                        click: function($event) {
-                          return _vm.sendMessage(_vm.chatConversation_id)
-                        }
+              },
+              [
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.message,
+                        expression: "message"
                       }
-                    },
-                    [_vm._v("Senden")]
-                  )
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "textarea", value: "" },
+                    domProps: { value: _vm.message },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.sendMessage(_vm.chatConversation_id)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.message = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-append" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary",
+                          attrs: { type: "button", id: "button-addon1" },
+                          on: {
+                            click: function($event) {
+                              return _vm.sendMessage(_vm.chatConversation_id)
+                            }
+                          }
+                        },
+                        [_vm._v("Senden")]
+                      )
+                    ])
+                  ])
                 ])
-              ])
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.chatConversation_id
-        ? _c("div", {
-            staticClass: "row-auto border border",
-            attrs: { id: "messageInput" }
-          })
-        : _vm._e()
+              ]
+            )
+          : _vm._e()
+      ])
     ]
   )
 }
@@ -20983,18 +21027,6 @@ var staticRenderFns = [
           alt: "Hier sollte ein placeholder sein"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Konversation suchen")]
-      )
     ])
   },
   function() {
@@ -34046,7 +34078,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue")["default"]);
-Vue.component('userandroles', __webpack_require__(/*! ./components/UserAndRoles.vue */ "./resources/js/components/UserAndRoles.vue")["default"]);
+Vue.component('userrolessystem', __webpack_require__(/*! ./components/UserAndRoles.vue */ "./resources/js/components/UserAndRoles.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -20,21 +20,12 @@
 <div class="tab-content" id="myTabContent" >
   <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
     <div class="d-flex p-2 flex-column" >
-      <div class="card text-center main">
+      <div class="card text-center main" style="height: 53em">
         <div class="card-header">
           Chat (nur moglich in meine Richtung)
         </div>
         <div class="card-body">
-          <h5 class="card-title"></h5>
-          @if(!$step=1)
-            Konversation suchen
-            <form action="#" method="post">
-              @csrf
 
-            <input type="number" name="ConvID"> Konversationsid
-            <input type="text" name="key"> Key
-            <input type="submit" > Absenden
-        @endif
             <Chat version="user"></Chat>
         </div>
         <div class="card-footer text-muted">

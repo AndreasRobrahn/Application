@@ -27,16 +27,6 @@
 
 </div>
 
-  <div class="footer" style="
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;">
-      <p class="text-white">Place sticky footer content here.</p>
-    </div>
 
 @endsection
 @section('additional_js')

@@ -30,6 +30,7 @@ Route::view('/aboutme', 'frontend.curriculum');
 Route::view('/adminchat', 'backend.adminchat');
 
 
+
 // the backendcontroller
 Route::get('/config', 'ConfigController@indexConfig')->name('config.index');
 Route::get('/migrate', 'ConfigController@migrate')->name('config.migrate');
@@ -42,6 +43,7 @@ Route::get('/conversations', 'ConversationsController@index')->name('conversatio
 Route::post('/startConversation', 'ConversationsController@startConversation')->name('conversations.start');
 Route::get('/messages/conId/{id}', 'ConversationsController@show')->name('conversations.get');
 Route::post('/sendMessage', 'ConversationsController@update')->name('conversations.sendMessage');
+Route::post('/getConversation', 'ConversationsController@getConversation')->name('conversation.get');
 
 //roles and rights
 Route::post('/user/create', 'UserController@store')->name('exampleuser.create');
