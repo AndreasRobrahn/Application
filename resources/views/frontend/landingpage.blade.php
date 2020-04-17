@@ -5,7 +5,7 @@
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <h5><a class="nav-link text-white font-weight-bolder" href="#">Lebenslauf</a></h5>
+    <h5><a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">Lebenslauf</a></h5>
   </li>
   <li class="nav-item">
     <h5><a class="nav-link text-white" href="#">Weisheiten des Andreas Robrahn</a></h5>
@@ -27,16 +27,6 @@
 
 </div>
 
-  <div class="footer" style="
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;">
-      <p class="text-white">Place sticky footer content here.</p>
-    </div>
 
 @endsection
 @section('additional_js')

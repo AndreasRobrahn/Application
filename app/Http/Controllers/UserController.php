@@ -139,4 +139,8 @@ class UserController extends Controller
       // $user->setRights();
       // return response()->json($rights);
     }
+    public function getLike()
+    {
+      \DB::table('like')->update('likes','likes' + 1);
+    }
 }
