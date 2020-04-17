@@ -5,7 +5,7 @@
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <h5><a class="nav-link text-white font-weight-bolder" href="#">Lebenslauf</a></h5>
+    <h5><a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">Lebenslauf</a></h5>
   </li>
   <li class="nav-item">
     <h5><a class="nav-link text-white" href="#">Weisheiten des Andreas Robrahn</a></h5>

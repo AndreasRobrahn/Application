@@ -2010,11 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log('chat mounted, version:' + this.version);
 
     if (this.version == 'admin') {
-<<<<<<< HEAD
       this.timer = setInterval(this.getConversations, 2000);
-=======
-      setInterval(this.getConversations, 2000);
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
     } // setInterval(this.test,2000)
 
   },
@@ -2097,15 +2093,11 @@ __webpack_require__.r(__webpack_exports__);
       params.append("user", user);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
-<<<<<<< HEAD
         _this5.changeConID(response.data);
-=======
-        _this4.changeConID(response.data);
 
-        setInterval(_this4.getMessages(_this4.chatConversation_id), 2000);
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
+        setInterval(_this5.getMessages(_this5.chatConversation_id), 2000);
       })["catch"](function (error) {
-        console.log(error);
+        console.log(error.response.data.message);
       }); //console.log('axios')
     },
     getConversation: function getConversation() {
@@ -2126,18 +2118,6 @@ __webpack_require__.r(__webpack_exports__);
         _this6.changeConID(response.data);
       })["catch"](function (error) {
         console.log(error.response.data.message);
-      });
-    },
-    getConversation: function getConversation() {
-      var _this5 = this;
-
-      var key = conversation_key;
-      var conid = conversation_id;
-      alert(this.id);
-      axios.post('/startConversation', params).then(function (response) {
-        _this5.changeConID(response.data);
-      })["catch"](function (error) {
-        console.log(error);
       });
     },
     test: function test() {// console.log(this.conversations)
@@ -7005,7 +6985,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#profile-card\n{\n  height:8em;\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n}\n@media(max-height: 300px)\n{\n#messagebox\n  {\n    background-color: red;\n    height : 15em;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.left\r\n{\r\n  padding-left : 3%;\r\n  color: white;\n}\n.right\r\n{\r\n  padding-left : 89%;\r\n  color: white;\n}\n#chatbox\r\n{\r\n  height: 90%\n}\n#profile-card\r\n{\r\n  height:8em;\n}\n#messageInput\r\n{\r\n  position: relative;\r\n  bottom:0%;\r\n  width: 100%;\n}\n#messagebox\r\n{\r\n  overflow : scroll;\r\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 20em;\n}\n}\n@media(max-height: 300px)\r\n{\n#messagebox\r\n  {\r\n    background-color: red;\r\n    height : 15em;\n}\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -38999,7 +38979,6 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-<<<<<<< HEAD
         _vm.chatConversation_id
           ? _c(
               "div",
@@ -39013,54 +38992,6 @@ var render = function() {
                   "background-color": "red",
                   color: "white",
                   "text-align": "center"
-=======
-        _c(
-          "div",
-          {
-            staticClass: "footer",
-            staticStyle: {
-              position: "fixed",
-              left: "0",
-              bottom: "0",
-              width: "100%",
-              "background-color": "red",
-              color: "white",
-              "text-align": "center"
-            }
-          },
-          [
-            _c("div", { staticClass: "input-group" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "textarea", value: "" },
-                domProps: { value: _vm.message },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.sendMessage(_vm.chatConversation_id)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.message = $event.target.value
-                  }
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
                 }
               },
               [
@@ -52495,8 +52426,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

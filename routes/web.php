@@ -25,8 +25,7 @@ Route::get('/examples', function(){
   return view('frontend.examples');
 })->name('frontend.examples');
 
-Route::view('/curriculum', 'frontend.curriculum');
-Route::view('/aboutme', 'frontend.curriculum');
+Route::view('/curriculum', 'frontend.curriculum')->name('frontend.curriculum');
 Route::view('/adminchat', 'backend.adminchat');
 
 

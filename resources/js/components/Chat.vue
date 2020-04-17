@@ -104,16 +104,10 @@
           console.log('chat mounted, version:' + this.version)
           if(this.version == 'admin')
           {
-<<<<<<< HEAD
             this.timer = setInterval(this.getConversations,2000)
           }
 
           // setInterval(this.test,2000)
-=======
-            setInterval(this.getConversations,2000)
-          }
-        // setInterval(this.test,2000)
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
         },
         created(){
             this.getConversations()
@@ -216,19 +210,14 @@
               setInterval(this.getMessages(this.chatConversation_id),2000)
             })
             .catch(function(error) {
-              console.log(error);
+              console.log(error.response.data.message)
             });
-<<<<<<< HEAD
 
             //console.log('axios')
-=======
-            console.log('axios')
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
 
           },
           getConversation()
           {
-<<<<<<< HEAD
             var params = new URLSearchParams()
             params.append("conid", this.conversation_id)
             params.append("key", this.conversation_key)
@@ -251,19 +240,6 @@
             })
             .catch(function(error) {
               console.log(error.response.data.message);
-=======
-            let key = conversation_key
-            let conid = conversation_id
-            alert(this.id)
-            axios.
-            post('/startConversation', params)
-            .then(response => {
-              this.changeConID(response.data)
-
-            })
-            .catch(function(error) {
-              console.log(error);
->>>>>>> 3cc1d3f34646feb82c2dc7e1fb04551ea12fe620
             });
           },
           test()

@@ -94,11 +94,15 @@ class ConversationsController extends Controller
     }
     public function startConversation(Request $request)
     {
+      // $newEncrypter = new \Illuminate\Encryption\Encrypter( $request->key, \Config::get( 'app.cipher' ) );
+      // $encrypted = $newEncrypter->encrypt( $plainTextToEncrypt );
+      // $decrypted = $newEncrypter->decrypt( $encrypted );
+
       $conversation = new Conversation;
       $conversation->member1 = $request->user;
       $conversation->key = $request->key;
 
-      $decrypted = $newEncrypter->decrypt( $encrypted );
+      // $decrypted = $newEncrypter->decrypt( $encrypted );
 
       $conversation->save();
 
@@ -106,7 +110,7 @@ class ConversationsController extends Controller
       $message2->conversation_id = $conversation->id;
       $message2->direction = 0;
 
-      $encrypted = $newEncrypter->encrypt( $plainTextToEncrypt );
+      // $encrypted = $newEncrypter->encrypt( 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen' );
       $message2->message = 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen';
       $message2->save();
 
