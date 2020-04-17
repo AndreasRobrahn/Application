@@ -98,9 +98,7 @@ class ConversationsController extends Controller
       $conversation->member1 = $request->user;
       $conversation->key = $request->key;
 
-      $newEncrypter = new \Illuminate\Encryption\Encrypter( $conversation->key, Config::get( 'app.cipher' ) );
-
-$decrypted = $newEncrypter->decrypt( $encrypted );
+      $decrypted = $newEncrypter->decrypt( $encrypted );
 
       $conversation->save();
 
