@@ -117,7 +117,7 @@
           changeConID(id)
           {
             this.chatConversation_id = id
-            // clearInterval(this.timer);
+            clearInterval(this.timer);
             this.timer = setInterval(() => {
               this.getMessages(this.chatConversation_id);
             }, 2000);

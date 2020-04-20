@@ -25,7 +25,21 @@ Route::get('/examples', function(){
   return view('frontend.examples');
 })->name('frontend.examples');
 
-Route::view('/curriculum', 'frontend.curriculum')->name('frontend.curriculum');
+Route::get('/curriculum', function(){
+
+  $employers = collect([
+    [ 'name' => 'Perry & Knorr',
+      'timespan' => '2010 - 2011',
+      'jobname' => 'Perry $ Knorr',
+      'description' => 'Perry $ Knorr'],
+    ],
+);
+
+  // dd($employers);
+
+  return view('frontend.curriculum', compact('employers'));
+
+})->name('frontend.curriculum');
 Route::view('/adminchat', 'backend.adminchat');
 
 

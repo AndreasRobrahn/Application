@@ -1,7 +1,7 @@
 @extends('frontend.general_layout')
 @section('content')
 <div class>
-  <div class="row ml-2">
+  <div class="row">
 	    <div class="col-12 col-lg-4">
 	      <div class="row">
 	        <div class="col">
@@ -26,7 +26,7 @@
 				</div>
 
 			<div class="row mt-2">
-        <table class="table table-bordered table-dark">
+        <table class="table table-bordered table-primary">
           <thead>
           <tr>
             <th><h2>generelle Informationen</h2></th>
@@ -34,33 +34,27 @@
           </thead>
           <tbody>
           <tr>
-            <th scope="row"><i class="fas fa-male"></i> Staatsangehorigkeit</th>
+            <th scope="row">Staatsangehorigkeit</th>
             <td>Deutsch</td>
           </tr>
           <tr>
-            <th scope="row"><i class="fas fa-cut"></i> Schulbildung</th>
-            <td><div class="row">
-            	Abitur Note 2,5
-            </div>
-  					<div class="row">
-            	Ausbildung FI Note 2,5
-            </div></td>
-
+            <th scope="row">Schulbildung</th>
+            <td>Abitur Note 2,5 </td>
           </tr>
           <tr>
-            <th scope="row"><i class="fas fa-heart"></i> Familienstatus</th>
+              <th scope="row">Ausbildung Fachinformatiker (Anwendungsentwicklung)</th>
+              <td>Berufsschule Note 2,5</td>
+          </tr>
+          <tr>
+              <th scope="row"></th>
+              <td>Abschlussprüfung 76% </td>
+          </tr>
+          <tr>
+            <th scope="row"> Familienstatus</th>
             <td>ledig</td>
           </tr>
           <tr>
-            <th scope="row"><i class="fas fa-pencil-paintbrush"></i> Tattos</th>
-            <td>Ja</td>
-          </tr>
-          <tr>
-            <th scope="row"><i class="fas fa-rings-wedding"></i> Piercings</th>
-            <td>Ja</td>
-          </tr>
-          <tr>
-            <th scope="row"><i class="fas fa-venus-mars"></i> Führerschein</th>
+            <th scope="row"> Führerschein</th>
             <td>Klasse B</td>
           </tr>
           </tbody>
@@ -72,23 +66,25 @@
         <h2>Arbeitshistorie</h2>
         <div class="accordion" id="accordion">
           <div class="row m-2 overflow-auto" style="height: 35em">
+            <!-- one Card for an Employer of mine -->
+            @foreach($employers as $employer)
             <div class="row m-2">
               <div class="card">
                 <div class="card-header">
                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Perry & Knorr | Customer Advisor für die Versatel GmbH | 2010 - 2011
+                    {{$employer->timespan}} | {{$employer->name}} Perry & Knorr | Customer Advisor für die Versatel GmbH | 2010 - 2011
                   </button>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                   <div class="card-body">
-                    <h5 class="card-title">Aufgabenbereich</h5>
-                    <p class="card-text">das schriftliche bearebiten und beantworten von Kundenbeschwerden für einen großen Telekommunikationsanbieter</p>
+                    <h5 class="card-title">Aufgabenbereich als "{{$employer->jobname}}"</h5>
+                    <p class="card-text">{{$employer->description}}</p>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="row m-2">
+            @endforeach
+            <!-- <div class="row m-2">
               <div class="card">
                 <div class="card-header">
                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
@@ -126,7 +122,7 @@
                   <p class="card-text">Hotlinearbeit, Beschwerdenaufnahme & -bearbeitung, Aufnahme und Verarbeitung von Bestellungen und Stornierungen</p>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
 
