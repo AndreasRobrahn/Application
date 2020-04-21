@@ -33,7 +33,14 @@
         </div>
       </div>
       <div  class="row" v-else-if="version != 'admin'">
-        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst 
+        <div class="col-12">
+          <h3>Funktionsweise:</h3>
+        </div>
+        <div class="col-12">
+          <p>Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst</p>
+            <p>Rufe eine bereits erstellte Konversation über die Konversations-ID und dem Key ab.</p>
+        </div>
+
         <div id="UserInput"  class="border border" style="width: 100%;">
           <div class="row m-2 p-2">
             <div class="col">

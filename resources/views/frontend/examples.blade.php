@@ -41,10 +41,13 @@
               Ein kleines Nutzer und Rechte System
             </div>
             <div class="card-body">
-              <h5 class="card-title">Funktionsweise: du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen,<br>
-                in Karteikarte 3 kannst du sehen wie das ganze funktioniert. <br>
-
-                Alle Daten werden beim Neuladen der Seite wieder gelöscht</h5>
+                <div class="col-12">
+                <h3>Funktionsweise:</h3>
+                </div>
+                <div class="col-12">
+                  <p>im Reiter "User "du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen, die Email ist optional. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern Schreib- und Leserechte für 3 Beispielaufgaben zuweisen.
+                  In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
+                </div>
                 <hr>
               <userrolessystem></userrolessystem>
             </div>
