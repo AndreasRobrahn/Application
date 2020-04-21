@@ -82,7 +82,7 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                   <div class="card-body">
                     <h5 class="card-title">Aufgabenbereich</h5>
-                    <p class="card-text">das schriftliche bearebiten und beantworten von Kundenbeschwerden für einen großen Telekommunikationsanbieter</p>
+                    <p class="card-text">das schriftliche Bearbeiten und Beantworten von Kundenbeschwerden </p>
                   </div>
                 </div>
               </div>
@@ -153,49 +153,20 @@
           <button type="button" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fas fa-paper-plane"></i> Senden</button>
         </div>
       </div>
-      <section class="my-5">
-        <div class="row">
-        <div class="col-lg-12">
-          <div class="mdb-feed" id="messageFeed">
-            <div class="news" v-for="news in feed">
-              <div class="label">
-                <a class="thumbs" data-toggle="tooltip" data-placement="top" title="I don't like it">
-                <i class="fas fa-thumbs-down"></i>
-                </a>
-                <div class="collapse" id="collapseExample-1">
-                <div class="card card-body mt-1">
-                  <div class="md-form mt-1 mb-1">
-                  <textarea type="text" id="form7" class="form-control md-textarea" rows="3"></textarea>
-                  <label for="form7">Kommentar hinzufügen</label>
-                  </div>
-                  <div class="d-flex justify-content-end">
-                  <button type="button" class="btn btn-flat waves-effect" data-toggle="collapse" data-target="#collapseExample-1"
-                    aria-expanded="false" aria-controls="collapseExample-1">Abbrechen</button>
-                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample-1"
-                    aria-expanded="false" aria-controls="collapseExample-1">Antworten</button>
-                  </div>
 
-                </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-            <div>
-        </div>
-      </section>
     </div>
   </div>
-	<div class="row text-center">
-		<p class="text-center">	Hobbys </p>
+	<div class="row text-center text-black">
+    <div class="col">
+      <h2>Hobbys</h2>
+    </div>
 	</div>
   <!-- Modal for Messages -->
   <div class="modal fade" id="sendmessage" tabindex="-1" role="dialog" aria-labelledby="modalGiftsCreate" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold">Schreibe Mir, ich erhalte eine Nachricht auf mein Smartphone. Wenn ich Zeit habe antworte ich</h4>
+          <h4 class="modal-title w-100 font-weight-bold">Schreibe Mir</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
