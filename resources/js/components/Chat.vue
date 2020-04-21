@@ -25,9 +25,7 @@
         <div id="messagebox"  class="border border" style="width: 100%;">
           <div v-bind:class="{'d-flex justify-content-start p-1': message.direction == 1, 'd-flex justify-content-end p-1' : message.direction == 0}"v-for="message in messages">
             <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-light text-right' : message.direction == 0}" style="width: auto">
-
                 {{message.message}}
-
             </div>
           </div>
         </div>

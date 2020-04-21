@@ -1997,8 +1997,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -38844,9 +38842,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n\n                " +
+                            "\n                " +
                               _vm._s(message.message) +
-                              "\n\n            "
+                              "\n            "
                           )
                         ]
                       )
