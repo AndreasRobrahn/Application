@@ -18,7 +18,7 @@
 <div class="container">
   <div class="row" style="padding:10em">
     <div class="col">
-      <img src="{{ asset('images/ARobrahn.jpg')}}" style="max-width: 500px">
+      <img src="{{ asset('images/ARobrahn.jpg')}}" class="img-fluid">
     </div>
     <div class="col">
       <p class="text-justify text-primary text-wrap font-weight-bold"> Sehr geehrter Besucher. Vermutlich bist du aufgrund meiner Bewerbung hier. Auf dieser Seite kannst du dir einen besserer Uberblick uber meine Faigkeiten und Arbeitshistorie machen. Viel Spaß, Andreas Robrahn</p>
