@@ -1,6 +1,12 @@
-body
+body,html
 {
-  background: url('../images/Hintergrund.png') no-repeat center center fixed;
+  height: 100%;
+  margin: 0;
+  background-image: url('../images/Hintergrund.png') ;
+  background-repeat: no-repeat;
+   background-position: top center;
+   background-size: 100% auto;
+   background-attachment: fixed
 
 }
 .text-primary {

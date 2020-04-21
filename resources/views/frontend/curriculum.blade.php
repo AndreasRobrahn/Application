@@ -62,28 +62,6 @@
         </table>
 		</div>
     </div>
-<<<<<<< HEAD
-    <div class="col-12 col-lg-8">
-      <div class="row " >
-        <h2>Arbeitshistorie</h2>
-        <div class="accordion" id="accordion">
-          <div class="row m-2 overflow-auto" style="height: 35em">
-            <div class="row m-2">
-              <div class="card">
-                <div class="card-header">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Perry & Knorr | Customer Advisor für die Versatel GmbH | 2010 - 2011
-                  </button>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body">
-                    <h5 class="card-title">Aufgabenbereich</h5>
-                    <p class="card-text">das schriftliche Bearbeiten und Beantworten von Kundenbeschwerden </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-=======
       <div class="col-12 col-lg-8">
         <div class="row m-2" >
           <h2>Arbeitshistorie</h2>
@@ -97,7 +75,6 @@
                     <p class="text-left">
                       <h4>{{$employers[$i]['name']}} | {{$employers[$i]['jobname']}}
                         <span class="badge badge-secondary" style="float:right;"> {{$employers[$i]['timespan']}}</span>
->>>>>>> 3c7c35161bead59074aad6dd83964cbf5581a48a
 
                     </h4>
                     </p>
@@ -206,16 +183,6 @@
           <input type="text" class="form-control" name="user" value="anonymous" aria-describedby="basic-addon1">
         </div>
       </div>
-<<<<<<< HEAD
-
-    </div>
-  </div>
-	<div class="row text-center text-black">
-    <div class="col">
-      <h2>Hobbys</h2>
-    </div>
-	</div>
-=======
         <div class="col-12">
           <div class="form-group">
             <label for="exampleFormControlTextarea5">Eintrag im Gästebuch</label>
@@ -228,17 +195,12 @@
     </div>
   </div>
 </form>
->>>>>>> 3c7c35161bead59074aad6dd83964cbf5581a48a
   <!-- Modal for Messages -->
   <div class="modal fade" id="sendmessage" tabindex="-1" role="dialog" aria-labelledby="modalGiftsCreate" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-<<<<<<< HEAD
-          <h4 class="modal-title w-100 font-weight-bold">Schreibe Mir</h4>
-=======
           <h4 class="modal-title w-100 font-weight-bold">Schreibe mir!</h4>
->>>>>>> 3c7c35161bead59074aad6dd83964cbf5581a48a
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
