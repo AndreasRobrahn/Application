@@ -2021,8 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
     changeConID: function changeConID(id) {
       var _this = this;
 
-      this.chatConversation_id = id; // clearInterval(this.timer);
-
+      this.chatConversation_id = id;
+      clearInterval(this.timer);
       this.timer = setInterval(function () {
         _this.getMessages(_this.chatConversation_id);
       }, 2000);
@@ -6985,7 +6985,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\r\n{\r\n  padding-left : 3%;\r\n  color: white;\n}\n.right\r\n{\r\n  padding-left : 89%;\r\n  color: white;\n}\n#chatbox\r\n{\r\n  height: 90%\n}\n#profile-card\r\n{\r\n  height:8em;\n}\n#messageInput\r\n{\r\n  position: relative;\r\n  bottom:0%;\r\n  width: 100%;\n}\n#messagebox\r\n{\r\n  overflow : scroll;\r\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 20em;\n}\n}\n@media(max-height: 300px)\r\n{\n#messagebox\r\n  {\r\n    background-color: red;\r\n    height : 15em;\n}\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#profile-card\n{\n  height:8em;\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n}\n@media(max-height: 300px)\n{\n#messagebox\n  {\n    background-color: red;\n    height : 15em;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -38852,7 +38852,7 @@ var render = function() {
           : _vm.version != "admin"
           ? _c("div", { staticClass: "row" }, [
               _vm._v(
-                "\n        Bitte gebe die Conversation-ID an oder starte eine neue\n        "
+                "\n        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst \n        "
               ),
               _c(
                 "div",
@@ -38874,7 +38874,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Username" },
+                        attrs: { type: "text", placeholder: "Name" },
                         domProps: { value: _vm.conversation_username },
                         on: {
                           input: function($event) {
@@ -52426,8 +52426,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

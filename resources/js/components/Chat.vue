@@ -33,11 +33,11 @@
         </div>
       </div>
       <div  class="row" v-else-if="version != 'admin'">
-        Bitte gebe die Conversation-ID an oder starte eine neue
+        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst 
         <div id="UserInput"  class="border border" style="width: 100%;">
           <div class="row m-2 p-2">
             <div class="col">
-              <input type="text" v-model="conversation_username" class="form-control" placeholder="Username">
+              <input type="text" v-model="conversation_username" class="form-control" placeholder="Name">
             </div>
           </div>
           <div class="row m-2 p-2">
@@ -117,7 +117,7 @@
           changeConID(id)
           {
             this.chatConversation_id = id
-            // clearInterval(this.timer);
+            clearInterval(this.timer);
             this.timer = setInterval(() => {
               this.getMessages(this.chatConversation_id);
             }, 2000);
