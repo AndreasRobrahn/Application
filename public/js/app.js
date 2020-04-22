@@ -1992,6 +1992,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -38837,9 +38842,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n\n                " +
+                            "\n                " +
                               _vm._s(message.message) +
-                              "\n\n            "
+                              "\n            "
                           )
                         ]
                       )
@@ -38851,9 +38856,10 @@ var render = function() {
             ])
           : _vm.version != "admin"
           ? _c("div", { staticClass: "row" }, [
-              _vm._v(
-                "\n        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst \n        "
-              ),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -38996,7 +39002,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(1),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -39074,6 +39080,32 @@ var staticRenderFns = [
           alt: "Hier sollte ein placeholder sein"
         }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h3", [_vm._v("Funktionsweise:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("p", [
+        _vm._v(
+          "Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Rufe eine bereits erstellte Konversation über die Konversations-ID und dem Key ab."
+        )
+      ])
     ])
   },
   function() {

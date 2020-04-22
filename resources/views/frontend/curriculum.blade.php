@@ -103,33 +103,49 @@
 
   <div class="col-12 mt-2 col-lg-4">
     <div class="card bg-dark text-dark h-100">
-      <img src="{{ asset('images/Kampfsport.png')}}" alt="Hobbyfoto" style="max-width:338px">
-      <div class="card-img-overlay">
-        <h5> Brasilian Jiu Jitsu </h5>
+      <img src="{{ asset('images/Kampfsport2.jpg')}}" alt="Hobbyfoto" style="max-width:338px; height:301px;">
+      <div class="card-footer text-white">
+          <h5> Brasilian Jiu Jitsu </h5>
       </div>
     </div>
   </div>
   <div class="col-12 mt-2 col-lg-4">
     <div class="card bg-dark text-dark">
-      <img src="{{ asset('images/Fußball.png')}}" alt="Hobbyfoto" style="max-width:338px">
-      <div class="card-img-overlay">
-        <h5> Sport im allgemeinen </h5>
+      <img src="{{ asset('images/Fußball2.jpg')}}" alt="Hobbyfoto" style="max-width:338px">
+      <div class="card-footer text-white">
+          <h5> Mannschaftssport</h5>
       </div>
     </div>
   </div>
   <div class="col-12 mt-2 col-lg-4">
     <div class="card bg-dark text-dark">
-      <img src="{{ asset('images/IT.png')}}" alt="Hobbyfoto" style="max-width:338px">
-      <div class="card-img-overlay">
-        <h5> Programmieren, Datteln etc.</h5>
+      <img src="{{ asset('images/IT2.jpg')}}" alt="Hobbyfoto" style="max-width:338px">
+      <div class="card-footer text-white">
+          <h5> PC Tätigkeiten</h5>
       </div>
     </div>
   </div>
   <div class="col-12 mt-2 col-lg-4">
     <div class="card bg-dark text-dark">
-      <img src="{{ asset('images/Wandern.png')}}" alt="Hobbyfoto" style="max-width:338px">
-      <div class="card-img-overlay">
-        <h5> Zeit in der Natur verbringen</h5>
+      <img src="{{ asset('images/Wandern2.jpg')}}" alt="Hobbyfoto" style="max-width:338px;">
+      <div class="card-footer text-white">
+          <h5> Zeit in der Natur verbringen</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 mt-2 col-lg-4">
+    <div class="card bg-dark text-dark">
+      <img src="{{ asset('images/Kultur2.png.jpg')}}" alt="Hobbyfoto" style="max-width:338px; height:301px;">
+      <div class="card-footer text-white">
+          <h5> Zeit mit Freunden verbringen</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 mt-2 col-lg-4">
+    <div class="card bg-dark text-dark">
+      <img src="{{ asset('images/Lesen.jpg')}}" alt="Hobbyfoto" style="max-width:338px; height:301px;">
+      <div class="card-footer text-white">
+          <h5> Lesen</h5>
       </div>
     </div>
   </div>

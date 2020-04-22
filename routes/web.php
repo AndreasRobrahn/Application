@@ -33,7 +33,7 @@ Route::get('/curriculum', function(){
 
   $employers = collect([
     [ 'name' => 'Perry & Knorr',
-      'timespan' => '2010 - 2013',
+      'timespan' => '2010 - 2011',
       'jobname' => 'Compliance, Versatel',
       'description' => 'Bearbeiten, Beurteilen und Lösen von Kundenbeschwerden für einen großen Telekomanbieter'
     ],
@@ -45,27 +45,27 @@ Route::get('/curriculum', function(){
     [ 'name' => 'CarebyPhone',
       'timespan' => '2013 - 2014',
       'jobname' => 'Customer Advisor',
-      'description' => 'Zuerst habe ich in der normale Kundenbetreuung gearbeitet und konnte und fachliche Unterstützung der Kollegen'
+      'description' => 'Hotlinearbeit, Beraten von Kunden bei Problemen, Tarifberatung, fachliche Unterstützung der Mitarbeiter'
     ],
     [ 'name' => 'Contevis GmbH',
       'timespan' => '2014 - 2015',
       'jobname' => 'Second Level Administrator',
-      'description' => 'Ich habe für einen großen, regionalen Internetanbieter Telefonanschlüsse repariert. Dies beinhaltete die Aufnahme von Störungen, das Durchführen diverser Testverfahren und eine Lösung zu präsentieren'
+      'description' => 'Aufnahme, Bearbeitung von Störungen ggf. Lösung präsentieren. Telefonischer und schriftlicher Kundenkontakt'
     ],
     [ 'name' =>  'Contevis GmbH | Ausbildung',
       'timespan' => '2015 - 2018',
-      'jobname' => 'Ausbildung zum Fachinformatiker FR Anwendungsentwickler',
-      'description' => 'In der Ausbildung konnte ich mehrere Bereiche des Unternehmens kennenlernen. Ich habe meine ersten Programmiererfahrungen gesammelt und war für erste Projekte verantwortlich.'
+      'jobname' => 'Ausbildung zum Fachinformatiker FR Anwendungsentwicklung',
+      'description' => 'Ausbildung zum ugs. Programmierer. Erste Programmiererfahrungen im Team, erste eigenverantwortliche Projekte. Ich hab erste Erfahrungen mit Netzwerksystemen gemacht und Mitarbeiterplätze eingerichtet und Profile angelegt. Ansonsten hatte ich in unterschiedlichen Unternehmensbereichen zu tun.'
     ],
     [ 'name' =>  'Versatel GmbH',
-      'timespan' => '07/2018 - 05/2019',
+      'timespan' => '2018 - 2019',
       'jobname' => 'Customer Advisor im Shared Service Bereich',
-      'description' => 'In dieser Anstellung habe ich das registrieren, ändern und löschen von Domains übernommen. Zudem habe ich kleinere Arbeiten im Ordermanagement übernommen.'
+      'description' => 'Domains registriert und verwaltet für Kunden der Versatel GmbH. IP Einträge verwaltet, gelöscht, Nachforschungen angestellt etc.. Telefonische Lösungssuche mit Kundenkontakt'
     ],
     [ 'name' =>  'ME Media Ug',
-      'timespan' => '06/2019 - 04/2020',
+      'timespan' => '2019 - 2020',
       'jobname' => 'Programmierer',
-      'description' => 'in meiner letzten Arbeitsstelle habe ich als klassischer Programmierer gearbeitet. Hauptsächlich haben wir in einem 2 Mann Team ein Forum programmiert.'
+      'description' => 'klassische Programmierarbeit. Hauptsächlich haben wir in einem 2 Mann Team ein Internetforum programmiert.'
     ]
   ]);
 
