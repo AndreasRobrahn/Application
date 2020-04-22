@@ -6,7 +6,7 @@
         <div class="card mb-3" id="profile-card" style="max-width: auto;"  v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class=" card-img" alt="Hier sollte ein placeholder sein">
+              <img id="conversationcards" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class=" card-img" alt="Hier sollte ein placeholder sein">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div  class="row" v-else-if="version != 'admin'">
-        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst 
+        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst
         <div id="UserInput"  class="border border" style="width: 100%;">
           <div class="row m-2 p-2">
             <div class="col">
