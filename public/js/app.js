@@ -6999,7 +6999,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\r\n{\r\n  padding-left : 3%;\r\n  color: white;\n}\n.right\r\n{\r\n  padding-left : 89%;\r\n  color: white;\n}\n#chatbox\r\n{\r\n  height: 90%\n}\n#messageInput\r\n{\r\n  position: relative;\r\n  bottom:0%;\r\n  width: 100%;\n}\n#messagebox\r\n{\r\n  overflow : scroll;\r\n  height : 35em;\n}\r\n\r\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\r\n{\n#profile-card\r\n  {\r\n    height: auto;\r\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 20em;\n}\n#conversationpicture\r\n  {\r\n    display : none;\n}\n#profile-card\r\n  {\r\n    left:0;\r\n    padding: 0;\r\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\r\n{\n#conversationpicture\r\n  {\r\n    display : none;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n", ""]);
 
 // exports
 
@@ -52493,8 +52493,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
