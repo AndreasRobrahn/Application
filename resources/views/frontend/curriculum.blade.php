@@ -196,13 +196,13 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">@username</span>
           </div>
-          <input type="text" class="form-control" name="user" value="anonymous" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="user" value="anonymous" aria-describedby="basic-addon1" required>
         </div>
       </div>
         <div class="col-12">
           <div class="form-group">
             <label for="exampleFormControlTextarea5">Eintrag im Gästebuch</label>
-            <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" placeholder="Schreib was nettes an die Pinnwand" name="post"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" placeholder="Schreib was nettes an die Pinnwand" name="post" required></textarea>
           </div>
         </div>
     <div class="col-12">
