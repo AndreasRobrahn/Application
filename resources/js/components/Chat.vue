@@ -1,30 +1,32 @@
 <template>
   <div class="row" id="chatbox" style="padding-top:1em">
-    <div class="col-sm-4 border border" v-if="version == 'admin'" style="overflow:auto; max-height: 40em">
+    <div class="col-lg-4 border border w-100" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
       Konversationen
       <hr>
-        <div class="card mb-3" id="profile-card" style="max-width: auto;"  v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class=" card-img" alt="Hier sollte ein placeholder sein">
+      <!--the conversation component index of all conversations -->
+        <div class="card" id="profile-card" v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
+          <div class="row no-gutters border">
+            <div class="col-sm-4 border-right" id="conversationpicture">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{conversation.member1}}</h5>
-                <p class="card-text">{{conversation.last_message.message}}</p>
-                <p class="card-text"><small>{{conversation.last_message.created_at}}</small></p>
+            <div class="col-sm ">
+              <div class="col-12 border-bottom">
+                <p class="text-red"> Von {{conversation.member1}}<span style="float:right;"> <small>{{conversation.last_message.created_at}}</small></span></p>
+              </div>
+              <div class="col-12">
+                <p class="card-text">{{cutTheLastMessage(conversation.last_message.message)}}</p>
               </div>
             </div>
           </div>
         </div>
     </div>
-    <div class="col border border">
-      <div  class="row" v-if="chatConversation_id">
+    <div class="col border border" style="min-height: 90vh">
+      <div  class="row" v-if="chatConversation_id" style="">
         Nachrichtenverlauf
         <hr>
-        <div id="messagebox"  class="border border" style="width: 100%;">
-          <div v-bind:class="{'d-flex justify-content-start p-1': message.direction == 1, 'd-flex justify-content-end p-1' : message.direction == 0}"v-for="message in messages">
-            <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-light text-right' : message.direction == 0}" style="width: auto">
+        <div class="col-12 p-0 border-border" id="messagebox" style="width: 100%; height: 39em">
+          <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.direction == 1, 'd-flex justify-content-end p-0' : message.direction == 0}"v-for="message in messages" style="">
+            <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-success text-right' : message.direction == 0}" style="width: auto">
                 {{message.message}}
             </div>
           </div>
@@ -64,7 +66,7 @@
         </div>
       </div>
       <div class="footer" style="
-        position: relative;
+        position: absolute;
         left: 0;
         bottom: 0;
         width: 100%;
@@ -152,6 +154,16 @@
               .catch(function(error) {
                 console.log(error.response);
               });
+          },
+          cutTheLastMessage(message)
+          {
+            if(message.length > 30)
+            {
+              return message.substring(0, 30) + '...'
+            }
+            else {
+              return message
+            }
           },
           sendMessage(id){
             if(!id)
@@ -270,10 +282,6 @@
 {
   height: 90%
 }
-#profile-card
-{
-  height:8em;
-}
 #messageInput
 {
   position: relative;
@@ -287,29 +295,38 @@
   height : 35em;
 }
 
-@media(min-height: 701px) and (max-height:980px)
+/* for tablets etc. */
+@media only screen and (min-height: 601px)
 {
-  #messagebox
+  #profile-card
   {
-    background-color: black;
-    height : 35em;
+    height: auto;
+    margin: 0 0 0 0;
   }
 }
-@media(min-height: 301px) and (max-height: 700px)
+@media only screen and (max-height: 600px)
 {
   #messagebox
   {
     background-color: black;
     height : 20em;
   }
-}
-@media(max-height: 300px)
-{
-  #messagebox
+  #conversationpicture
   {
-    background-color: red;
-    height : 15em;
+    display : none;
+  }
+  #profile-card
+  {
+    left:0;
+    padding: 0;
+    margin: 0;
   }
 }
-
+@media only screen and (min-width:400px) and (max-width: 960px)
+{
+  #conversationpicture
+  {
+    display : none;
+  }
+}
 </style>
