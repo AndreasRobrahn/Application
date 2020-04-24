@@ -12,3 +12,44 @@ body,html
 .text-primary {
 color: #6282aa!important;
 }
+
+
+@media only screen and (min-width:300px) and (max-width:536px){
+	#landingpage-col
+  {
+    padding-top: 1em;
+    /* margin-left: 0%; */
+	}
+  #landingpage-img
+  {
+    width: 83vw;
+  }
+}
+@media only screen and (min-width: 537px) and (max-width:970px) {
+	#landingpage-col
+  {
+    padding-top: 3em;
+    max-width: 80vw;
+
+    /* margin-left: 0%; */
+	}
+  #landingpage-img
+  {
+      max-width: 80vw;
+  }
+}
+@media only screen and (min-width: 971px){
+	#landingpage-col
+  {
+    padding-top: 5em;
+    /* margin: 1em; */
+    /* padding: 8em; */
+
+    /* margin-left: 0%; */
+	}
+  #landingpage-img
+  {
+      width: 80vw;
+      max-width: 479px;
+  }
+}
