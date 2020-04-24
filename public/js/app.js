@@ -1999,6 +1999,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -2014,10 +2026,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     console.log('chat mounted, version:' + this.version);
 
     if (this.version == 'admin') {
-      this.timer = setInterval(this.getConversations, 2000);
+      this.timer = setInterval(function () {
+        _this.getConversations();
+      }, 2000);
     } // setInterval(this.test,2000)
 
   },
@@ -2026,29 +2042,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changeConID: function changeConID(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.chatConversation_id = id;
       clearInterval(this.timer);
       this.timer = setInterval(function () {
-        _this.getMessages(_this.chatConversation_id);
-      }, 2000);
+        _this2.getConversations();
+
+        _this2.getMessages(_this2.chatConversation_id);
+      }, 3000);
     },
     getMessages: function getMessages(conid) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/messages/conId/" + conid).then(function (response) {
-        _this2.messages = response.data;
+        _this3.messages = response.data;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
     getConversations: function getConversations() {
-      var _this3 = this;
+      var _this4 = this;
 
       // console.log('test timer')
       axios.get("/conversations").then(function (response) {
-        _this3.conversations = response.data; // console.log(this.conversations);
+        _this4.conversations = response.data; // console.log(this.conversations);
         // return response.data
       })["catch"](function (error) {
         console.log(error.response);
@@ -2062,7 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     sendMessage: function sendMessage(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!id) {
         alert('keine Konversation gewählt');
@@ -2079,9 +2097,9 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         axios.post('/sendMessage', params).then(function (response) {
-          _this4.getMessages(id);
+          _this5.getMessages(id);
 
-          _this4.message = '';
+          _this5.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2089,7 +2107,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     startConversation: function startConversation() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (!this.conversation_username) {
         alert('bitte username eingeben, dieser wert ist notwendig');
@@ -2107,15 +2125,15 @@ __webpack_require__.r(__webpack_exports__);
       params.append("user", user);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
-        _this5.changeConID(response.data);
+        _this6.changeConID(response.data);
 
-        setInterval(_this5.getMessages(_this5.chatConversation_id), 2000);
+        setInterval(_this6.getMessages(_this6.chatConversation_id), 2000);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       }); //console.log('axios')
     },
     getConversation: function getConversation() {
-      var _this6 = this;
+      var _this7 = this;
 
       var params = new URLSearchParams();
       params.append("conid", this.conversation_id);
@@ -2129,7 +2147,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response.data);
         }
 
-        _this6.changeConID(response.data);
+        _this7.changeConID(response.data);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       });
@@ -38757,7 +38775,7 @@ var render = function() {
         ? _c(
             "div",
             {
-              staticClass: "col-lg-4 border border w-100",
+              staticClass: "col-lg-4 border w-100",
               staticStyle: {
                 overflow: "auto",
                 "padding-left": "0px",
@@ -38765,336 +38783,353 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n      Konversationen\n      "),
-              _c("hr"),
-              _vm._v(" "),
-              _vm._l(_vm.conversations, function(conversation) {
-                return _c(
-                  "div",
-                  {
-                    staticClass: "card",
-                    class: {
-                      "bg-light text-black":
-                        conversation.id != _vm.chatConversation_id,
-                      "bg-primary text-white":
-                        conversation.id == _vm.chatConversation_id
-                    },
-                    attrs: { id: "profile-card" },
-                    on: {
-                      click: function($event) {
-                        return _vm.changeConID(conversation.id)
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "row no-gutters border" }, [
-                      _vm._m(0, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm " }, [
-                        _c("div", { staticClass: "col-12 border-bottom" }, [
-                          _c("p", { staticClass: "text-red" }, [
-                            _vm._v(" Von " + _vm._s(conversation.member1)),
-                            _c("span", { staticStyle: { float: "right" } }, [
-                              _c("small", [
-                                _vm._v(
-                                  _vm._s(conversation.last_message.created_at)
-                                )
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12" }, [
-                          _c("p", { staticClass: "card-text" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.cutTheLastMessage(
-                                  conversation.last_message.message
-                                )
-                              )
-                            )
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              })
-            ],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col border border",
-          staticStyle: { "min-height": "90vh" }
-        },
-        [
-          _vm.chatConversation_id
-            ? _c("div", { staticClass: "row" }, [
-                _vm._v("\n        Nachrichtenverlauf\n        "),
-                _c("hr"),
+              _c("div", { staticClass: "row bg-secondary " }, [
+                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "col-12 p-0 border-border",
-                    staticStyle: { width: "100%", height: "39em" },
-                    attrs: { id: "messagebox" }
+                    staticClass: "col-12 overflow-auto",
+                    staticStyle: { height: "70vh" }
                   },
-                  _vm._l(_vm.messages, function(message) {
+                  _vm._l(_vm.conversations, function(conversation) {
                     return _c(
                       "div",
                       {
-                        staticClass: "col-12",
+                        staticClass: "card",
                         class: {
-                          "d-flex justify-content-start p-0":
-                            message.direction == 1,
-                          "d-flex justify-content-end p-0":
-                            message.direction == 0
+                          "bg-light text-black":
+                            conversation.id != _vm.chatConversation_id,
+                          "bg-primary text-white":
+                            conversation.id == _vm.chatConversation_id
+                        },
+                        attrs: { id: "profile-card" },
+                        on: {
+                          click: function($event) {
+                            return _vm.changeConID(conversation.id)
+                          }
                         }
                       },
                       [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "alert ",
-                            class: {
-                              "alert-info": message.direction == 1,
-                              "alert-success text-right": message.direction == 0
-                            },
-                            staticStyle: { width: "auto" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(message.message) +
-                                "\n            "
-                            )
-                          ]
-                        )
+                        _c("div", { staticClass: "row no-gutters border" }, [
+                          _vm._m(1, true),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm " }, [
+                            _c("div", { staticClass: "col-12 border-bottom" }, [
+                              _c("p", { staticClass: "text-red" }, [
+                                _vm._v(" Von " + _vm._s(conversation.member1)),
+                                _c(
+                                  "span",
+                                  { staticStyle: { float: "right" } },
+                                  [
+                                    _c("small", [
+                                      _vm._v(
+                                        _vm._s(
+                                          conversation.last_message.created_at
+                                        )
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-12" }, [
+                              _c("p", { staticClass: "card-text" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.cutTheLastMessage(
+                                      conversation.last_message.message
+                                    )
+                                  )
+                                )
+                              ])
+                            ])
+                          ])
+                        ])
                       ]
                     )
                   }),
                   0
                 )
-              ])
-            : _vm.version != "admin"
-            ? _c("div", { staticClass: "row" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "border border",
-                    staticStyle: { width: "100%" },
-                    attrs: { id: "UserInput" }
-                  },
-                  [
-                    _c("div", { staticClass: "row m-2 p-2" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.conversation_username,
-                              expression: "conversation_username"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Name" },
-                          domProps: { value: _vm.conversation_username },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.conversation_username = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row m-2 p-2" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.conversation_id,
-                              expression: "conversation_id"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Konversations ID"
-                          },
-                          domProps: { value: _vm.conversation_id },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.conversation_id = $event.target.value
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.conversation_key,
-                              expression: "conversation_key"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Key" },
-                          domProps: { value: _vm.conversation_key },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.conversation_key = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row m-2 p-2" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "submit" },
-                            on: {
-                              click: function($event) {
-                                return _vm.getConversation()
-                              }
-                            }
-                          },
-                          [_vm._v("Konversation suchen")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "submit" },
-                            on: {
-                              click: function($event) {
-                                return _vm.startConversation()
-                              }
-                            }
-                          },
-                          [_vm._v("neue Konversation starten")]
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.chatConversation_id
-            ? _c(
+              ]),
+              _vm._v(" "),
+              _c("hr")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "col border border" }, [
+        _vm.chatConversation_id
+          ? _c("div", { staticClass: "row" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
                 "div",
                 {
-                  staticClass: "footer",
-                  staticStyle: {
-                    position: "absolute",
-                    left: "0",
-                    bottom: "0",
-                    width: "100%",
-                    "background-color": "red",
-                    color: "white",
-                    "text-align": "center"
-                  }
+                  staticClass: "col-12 p-0 border-border",
+                  staticStyle: { width: "100%", height: "" },
+                  attrs: { id: "messagebox" }
+                },
+                _vm._l(_vm.messages, function(message) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "col-12",
+                      class: {
+                        "d-flex justify-content-start p-0":
+                          message.direction == 1,
+                        "d-flex justify-content-end p-0": message.direction == 0
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "alert ",
+                          class: {
+                            "alert-info": message.direction == 1,
+                            "alert-success text-right": message.direction == 0
+                          },
+                          staticStyle: { width: "auto" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(message.message) +
+                              "\n            "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm.version != "admin"
+          ? _c("div", { staticClass: "row" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "border border",
+                  staticStyle: { width: "100%" },
+                  attrs: { id: "UserInput" }
                 },
                 [
-                  _c("div", { staticClass: "input-group" }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.message,
-                          expression: "message"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { id: "textarea", value: "" },
-                      domProps: { value: _vm.message },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.sendMessage(_vm.chatConversation_id)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.message = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-append" }, [
-                      _c("span", { staticClass: "input-group-text" }, [
-                        _c(
-                          "button",
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass: "btn btn-outline-secondary",
-                            attrs: { type: "button", id: "button-addon1" },
-                            on: {
-                              click: function($event) {
-                                return _vm.sendMessage(_vm.chatConversation_id)
-                              }
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_username,
+                            expression: "conversation_username"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Name" },
+                        domProps: { value: _vm.conversation_username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
                             }
-                          },
-                          [_vm._v("Senden")]
-                        )
-                      ])
+                            _vm.conversation_username = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_id,
+                            expression: "conversation_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Konversations ID"
+                        },
+                        domProps: { value: _vm.conversation_id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_id = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_key,
+                            expression: "conversation_key"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Key" },
+                        domProps: { value: _vm.conversation_key },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_key = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getConversation()
+                            }
+                          }
+                        },
+                        [_vm._v("Konversation suchen")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              return _vm.startConversation()
+                            }
+                          }
+                        },
+                        [_vm._v("neue Konversation starten")]
+                      )
                     ])
                   ])
                 ]
               )
-            : _vm._e()
-        ]
-      )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.chatConversation_id
+          ? _c(
+              "div",
+              {
+                staticClass: "footer",
+                staticStyle: {
+                  position: "absolute",
+                  left: "0",
+                  bottom: "0",
+                  width: "100%",
+                  "background-color": "red",
+                  color: "white",
+                  "text-align": "center"
+                }
+              },
+              [
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.message,
+                        expression: "message"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "textarea", value: "" },
+                    domProps: { value: _vm.message },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.sendMessage(_vm.chatConversation_id)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.message = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-append" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary",
+                          attrs: { type: "button", id: "button-addon1" },
+                          on: {
+                            click: function($event) {
+                              return _vm.sendMessage(_vm.chatConversation_id)
+                            }
+                          }
+                        },
+                        [_vm._v("Senden")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          : _vm._e()
+      ])
     ]
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 text-white" }, [
+      _c("h3", [_vm._v("Konversationen")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39116,6 +39151,14 @@ var staticRenderFns = [
         })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 bg-secondary text-white" }, [
+      _c("h3", [_vm._v("Nachrichtenverlauf")])
+    ])
   },
   function() {
     var _vm = this

@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.landingpage');
-});
+})->name('frontend.landingpage');
 
-Route::view('/landingpage', 'frontend.landingpage');
+// Route::view('/landingpage', 'frontend.landingpage');
+Route::post('/admin/login', 'Auth\LoginController@login')->name('admin.login');
+
 Route::get('/examples', function(){
 
   \DB::table('exampleuser')->truncate();
@@ -75,7 +77,7 @@ Route::get('/curriculum', function(){
 
 })->name('frontend.curriculum');
 
-Route::view('/adminchat', 'backend.adminchat');
+
 Route::post('/comments/store', 'CommentController@store')->name('comment.store');
 Route::get('/likes/update', function(){
 
@@ -86,8 +88,8 @@ Route::get('/likes/update', function(){
 
 
 // the backendcontroller
-Route::get('/config', 'ConfigController@indexConfig')->name('config.index');
-Route::get('/migrate', 'ConfigController@migrate')->name('config.migrate');
+Route::get('/config', 'ConfigController@indexConfig')->name('config.index')->middleware('auth');
+Route::get('/migrate', 'ConfigController@migrate')->name('config.migrate')->middleware('auth');
 Route::get('/migrate/reset/{tablename}', 'ConfigController@migrateResetTable')->name('config.migrateResetTable');
 Route::get('/truncateALL', 'ConfigController@truncateAll')->name('config.truncate.all');
 
@@ -107,5 +109,6 @@ Route::post('/users/rights', 'UserController@rights')->name('exampleuser.rights'
 Route::get('/test', 'UserController@index');
 
 Auth::routes();
-
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/adminchat', 'backend.adminchat')->middleware('auth');

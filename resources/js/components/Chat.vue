@@ -1,30 +1,40 @@
 <template>
   <div class="row" id="chatbox" style="padding-top:1em">
-    <div class="col-lg-4 border border w-100" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
-      Konversationen
-      <hr>
-      <!--the conversation component index of all conversations -->
-        <div class="card" id="profile-card" v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
-          <div class="row no-gutters border">
-            <div class="col-sm-4 border-right" id="conversationpicture">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
-            </div>
-            <div class="col-sm ">
-              <div class="col-12 border-bottom">
-                <p class="text-red"> Von {{conversation.member1}}<span style="float:right;"> <small>{{conversation.last_message.created_at}}</small></span></p>
+    <div class="col-lg-4 border w-100" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
+      <div class="row bg-secondary ">
+        <div class="col-12 text-white">
+            <h3>Konversationen</h3>
+        </div>
+        <div class="col-12 overflow-auto" style="height: 70vh">
+          <div class="card" id="profile-card" v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
+            <div class="row no-gutters border">
+              <div class="col-sm-4 border-right" id="conversationpicture">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
               </div>
-              <div class="col-12">
-                <p class="card-text">{{cutTheLastMessage(conversation.last_message.message)}}</p>
+              <div class="col-sm ">
+                <div class="col-12 border-bottom">
+                  <p class="text-red"> Von {{conversation.member1}}<span style="float:right;"> <small>{{conversation.last_message.created_at}}</small></span></p>
+                </div>
+                <div class="col-12">
+                  <p class="card-text">{{cutTheLastMessage(conversation.last_message.message)}}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <hr>
+      <!--the conversation component index of all conversations -->
+
     </div>
-    <div class="col border border" style="min-height: 90vh">
+    <div class="col border border" style="">
       <div  class="row" v-if="chatConversation_id" style="">
-        Nachrichtenverlauf
+        <div class="col-12 bg-secondary text-white">
+          <h3>Nachrichtenverlauf</h3>
+        </div>
+
         <hr>
-        <div class="col-12 p-0 border-border" id="messagebox" style="width: 100%; height: 39em">
+        <div class="col-12 p-0 border-border" id="messagebox" style="width: 100%; height: ">
           <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.direction == 1, 'd-flex justify-content-end p-0' : message.direction == 0}"v-for="message in messages" style="">
             <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-success text-right' : message.direction == 0}" style="width: auto">
                 {{message.message}}
@@ -85,6 +95,8 @@
             </div>
           </div>
       </div>
+
+      
   </div>
 </div>
 </template>
@@ -111,7 +123,9 @@
           console.log('chat mounted, version:' + this.version)
           if(this.version == 'admin')
           {
-            this.timer = setInterval(this.getConversations,2000)
+            this.timer = setInterval(() => {
+              this.getConversations();
+            },2000);
           }
 
           // setInterval(this.test,2000)
@@ -126,8 +140,9 @@
             this.chatConversation_id = id
             clearInterval(this.timer);
             this.timer = setInterval(() => {
+              this.getConversations();
               this.getMessages(this.chatConversation_id);
-            }, 2000);
+            }, 3000);
 
           },
           getMessages(conid)
