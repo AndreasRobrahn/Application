@@ -1997,6 +1997,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -6990,7 +6994,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#profile-card\n{\n  height:8em;\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n}\n@media(max-height: 300px)\n{\n#messagebox\n  {\n    background-color: red;\n    height : 15em;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.left\r\n{\r\n  padding-left : 3%;\r\n  color: white;\n}\n.right\r\n{\r\n  padding-left : 89%;\r\n  color: white;\n}\n#chatbox\r\n{\r\n  height: 90%\n}\n#profile-card\r\n{\r\n  height:8em;\n}\n#messageInput\r\n{\r\n  position: relative;\r\n  bottom:0%;\r\n  width: 100%;\n}\n#messagebox\r\n{\r\n  overflow : scroll;\r\n  height : 35em;\n}\n@media(min-height: 701px) and (max-height:980px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 35em;\n}\n}\n@media(min-height: 301px) and (max-height: 700px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 20em;\n}\n}\n@media(max-height: 300px)\r\n{\n#messagebox\r\n  {\r\n    background-color: red;\r\n    height : 15em;\n}\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -38856,10 +38860,15 @@ var render = function() {
             ])
           : _vm.version != "admin"
           ? _c("div", { staticClass: "row" }, [
+              _vm._v(
+                "\n<<<<<<< HEAD\n        Bitte gebe die KonversationsID an oder starte einen neuen Chat indem du den User und Key(für die Verschlüsselung) angibst\n=======\n        "
+              ),
               _vm._m(1),
               _vm._v(" "),
               _vm._m(2),
-              _vm._v(" "),
+              _vm._v(
+                "\n\n>>>>>>> cdcd42eb4de35823fa43b6e49bfd1e6b60456782\n        "
+              ),
               _c(
                 "div",
                 {
@@ -39075,6 +39084,7 @@ var staticRenderFns = [
       _c("img", {
         staticClass: " card-img",
         attrs: {
+          id: "conversationcards",
           src:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png",
           alt: "Hier sollte ein placeholder sein"
@@ -52458,8 +52468,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
