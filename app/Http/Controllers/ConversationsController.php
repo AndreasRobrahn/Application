@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Conversation;
 use App\Message;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class ConversationsController extends Controller
 {
@@ -16,7 +18,6 @@ class ConversationsController extends Controller
     public function index()
     {
         $conversations = Conversation::with('lastMessage')->get();
-
         return response()->json($conversations);
     }
 
@@ -88,7 +89,7 @@ class ConversationsController extends Controller
           $message->direction = 1;
         }
 
-        $message->message = $request->message;
+        $message->message = Crypt::encryptString($request->message);
         $message->save();
         // $message->direction = 0;
     }
@@ -100,7 +101,7 @@ class ConversationsController extends Controller
 
       $conversation = new Conversation;
       $conversation->member1 = $request->user;
-      $conversation->key = $request->key;
+      $conversation->key = Hash::make($request->key);
 
       // $decrypted = $newEncrypter->decrypt( $encrypted );
 
@@ -111,13 +112,13 @@ class ConversationsController extends Controller
       $message2->direction = 0;
 
       // $encrypted = $newEncrypter->encrypt( 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen' );
-      $message2->message = 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen';
+      $message2->message = Crypt::encryptString('die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen');
       $message2->save();
 
       $message = new Message;
       $message->conversation_id = $conversation->id;
       $message->direction = 0;
-      $message->message = 'Hallo '. $request->user;
+      $message->message = Crypt::encryptString('Hallo '. $request->user);
       $message->save();
 
       return $conversation->id;
@@ -125,13 +126,13 @@ class ConversationsController extends Controller
     }
     public function getConversation(Request $request)
     {
-      $conversationsid = Conversation::where('id','=', $request->conid)
-      ->where('key',$request->key)
-      ->value('id');
+      $conversation = Conversation::where('id','=', $request->conid)
+      // ->where('key',$request->key)
+      ->first();
 
-      if($conversationsid)
+      if(Hash::check($request->key, $conversation->key))
       {
-        return $conversationsid;
+        return $conversation->id;
       }
       else {
         return 0;
