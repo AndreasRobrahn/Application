@@ -9,6 +9,7 @@
 
         <!-- Bootstrap css -->
         <link href="bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-social-gh-pages/css/bootstrap-social.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <script src="https://kit.fontawesome.com/c869b225f8.js" crossorigin="anonymous"></script>
@@ -21,6 +22,18 @@
         @yield('additional_css')
     </head>
     <body class="p-3 mb-2 bg-white text-dark">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <h5><a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">Lebenslauf</a></h5>
+        </li>
+        <li class="nav-item">
+          <h5><a class="nav-link text-white font-weight-bolder" href="#">Weisheiten des Andreas Robrahn</a></h5>
+        </li>
+        <li class="nav-item">
+          <h5><a class="nav-link text-white font-weight-bolder" href="{{route('frontend.examples')}}">Progammierbeispiele</a></h5>
+        </li>
+
+      </ul>
         <div class="flex-center position-ref full-height" id="app">
           @yield('content')
         </div>

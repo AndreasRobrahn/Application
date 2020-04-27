@@ -2,10 +2,7 @@
 
 @section('content')
 <div class="container">
-
-<chat version="admin"></chat>
-
-
+  <chat version="admin"></chat>
 </div>
 @endsection
 
