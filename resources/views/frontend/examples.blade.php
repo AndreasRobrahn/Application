@@ -77,18 +77,21 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-        <ul class="navbar-nav ml-auto text-white">
-          <li class="nav-item">
-            <a class="nav-link" href="#AboutUs"><b>Team Yak</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Kontakt</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Login</a>
-          </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto text-white">
+            <li class="nav-item">
+              <a class="nav-link" href="#AboutUs"><b>Team Yak</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Kontakt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Login</a>
+            </li>
 
-        </ul>
+          </ul>
+        </div>
+
       </nav>
         <div id="carouselExampleIndicators" class="carousel slide border border-white" data-ride="carousel">
 
@@ -138,14 +141,14 @@
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="container bg-danger border-4 border-white rounded mt-5" id="contact">
+      <div class="container bg-danger border-4 border-white rounded mt-5">
         <h2 > Kontakt </h2>
         <hr>
         <div class="row">
           <div class="col-2">
             <h4>On Social Media</h4>
           </div>
-          <div class="col-10">
+          <div class="col-10" id="contact" >
             <a class="btn btn-info btn-social-icon btn-instagram" href="https://www.facebook.com/yak.bjj.flensburg"><span class="fa fa-instagram"></span></a>
             <a class="btn btn-primary btn-social-icon btn-facebook" href="https://www.facebook.com/yak.bjj.flensburg"><span class="fa fa-facebook"></span></a>
           </div>
