@@ -13,7 +13,10 @@ body,html
 color: #6282aa!important;
 }
 
-
+.navbar{
+    color: white;
+    background:#F7421B;
+}
 @media only screen and (min-width:300px) and (max-width:536px){
 	#landingpage-col
   {

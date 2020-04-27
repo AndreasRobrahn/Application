@@ -2009,8 +2009,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -38916,11 +38914,40 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "border border",
+                  staticClass: "col-12 border border",
                   staticStyle: { width: "100%" },
                   attrs: { id: "UserInput" }
                 },
                 [
+                  _c("div", { staticClass: "row m-2 p-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.conversation_id,
+                            expression: "conversation_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Konversations-ID"
+                        },
+                        domProps: { value: _vm.conversation_id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.conversation_id = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c("div", { staticClass: "row m-2 p-2" }, [
                     _c("div", { staticClass: "col" }, [
                       _c("input", {
@@ -38941,35 +38968,6 @@ var render = function() {
                               return
                             }
                             _vm.conversation_username = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row m-2 p-2" }, [
-                    _c("div", { staticClass: "col" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.conversation_id,
-                            expression: "conversation_id"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Konversations ID"
-                        },
-                        domProps: { value: _vm.conversation_id },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.conversation_id = $event.target.value
                           }
                         }
                       })
