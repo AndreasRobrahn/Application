@@ -46,7 +46,7 @@
       <div class="row"  v-else-if="version != 'admin'">
         <div class="accordion" id="accordionChat">
           <div class="col-12 ">
-            <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionChat" aria-expanded="true" aria-controls="collapseOne">V</button></h4>
+            <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionChat" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i></button></h4>
           </div>
           <div class="col-12 collapse" id="collapseDescriptionChat" aria-labelledby="headingOne" data-parent="#accordionChat">
             <p>Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst</p>

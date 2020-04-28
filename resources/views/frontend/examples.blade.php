@@ -47,9 +47,8 @@
             <div class="accordion" id="accordionUserRights">
               <div class="card-body">
                   <div class="col-12">
-                  <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionUserRights" aria-expanded="true" aria-controls="collapseOne">V
-                  </button></h4>
-
+                    <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionUserRights" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i>
+                    </button></h4>
                   </div>
                   <div class="col-12 collapse" id="collapseDescriptionUserRights" aria-labelledby="headingOne" data-parent="#accordionUserRights">
                     <p>im Reiter "User " kannst du bis zu 3 User anlegen. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern als Beispiel Rechte für 3 Beispielaufgaben zuweisen.

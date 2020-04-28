@@ -39183,7 +39183,7 @@ var staticRenderFns = [
                   "aria-controls": "collapseOne"
                 }
               },
-              [_vm._v("V")]
+              [_c("i", { staticClass: "fas fa-angle-double-down" })]
             )
           ])
         ]),
