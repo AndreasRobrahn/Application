@@ -44,19 +44,22 @@
             <div class="card-header">
               Ein kleines Nutzer und Rechte System
             </div>
-            <div class="card-body">
-                <div class="col-12">
-                <h3>Funktionsweise:</h3>
-                </div>
-                <div class="col-12">
-                  <p>im Reiter "User "du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen, die Email ist optional. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern Schreib- und Leserechte für 3 Beispielaufgaben zuweisen.
-                  In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
-                </div>
-                <hr>
-                <div class="col-lg-12">
-                    <userrolessystem></userrolessystem>
-                </div>
+            <div class="accordion" id="accordionUserRights">
+              <div class="card-body">
+                  <div class="col-12">
+                  <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionUserRights" aria-expanded="true" aria-controls="collapseOne">V
+                  </button></h4>
 
+                  </div>
+                  <div class="col-12 collapse" id="collapseDescriptionUserRights" aria-labelledby="headingOne" data-parent="#accordionUserRights">
+                    <p>im Reiter "User " kannst du bis zu 3 User anlegen. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern als Beispiel Rechte für 3 Beispielaufgaben zuweisen.
+                    In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
+                  </div>
+                  <hr>
+                  <div class="col-lg-12">
+                      <userrolessystem></userrolessystem>
+                  </div>
+              </div>
             </div>
             <div class="card-footer text-muted">
               <div class="col-lg-12">

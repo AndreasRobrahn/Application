@@ -2009,6 +2009,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -38911,8 +38915,6 @@ var render = function() {
           ? _c("div", { staticClass: "row" }, [
               _vm._m(3),
               _vm._v(" "),
-              _vm._m(4),
-              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -39055,7 +39057,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -39162,27 +39164,56 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("h3", [_vm._v("Funktionsweise:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("p", [
-        _vm._v(
-          "Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst"
+    return _c(
+      "div",
+      { staticClass: "accordion", attrs: { id: "accordionChat" } },
+      [
+        _c("div", { staticClass: "col-12 " }, [
+          _c("h4", [
+            _vm._v("Funktionsweise "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-link",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "collapse",
+                  "data-target": "#collapseDescriptionChat",
+                  "aria-expanded": "true",
+                  "aria-controls": "collapseOne"
+                }
+              },
+              [_vm._v("V")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-12 collapse",
+            attrs: {
+              id: "collapseDescriptionChat",
+              "aria-labelledby": "headingOne",
+              "data-parent": "#accordionChat"
+            }
+          },
+          [
+            _c("p", [
+              _vm._v(
+                "Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst"
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Rufe eine bereits erstellte Konversation über die Konversations-ID und dem Key ab."
+              )
+            ])
+          ]
         )
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Rufe eine bereits erstellte Konversation über die Konversations-ID und dem Key ab."
-        )
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
