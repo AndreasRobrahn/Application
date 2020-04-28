@@ -2028,47 +2028,44 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     console.log('chat mounted, version:' + this.version);
 
     if (this.version == 'admin') {
-      this.timer = setInterval(function () {
-        _this.getConversations();
+      this.timer = setInterval(function () {// this.getConversations();
       }, 2000);
     } // setInterval(this.test,2000)
 
   },
   created: function created() {
     this.getConversations();
+    console.log(this.conversations);
   },
   methods: {
     changeConID: function changeConID(id) {
-      var _this2 = this;
+      var _this = this;
 
       this.chatConversation_id = id;
       clearInterval(this.timer);
       this.timer = setInterval(function () {
-        _this2.getConversations();
-
-        _this2.getMessages(_this2.chatConversation_id);
+        // this.getConversations();
+        _this.getMessages(_this.chatConversation_id);
       }, 3000);
     },
     getMessages: function getMessages(conid) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/messages/conId/" + conid).then(function (response) {
-        _this3.messages = response.data;
+        _this2.messages = response.data;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
     getConversations: function getConversations() {
-      var _this4 = this;
+      var _this3 = this;
 
       // console.log('test timer')
       axios.get("/conversations").then(function (response) {
-        _this4.conversations = response.data; // console.log(this.conversations);
+        _this3.conversations = response.data; // console.log(this.conversations);
         // return response.data
       })["catch"](function (error) {
         console.log(error.response);
@@ -2082,7 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     sendMessage: function sendMessage(id) {
-      var _this5 = this;
+      var _this4 = this;
 
       if (!id) {
         alert('keine Konversation gewählt');
@@ -2099,9 +2096,9 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         axios.post('/sendMessage', params).then(function (response) {
-          _this5.getMessages(id);
+          _this4.getMessages(id);
 
-          _this5.message = '';
+          _this4.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2109,7 +2106,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     startConversation: function startConversation() {
-      var _this6 = this;
+      var _this5 = this;
 
       if (!this.conversation_username) {
         alert('bitte username eingeben, dieser wert ist notwendig');
@@ -2127,15 +2124,15 @@ __webpack_require__.r(__webpack_exports__);
       params.append("user", user);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
-        _this6.changeConID(response.data);
+        _this5.changeConID(response.data);
 
-        setInterval(_this6.getMessages(_this6.chatConversation_id), 2000);
+        setInterval(_this5.getMessages(_this5.chatConversation_id), 2000);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       }); //console.log('axios')
     },
     getConversation: function getConversation() {
-      var _this7 = this;
+      var _this6 = this;
 
       var params = new URLSearchParams();
       params.append("conid", this.conversation_id);
@@ -2149,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response.data);
         }
 
-        _this7.changeConID(response.data);
+        _this6.changeConID(response.data);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       });
@@ -7019,7 +7016,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: black;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.left\r\n{\r\n  padding-left : 3%;\r\n  color: white;\n}\n.right\r\n{\r\n  padding-left : 89%;\r\n  color: white;\n}\n#chatbox\r\n{\r\n  height: 90%\n}\n#messageInput\r\n{\r\n  position: relative;\r\n  bottom:0%;\r\n  width: 100%;\n}\n#messagebox\r\n{\r\n  overflow : scroll;\r\n  height : 35em;\n}\r\n\r\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\r\n{\n#profile-card\r\n  {\r\n    height: auto;\r\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\r\n{\n#messagebox\r\n  {\r\n    background-color: black;\r\n    height : 20em;\n}\n#conversationpicture\r\n  {\r\n    display : none;\n}\n#profile-card\r\n  {\r\n    left:0;\r\n    padding: 0;\r\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\r\n{\n#conversationpicture\r\n  {\r\n    display : none;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -38841,7 +38838,8 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm.cutTheLastMessage(
-                                      conversation.last_message.message
+                                      conversation.last_message
+                                        .decrypted_message
                                     )
                                   )
                                 )
@@ -38900,7 +38898,7 @@ var render = function() {
                         [
                           _vm._v(
                             "\n                " +
-                              _vm._s(message.message) +
+                              _vm._s(message.decrypted_message) +
                               "\n            "
                           )
                         ]
@@ -52565,8 +52563,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/applicationsapp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\applicationsapp\ApplicationsHelper\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

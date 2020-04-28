@@ -16,7 +16,7 @@
                   <p class="text-red"> Von {{conversation.member1}}<span style="float:right;"> <small>{{conversation.last_message.created_at}}</small></span></p>
                 </div>
                 <div class="col-12">
-                  <p class="card-text">{{cutTheLastMessage(conversation.last_message.message)}}</p>
+                  <p class="card-text">{{cutTheLastMessage(conversation.last_message.decrypted_message)}}</p>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
         <div class="col-12 p-0 border-border" id="messagebox" style="width: 100%; height: ">
           <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.direction == 1, 'd-flex justify-content-end p-0' : message.direction == 0}"v-for="message in messages" style="">
             <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-success text-right' : message.direction == 0}" style="width: auto">
-                {{message.message}}
+                {{message.decrypted_message}}
             </div>
           </div>
         </div>
@@ -99,6 +99,11 @@
             </div>
           </div>
       </div>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b27c760a0f8e36675333eab8941c3890312b8fe3
   </div>
 </div>
 </template>
@@ -126,7 +131,7 @@
           if(this.version == 'admin')
           {
             this.timer = setInterval(() => {
-              this.getConversations();
+              // this.getConversations();
             },2000);
           }
 
@@ -134,6 +139,7 @@
         },
         created(){
             this.getConversations()
+            console.log(this.conversations)
         },
 
         methods:{
@@ -142,7 +148,7 @@
             this.chatConversation_id = id
             clearInterval(this.timer);
             this.timer = setInterval(() => {
-              this.getConversations();
+              // this.getConversations();
               this.getMessages(this.chatConversation_id);
             }, 3000);
 

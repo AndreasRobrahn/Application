@@ -37,8 +37,20 @@
         <div class="flex-center position-ref full-height" id="app">
           @yield('content')
         </div>
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <!-- the js files for the app -->
         <script src="js/app.js"></script>
         @yield('additional_js')
+
+
     </body>
 </html>
