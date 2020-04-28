@@ -99,11 +99,6 @@
             </div>
           </div>
       </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b27c760a0f8e36675333eab8941c3890312b8fe3
   </div>
 </div>
 </template>
