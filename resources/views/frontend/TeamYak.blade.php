@@ -39,7 +39,7 @@
                 <a class="nav-link" href="#contact">Kontakt</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#timeline">Öffnungszeiten</a>
+                <a class="nav-link" href="#open_at">Öffnungszeiten</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Login</a>
@@ -103,7 +103,7 @@
             </div>
           </div>
         </div>
-        <div class="container-fluid bg-danger border-4 border-white rounded text-center mt-2" id="timeline">
+        <div class="container-fluid bg-danger border-4 border-white rounded text-center mt-2" id="contact">
           <h2 > Kontakt </h2>
           <hr>
           <div class="row d-flex justify-content-center">
@@ -155,60 +155,64 @@
             </div>
           </div>
         </div>
-              </div>
-              <div class="container-fluid bg-danger border-4 border-white rounded text-center mt-2" >
-                <div class="row d-flex justify-content-center">
-                  <div class="col-12">
-                    <h4 class="text-center">Trainingszeiten</h4>
-                  </div>
-                  <hr>
-                  <div class="col-12">
-                    <table class="table table-dark">
-                      <thead>
-                        <tr>
-                          <th scope="col">Montag</th>
-                          <th scope="col">Dienstag</th>
-                          <th scope="col">Mittwoch</th>
-                          <th scope="col">Donnerstag</th>
-                          <th scope="col">Freitag</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table class="table table-dark">
-                      <tbody>
-                        <tr>
-                          <th scope="row">Montag</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                        <tr>
-                          <th scope="row">Dienstag</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                        <tr>
-                          <th scope="row">Mittwoch</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                        <tr>
-                          <th scope="row">Donnerstag</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                        <tr>
-                          <th scope="row">Freitag</th>
-                          <th scope="row">18.00 - 19.30 Uhr</th>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+      </d iv>
+      <div class="container-fluid bg-danger border-4 border-white rounded text-center mt-2" id="open_at">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12">
+            <h4 class="text-center">Trainingszeiten</h4>
+          </div>
+          <hr>
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Montag</th>
+                    <th scope="col">Dienstag</th>
+                    <th scope="col">Mittwoch</th>
+                    <th scope="col">Donnerstag</th>
+                    <th scope="col">Freitag</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-dark">
+                <tbody>
+                  <tr>
+                    <th scope="row">Montag</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dienstag</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Mittwoch</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Donnerstag</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Freitag</th>
+                    <th scope="row">18.00 - 19.30 Uhr</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
