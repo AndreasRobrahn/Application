@@ -27,7 +27,7 @@ class Userseeder extends Seeder
         'email_verified_at' => now(),
         'created_at' => now(),
         'updated_at' => now(),
-        'password' => Hash::make('test0r123@anacondas')
+        'password' => Hash::make('test123')
       ]);
     }
 }

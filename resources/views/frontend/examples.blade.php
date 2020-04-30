@@ -21,19 +21,16 @@
 
 <div class="tab-content" id="myTabContent" >
   <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-    <div class="d-flex p-2 flex-column" >
-      <div class="card text-center main bg-success text-white overflow-auto" style="height: 80vh">
-        <div class="card-header">
-          Chat (nur moglich in meine Richtung)
+    <div class="container" >
+      <div class="row bg-dark text-white overflow-auto" style="height: 80vh">
+        <div class="col-12 text-center" style="height: 5vh">
+          <h2>The Eternal Chat </h2>
         </div>
-        <div class="card-body ">
+        <div class="col-12 text-center">
             <Chat version="user"></Chat>
         </div>
-        <div class="card-footer">
-          <div class="row">
-            Realisiert mit Laravel, vue.js und Bootstrap und MySQL
-          </div>
-
+        <div class="col-12 text-center" style="height: 3vh">
+          <p class="text-center"> Realisiert mit Laravel, vue.js und Bootstrap und MySQL</p>
         </div>
       </div>
     </div>

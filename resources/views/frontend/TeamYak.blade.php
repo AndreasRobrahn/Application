@@ -47,6 +47,30 @@
             </ul>
           </div>
         </nav>
+        <nav class="navbar fixed-top navbar-light bg-danger">
+            <a class="navbar-brand " href="#">
+              <img src="{{asset('images/teamyak_logo.jpg')}}" alt="hier sollte das Teamlogo sein" class="d-inline-block align-top" style="max-width: 10vh">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#AboutUs"><b>Team Yak</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Kontakt</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#open_at">Öffnungszeiten</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Login</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
           <div id="carouselExampleIndicators" class="carousel slide border border-white" data-ride="carousel">
 
             <ol class="carousel-indicators">
@@ -98,7 +122,7 @@
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
             <div class="col-lg-4">
-              <p><h4>Wo wir hin?</h4> </p>
+              <p><h4>Wo wollen wir hin?</h4> </p>
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
           </div>
@@ -107,13 +131,13 @@
           <h2 > Kontakt </h2>
           <hr>
           <div class="row d-flex justify-content-center">
-            <div class="card p-2 m-2">
+            <div class="card p-2 m-2" style="">
               <div class="card-body text-dark">
                 <table class="table table-borderless">
                   <tbody>
                     <tr>
                       <td scope="row">Straße</td>
-                      <td scope="row">Husumerstr.</td>
+                      <td scope="row">Husumerstr. 8</td>
                     </tr>
                     <tr>
                       <td scope="row">PlZ/Stadt</td>
@@ -130,7 +154,7 @@
                     </tr>
                     <tr>
                       <td scope="row">Email</td>
-                      <td scope="row"></td>
+                      <td scope="row"><a href="mailto:teamyak@outlook.com">teamyak@outlook.com</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -163,28 +187,7 @@
           </div>
           <hr>
           <div class="col-12">
-            <div class="table-responsive">
-              <table class="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Montag</th>
-                    <th scope="col">Dienstag</th>
-                    <th scope="col">Mittwoch</th>
-                    <th scope="col">Donnerstag</th>
-                    <th scope="col">Freitag</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">18.00 - 19.30 Uhr</th>
-                    <th scope="row">18.00 - 19.30 Uhr</th>
-                    <th scope="row">18.00 - 19.30 Uhr</th>
-                    <th scope="row">18.00 - 19.30 Uhr</th>
-                    <th scope="row">18.00 - 19.30 Uhr</th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+
             <div class="table-responsive">
               <table class="table table-dark">
                 <tbody>

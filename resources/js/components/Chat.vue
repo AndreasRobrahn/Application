@@ -1,5 +1,5 @@
 <template>
-  <div class="row" id="chatbox" style="padding-top:1em">
+  <div class="row text-center" id="chatbox" style="height: 72vh">
     <div class="col-lg-4 border w-100" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
       <div class="row bg-secondary ">
         <div class="col-12 text-white">
@@ -23,59 +23,48 @@
           </div>
         </div>
       </div>
-      <hr>
-      <!--the conversation component index of all conversations -->
-
     </div>
-    <div class="col border border" style="">
+    <div class="col border border-white-3 text-center" style="top: 0%">
       <div  class="row" v-if="chatConversation_id" style="">
-        <div class="col-12 bg-secondary text-white">
+        <div class="col-12 bg-secondary text-white p-0">
           <h3>Nachrichtenverlauf</h3>
         </div>
-
-        <hr>
-        <div class="col-12 p-0 border-border" id="messagebox" style="width: 100%; height: ">
-          <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.direction == 1, 'd-flex justify-content-end p-0' : message.direction == 0}"v-for="message in messages" style="">
-            <div  class="alert " v-bind:class="{'alert-info': message.direction == 1, 'alert-success text-right' : message.direction == 0}" style="width: auto">
-                {{message.decrypted_message}}
+        <div class="col-12" id="messagebox" style="width: 100%; height: ">
+          <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.username != conversation_username, 'd-flex justify-content-end p-0' : message.username == conversation_username}"v-for="message in messages" style="">
+            <div  class="row mt-1" v-bind:class="{'bg-info': message.username == conversation_username, 'bg-secondary text-right' : message.username != conversation_username }" style="width: auto">
+              <div class="col-12 text-left ">
+                <small>{{message.username}} </small> <small style="float: right; padding-top: 4px"> {{message.created_at}} </small>
+              </div>
+              <div class="col-12 text-left text-dark bg-light">
+                  {{message.decrypted_message}}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="row"  v-else-if="version != 'admin'">
+      <div class="row d-flex justify-content-center"  v-else-if="version != 'admin'">
         <div class="accordion" id="accordionChat">
-          <div class="col-12 ">
-            <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionChat" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i></button></h4>
+          <div class="col-12">
+            <p><h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionChat" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i></button></h4></p>
           </div>
           <div class="col-12 collapse" id="collapseDescriptionChat" aria-labelledby="headingOne" data-parent="#accordionChat">
-            <p>Starte eine neue Konversation mit mir indem du einen Namen und ein Key (für die Verschlüsselung) angibst und Konversation starten klickst</p>
-              <p>Rufe eine bereits erstellte Konversation über die Konversations-ID und dem Key ab.</p>
+            <p>Es gibt eine Unterhaltung an der beliebig viele Leute teilnehmen können. Alle Nachrichten werden verschlüsselt und lediglich der Username und das Datum der Nachricht wird angezeigt.</p>
           </div>
         </div>
 
-        <div id="UserInput"  class="col-12 border border" style="width: 100%;">
+        <div id="UserInput"  class="col-12" style="width: 100%;">
           <div class="row m-2 p-2">
-            <div class="col">
-              <input type="text" v-model="conversation_id" class="form-control" placeholder="Konversations-ID">
-
-            </div>
           </div>
           <div class="row m-2 p-2">
             <div class="col">
               <input type="text" v-model="conversation_username" class="form-control" placeholder="Name">
             </div>
-            <div class="col">
-              <input type="text" v-model="conversation_key" class="form-control" placeholder="Key">
-            </div>
           </div>
           <div class="row m-2 p-2">
             <div class="col">
-              <button type="submit" class="btn btn-primary" v-on:click="getConversation()">Konversation suchen</button>
+              <button type="submit" class="btn btn-primary" v-on:click="changeConID(1)">am Chat teilnehmen</button>
             </div>
-            <div class="col">
-              <button type="submit" class="btn btn-primary" v-on:click="startConversation()">neue Konversation starten</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -126,15 +115,16 @@
           if(this.version == 'admin')
           {
             this.timer = setInterval(() => {
-              // this.getConversations();
+              this.getConversations();
             },2000);
           }
 
           // setInterval(this.test,2000)
         },
         created(){
-            this.getConversations()
-            console.log(this.conversations)
+
+            // this.getConversations()
+            // console.log(this.conversations)
         },
 
         methods:{
@@ -199,10 +189,14 @@
               var params = new URLSearchParams()
               params.append("conid", id)
               params.append("message", message)
-
               if(this.version == 'admin')
               {
                 params.append("admin", 1)
+                params.append("username", 'admin')
+              }
+              else
+              {
+                params.append("username", this.conversation_username)
               }
 
               axios.
@@ -210,8 +204,7 @@
               .then(response => {
                 this.getMessages(id)
                 this.message = ''
-
-              }).catch(function(error) {
+s              }).catch(function(error) {
                   console.log(error);
                 });
             }
@@ -255,7 +248,6 @@
           {
             var params = new URLSearchParams()
             params.append("conid", this.conversation_id)
-            params.append("key", this.conversation_key)
             params.append("user", this.conversation_username)
 
             axios.

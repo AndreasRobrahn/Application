@@ -84,10 +84,13 @@ class ConversationsController extends Controller
         if($request->admin)
         {
           $message->direction = 0;
+
         }
         else {
           $message->direction = 1;
         }
+
+        $message->username = $request->username;
 
         $message->message = Crypt::encryptString($request->message);
         $message->save();
