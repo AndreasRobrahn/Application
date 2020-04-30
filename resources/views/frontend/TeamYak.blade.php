@@ -21,7 +21,7 @@
         <!-- Styles -->
         @yield('additional_css')
     </head>
-    <body class="bg-white text-dark">
+    <body class="bg-white text-dark" style="padding-bottom: 14vh;">
       <div class="container-fluid p-0 text-white">
         <nav class="navbar fixed-bottom navbar-light bg-danger">
             <a class="navbar-brand " href="#">
@@ -89,16 +89,16 @@
         <div class="container-fluid bg-danger border-4 border-white rounded mt-2" id="AboutUs">
           <h2 class="text-center"> Team Yak </h2>
           <div class="row text-center">
-            <div class="col-4">
-              <p>Wer sind wir?</p>
+            <div class="col-lg-4">
+              <p><h4>Wer sind wir?</h4> </p>
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
-            <div class="col-4">
-              <p>was machen wir?</p>
+            <div class="col-lg-4">
+              <p><h4>was machen wir?</h4> </p>
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
-            <div class="col-4">
-              <p>Wer sind wir?</p>
+            <div class="col-lg-4">
+              <p><h4>Wo wir hin?</h4> </p>
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
           </div>
@@ -208,18 +208,7 @@
                       </tbody>
                     </table>
                   </div>
-
                 </div>
-
-            </div>
-      <div class="container-fluid bg-danger border-4 border-white rounded mb-0" style="height: 13vh">
-        <div class="row mb-5">
-          <div class="col-2 text-break">
-            <h4>Ansprechpartner</h/4>
-          </div>
-          <div class="col-10">
-          </div>
-        </div>
-    </div>
+              </div>
 </body>
 </html>
