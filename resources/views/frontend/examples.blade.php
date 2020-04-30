@@ -107,7 +107,7 @@
               <img src="{{asset('images/bjj_vejen_teamfoto Kopie.jpeg')}}" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block" style="top :5%">
                 <h2 class="font-weight-bold text-warning"><p>Team Yak in Vejen 09/19</p>
-                <p>Jeg hiller muh!</p></h2>
+                <p></p></h2>
               </div>
           </div>
           <div class="carousel-item">
