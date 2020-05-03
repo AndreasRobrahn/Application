@@ -9,6 +9,12 @@ body,html
   background-attachment: fixed;
 
 }
+#promoimage
+{
+  width: 100%;
+  max-height: 950px;
+  }
+
 .text-primary {
 color: #6282aa!important;
 }
