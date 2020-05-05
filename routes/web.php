@@ -112,4 +112,7 @@ Route::view('/teamyak','frontend.TeamYak');
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/getUsers', 'ConversationsController@getUsers')->name('chat.users');
+Route::post('/joinConversation', 'ConversationsController@joinChat')->name('chat.join');
+Route::post('/logoutChat', 'ConversationsController@logoutChat')->name('chat.logout');
 Route::view('/adminchat', 'backend.adminchat')->middleware('auth');

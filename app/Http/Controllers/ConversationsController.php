@@ -141,7 +141,50 @@ class ConversationsController extends Controller
         return 0;
       }
     }
+    public function getUsers()
+    {
+      $chatters = \DB::table('user_in_conversation')
+      ->select('username')
+      ->get();
 
+      // dd($chatters);
+      return response()->json($chatters);
+    }
+
+    public function joinChat(Request $request)
+    {
+      $validated = $request->validate([
+        'username' => 'required',
+      ]);
+
+      if(\DB::table('user_in_conversation')->where('username',$request->username)->exists())
+      {
+        return 1;
+      }
+      else {
+        \DB::table('user_in_conversation')->insert([
+
+          'username' => $request->username,
+          ]);
+
+          return 2;
+      }
+
+    }
+    public function logoutChat(Request $request)
+    {
+      $deletedUser = \DB::table('user_in_conversation')
+      ->where('username', $request->username)
+      ->delete();
+
+      if($deletedUser)
+      {
+        return 0;
+      }
+      else {
+        return 1;
+      }
+    }
     /**
      * Remove the specified resource from storage.
      *
