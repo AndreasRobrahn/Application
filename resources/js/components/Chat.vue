@@ -147,21 +147,17 @@
           else{
             this.getUsers()
           }
-          window.addEventListener('beforeunload', function(event){
 
-            event.preventDefault();
-            this.logout;
-            }, false)
 
           // setInterval(this.test,2000)
         },
         created(){
-          // document.addEventListener('beforeunload', () => {
-          //   this.logout();
-          //   console.log('111111');
-          // }, false)
-            // this.getConversations()
-            // console.log(this.conversations)
+          window.addEventListener("beforeunload", () => {
+
+            this.logout()
+            return null;
+          });
+
         },
 
         methods:{
@@ -241,7 +237,7 @@
               .then(response => {
                 this.getMessages(id)
                 this.message = ''
-s              }).catch(function(error) {
+               }).catch(function(error) {
                   console.log(error);
                 });
             }
@@ -306,6 +302,12 @@ s              }).catch(function(error) {
           },
           getIntoConversation()
           {
+            window.addEventListener("beforeunload", () => {
+
+              this.logout()
+              return null;
+            });
+
             let username = this.conversation_username
             var params = new URLSearchParams()
 
