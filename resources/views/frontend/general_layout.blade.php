@@ -9,7 +9,7 @@
 
         <!-- Bootstrap css -->
         <link href="bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="bootstrap-social-gh-pages/css/bootstrap-social.css" rel="stylesheet">
+        <link href="bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
         <script src="https://kit.fontawesome.com/c869b225f8.js" crossorigin="anonymous"></script>
