@@ -356,28 +356,30 @@
           },
           logout()
           {
-            var params = new URLSearchParams()
+            if(this.conversation_username)
+            {
+              var params = new URLSearchParams()
 
-            params.append("username", this.conversation_username)
+              params.append("username", this.conversation_username)
 
-            axios.
-            post('/logoutChat', params)
-            .then(response => {
-              if(response.data == 1)
-              {
-                alert('etwas ist schiefgelaufen')
-                console.log(response.data)
-              }
-              else {
-                this.getUsers()
-                this.chatConversation_id = null
-                this.conversation_username = ''
-              }
+              axios.
+              post('/logoutChat', params)
+              .then(response => {
+                if(response.data == 1)
+                {
+                  alert('etwas ist schiefgelaufen')
+                  console.log(response.data)
+                }
+                else {
+                  this.getUsers()
+                  this.chatConversation_id = null
+                  this.conversation_username = ''
+                }})
+              .catch(function(error) {
+                console.log(error.response.data.message);
+              });
+            }
 
-            })
-            .catch(function(error) {
-              console.log(error.response.data.message);
-            });
           },
           test()
           {
