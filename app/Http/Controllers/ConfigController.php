@@ -36,6 +36,7 @@ class ConfigController extends Controller
       $truncatetablesAll = array(
         'conversations',
         'messages',
+        'user_in_conversation',
       );
 
       foreach($truncatetablesAll as $table)
