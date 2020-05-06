@@ -24,10 +24,32 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-4 border w-100" v-else style="overflow:auto; padding-left : 0px; padding-right : 0px">
+      <div class="row bg-secondary ">
+        <div class="col-12 text-white">
+            <h3>Chatter</h3>
+        </div>
+        <div class="col-12 overflow-auto" style="height: 70vh">
+          <div class="card bg-info text-white" id="profile-card" v-for="chatter in chatters">
+            <div class="row no-gutters border">
+              <div class="col-sm-4 border-right" id="conversationpicture">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
+              </div>
+              <div class="col-sm ">
+                <div class="col-12 border-bottom">
+                  <p class="text-left">{{chatter.username}}<span style="float:right;"> <small>test</small></span></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col border border-white-3 text-center" style="top: 0%">
       <div  class="row" v-if="chatConversation_id" style="">
         <div class="col-12 bg-secondary text-white p-0">
-          <h3>Nachrichtenverlauf</h3>
+          <h3>Nachrichtenverlauf <button class="btn btn-outline bg-dark text-white btn-sm" v-on:click="logout()"style="float: right"> Logout</button></h3>
         </div>
         <div class="col-12" id="messagebox" style="width: 100%; height: ">
           <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.username != conversation_username, 'd-flex justify-content-end p-0' : message.username == conversation_username}"v-for="message in messages" style="">
@@ -44,9 +66,7 @@
       </div>
       <div class="row d-flex justify-content-center"  v-else-if="version != 'admin'">
         <div class="accordion" id="accordionChat">
-          <div class="col-12">
-            <p><h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionChat" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i></button></h4></p>
-          </div>
+
           <div class="col-12 collapse" id="collapseDescriptionChat" aria-labelledby="headingOne" data-parent="#accordionChat">
             <p>Es gibt eine Unterhaltung an der beliebig viele Leute teilnehmen können. Alle Nachrichten werden verschlüsselt und lediglich der Username und das Datum der Nachricht wird angezeigt.</p>
           </div>
@@ -57,12 +77,12 @@
           </div>
           <div class="row m-2 p-2">
             <div class="col">
-              <input type="text" v-model="conversation_username" class="form-control" placeholder="Name">
+              <input type="text" v-model="conversation_username" class="form-control" placeholder="dein Name">
             </div>
           </div>
           <div class="row m-2 p-2">
             <div class="col">
-              <button type="submit" class="btn btn-primary" v-on:click="changeConID(1)">am Chat teilnehmen</button>
+              <button type="submit" class="btn btn-primary" v-on:click="getIntoConversation()">am Chat teilnehmen</button>
             </div>
 
           </div>
@@ -107,9 +127,15 @@
             conversation_key: '',
             conversations: null,
             timer: null,
+            chatters: null,
           }
         },
+        computed: {
+          tester(){
 
+            // this.test()
+          }
+        },
         mounted() {
           console.log('chat mounted, version:' + this.version)
           if(this.version == 'admin')
@@ -118,13 +144,20 @@
               this.getConversations();
             },2000);
           }
+          else{
+            this.getUsers()
+          }
+
 
           // setInterval(this.test,2000)
         },
         created(){
+          window.addEventListener("beforeunload", () => {
 
-            // this.getConversations()
-            // console.log(this.conversations)
+            this.logout()
+            return null;
+          });
+
         },
 
         methods:{
@@ -204,7 +237,7 @@
               .then(response => {
                 this.getMessages(id)
                 this.message = ''
-s              }).catch(function(error) {
+               }).catch(function(error) {
                   console.log(error);
                 });
             }
@@ -262,16 +295,96 @@ s              }).catch(function(error) {
                 console.log(response.data)
               }
               this.changeConID(response.data)
+            })
+            .catch(function(error) {
+              console.log(error.response.data.message);
+            });
+          },
+          getIntoConversation()
+          {
+            window.addEventListener("beforeunload", () => {
 
+              this.logout()
+              return null;
+            });
+
+            let username = this.conversation_username
+            var params = new URLSearchParams()
+
+            params.append("username", username)
+            axios.
+            post('/joinConversation', params)
+            .then(response => {
+
+              if(response.data == 1)
+              {
+                alert('username bereits vergeben')
+              }
+              else
+              {
+                this.changeConID(1)
+                this.getUsers()
+                setInterval(this.getMessages(this.chatConversation_id),2000)
+              }
+
+            })
+            .catch(function(error) {
+              console.log(error.response.data.message)
+            });
+
+          },
+          getUsers()
+          {
+            axios.
+            post('/getUsers')
+            .then(response => {
+              if(response.data)
+              {
+                // this.changeConID(response.data)
+                // this.chatters = response.data
+                // console.log(response.data)÷\
+                this.chatters = response.data
+              }
+              else {
+                console.log(response.data)
+              }
 
             })
             .catch(function(error) {
               console.log(error.response.data.message);
             });
           },
+          logout()
+          {
+            if(this.conversation_username)
+            {
+              var params = new URLSearchParams()
+
+              params.append("username", this.conversation_username)
+
+              axios.
+              post('/logoutChat', params)
+              .then(response => {
+                if(response.data == 1)
+                {
+                  alert('etwas ist schiefgelaufen')
+                  console.log(response.data)
+                }
+                else {
+                  this.getUsers()
+                  this.chatConversation_id = null
+                  this.conversation_username = ''
+                }})
+              .catch(function(error) {
+                console.log(error.response.data.message);
+              });
+            }
+
+          },
           test()
           {
-            // console.log(this.conversations)
+
+            //a function to kick you out of a conversation if you havent done anything in 5 minutes
           }
         }
     }
