@@ -1,17 +1,17 @@
 <template>
-  <div class="row text-center" id="chatbox" style="height: 72vh">
-    <div class="col-lg-4 border w-100" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
+  <div class="row text-center" id="chatbox" style=" height : auto; background: rgb(2,0,36); background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(254,219,219,1) 0%, rgba(218,0,0,1) 100%); top: 0%;">
+    <div class="col-sm border-white-3" v-if="version == 'admin'" style="overflow:auto; padding-left : 0px; padding-right : 0px">
       <div class="row bg-secondary ">
         <div class="col-12 text-white">
             <h3>Konversationen</h3>
         </div>
-        <div class="col-12 overflow-auto" style="height: 70vh">
+        <div class="col-12 overflow-auto" style="overflow:auto; height: 65vh">
           <div class="card" id="profile-card" v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
             <div class="row no-gutters border">
               <div class="col-sm-4 border-right" id="conversationpicture">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
               </div>
-              <div class="col-sm ">
+              <div class="col-sm-8 ">
                 <div class="col-12 border-bottom">
                   <p class="text-red"> Von {{conversation.member1}}<span style="float:right;"> <small>{{conversation.last_message.created_at}}</small></span></p>
                 </div>
@@ -24,13 +24,13 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 border w-100" v-else style="overflow:auto; padding-left : 0px; padding-right : 0px">
-      <div class="row bg-secondary ">
+    <div class="col-sm border border-white-3" idß v-else style="height:70vh; padding-left : 0px; padding-right : 0px;">
+      <div class="row">
         <div class="col-12 text-white">
-            <h3>Chatter</h3>
+            <h3><span class="text-danger">❤️❤️❤️ </span> Chatter <span class="text-danger">❤️❤️❤️</span></h3>
         </div>
-        <div class="col-12 overflow-auto" style="height: 70vh">
-          <div class="card bg-info text-white" id="profile-card" v-for="chatter in chatters">
+        <div class="col-12 overflow-auto" id="chattersbox" style="position: relative; width: 100%; height:63vh">
+          <div class="card text-white" id="profile-card" v-for="chatter in chatters">
             <div class="row no-gutters border">
               <div class="col-sm-4 border-right" id="conversationpicture">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
@@ -46,12 +46,12 @@
         </div>
       </div>
     </div>
-    <div class="col border border-white-3 text-center" style="top: 0%">
+    <div class="col-lg-8 border border-white-3 text-center" style="height: 70vh;">
       <div  class="row" v-if="chatConversation_id" style="">
-        <div class="col-12 bg-secondary text-white p-0">
+        <div class="col-12 text-white p-0">
           <h3>Nachrichtenverlauf <button class="btn btn-outline bg-dark text-white btn-sm" v-on:click="logout()"style="float: right"> Logout</button></h3>
         </div>
-        <div class="col-12" id="messagebox" style="width: 100%; height: ">
+        <div class="col-12" id="messagebox" style="position: relative; width: 100%; height:54vh">
           <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.username != conversation_username, 'd-flex justify-content-end p-0' : message.username == conversation_username}"v-for="message in messages" style="">
             <div  class="row mt-1" v-bind:class="{'bg-info': message.username == conversation_username, 'bg-secondary text-right' : message.username != conversation_username }" style="width: auto">
               <div class="col-12 text-left ">
@@ -64,19 +64,13 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-center"  v-else-if="version != 'admin'">
-        <div class="accordion" id="accordionChat">
-
-          <div class="col-12 collapse" id="collapseDescriptionChat" aria-labelledby="headingOne" data-parent="#accordionChat">
-            <p>Es gibt eine Unterhaltung an der beliebig viele Leute teilnehmen können. Alle Nachrichten werden verschlüsselt und lediglich der Username und das Datum der Nachricht wird angezeigt.</p>
-          </div>
-        </div>
-
+      <div class="row d-flex justify-content-center"  v-else-if="version != 'admin'" style="padding:10%; padding-top: 30%">
         <div id="UserInput"  class="col-12" style="width: 100%;">
           <div class="row m-2 p-2">
           </div>
           <div class="row m-2 p-2">
             <div class="col">
+              <h3>Gib deinen Namen an und nehme teil</h3>
               <input type="text" v-model="conversation_username" class="form-control" placeholder="dein Name">
             </div>
           </div>
@@ -412,12 +406,40 @@
   width: 100%;
 
 }
+#chattersbox
+{
+  overflow: auto;
+  height : auto;
+}
 #messagebox
 {
-  overflow : scroll;
-  height : 35em;
+  overflow: auto;
+  height : auto;
+}
+#profile-card
+{
+   background: rgb(2,0,36); background: linear-gradient(100deg, rgba(2,0,36,1) 0%, rgba(219,5,99,1) 0%, rgba(204,38,111,0.6978991425671831) 0%, rgba(254,219,219,1) 100%);
+}
+.chatbubble {
+	position: relative;
+	background: #efefef;
+	border-radius: .4em;
 }
 
+.chatbubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 22px solid transparent;
+	border-right-color: #efefef;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -11px;
+	margin-left: -22px;
+}
 /* for tablets etc. */
 @media only screen and (min-height: 601px)
 {

@@ -20,18 +20,22 @@
   {{$step = ''}}
 
 <div class="tab-content" id="myTabContent" >
-  <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+  <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
     <div class="d-flex p-2 flex-column" >
-      <div class="card text-center main bg-success text-white overflow-auto" style="height: 80vh">
-        <div class="card-header">
-          Chat (nur moglich in meine Richtung)
+      <div class="container text-center main bg-dark text-white" style="height: auto">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>The Eternal Chat</h2>
+          </div>
         </div>
-        <div class="card-body ">
+        <div class="row">
+          <div class="col-lg-12">
             <Chat version="user"></Chat>
+          </div>
         </div>
-        <div class="card-footer">
-          <div class="row">
-            Realisiert mit Laravel, vue.js und Bootstrap und MySQL
+        <div class="row">
+          <div class="col-lg-12">
+              <h4>Realisiert mit Laravel, vue.js und Bootstrap und MySQL</h4>
           </div>
 
         </div>
@@ -48,7 +52,7 @@
                 <div class="col-12">
                 <h3>Funktionsweise:</h3>
                 </div>
-                <div class="col-12">
+                <div class="col-12">=
                   <p>im Reiter "User "du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen, die Email ist optional. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern Schreib- und Leserechte für 3 Beispielaufgaben zuweisen.
                   In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
                 </div>
@@ -67,10 +71,10 @@
         </div>
       </div>
 
-  <div class="tab-pane fade show active" id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
+  <div class="tab-pane fade" id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
     <div class="container bg-white ">
       <div class="row text-center">
-        <div class="col-lg-4 border-white border border-white ">
+        <div class="col-lg-4">
           <div class="row text-white bg-secondary ">
             <h2>Elemente</h2>
           </div>
