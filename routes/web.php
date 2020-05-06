@@ -107,7 +107,8 @@ Route::get('/users/index', 'UserController@index')->name('exampleuser.index');
 Route::post('/users/rights', 'UserController@rights')->name('exampleuser.rights');
 
 Route::get('/test', 'UserController@index');
-Route::view('/teamyak','frontend.TeamYak');
+Route::view('/teamyak','frontend.TeamYak')->name('example.teamyak');
+Route::view('/userforum','frontend.userforum')->name('example.userforum');
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
