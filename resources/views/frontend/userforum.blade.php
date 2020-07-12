@@ -20,76 +20,61 @@
         <script  src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
         <!-- Styles -->
         @yield('additional_css')
+        <style media="screen">
+        .img-overlay{
+          position:relative;
+          display:inline-block;
+          }
+          .img-overlay .overlay-text{
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          opacity:1;
+          }
+        </style>
     </head>
-    <body class="bg-white text-dark" style="padding-top: 14vh;">
+    <body class="bg-white text-dark">
       <div class="container-fluid p-0 text-white">
-        <nav class="navbar navbar-expand-lg navbar-top navbar-light bg-danger">
-            <a class="navbar-brand " href="#">
-              <img src="{{asset('images/teamyak_logo.jpg')}}" alt="hier sollte das Teamlogo sein" class="d-inline-block align-top" style="max-width: 10vh">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item ">
-                <a class="nav-link text-white" href="#AboutUs"><b>Team Yak</b></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#contact">Kontakt</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#open_at">Öffnungszeiten</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#modal">Login</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-          <div id="carouselExampleIndicators" class="carousel slide border border-white" data-ride="carousel">
-
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{asset('images/bjj_vejen_teamfoto Kopie.jpeg')}}" class="d-block" alt="..." id="promoimage">
-                <div class="carousel-caption d-none d-md-block" style="top :5%">
-                  <h2 class="font-weight-bold text-warning">
-                  <p>Beispieltext</p></h2>
-                </div>
-            </div>
-            <div class="carousel-item">
-              <img src="{{asset('images/bjj07_01 Kopie.jpeg')}}" class="d-block" alt="..." id="promoimage">
-              <div class="carousel-caption d-none d-md-block text-warning" style="top :5%">
-                <h2 class="font-weight-bold text-warning">
-                <p>Beispieltext...</p></h2>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="carousel-caption d-none d-md-block text-warning" style="top :5%">
-                <h2 class="font-weight-bold text-warning">
-                <p>Beispieltext</p></h2>
-              </div>
-              <img src="{{asset('images/bjj09_01 Kopie.jpeg')}}" class="img-fluid" alt="..." id="promoimage">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <div class="row justify-content-center">
+            <img src="{{asset('images/teamyak_logo.jpg')}}" alt="hier sollte das Teamlogo sein" class="d-inline-block align-top" style="max-width: 10vh">
         </div>
+          <div class="img-overlay">
+            <img src="https://images.pexels.com/photos/1450155/pexels-photo-1450155.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="card-img" alt="..." id="promoimage">
+            <div class="overlay-text">
+              <div class="row justify-content-center">
+                <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item ">
+                        <a class="nav-link text-white" href="#AboutUs">Filter</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#contact">Profile</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#open_at">Öffnungszeiten</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#modal">Login</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="container-fluid bg-danger border-4 border-white rounded mt-2" id="AboutUs">
           <div class="row mt-2 text-justify">
             <div class="col">
-              <p> <h2 class="text-center"> Team Yak </h2></p>
+              <p> <h2 class="text-center"> 690993 verscheidne Flirtpartner </h2></p>
             </div>
           </div>
           <div class="row text-justify">

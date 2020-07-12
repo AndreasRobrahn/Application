@@ -2016,6 +2016,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -7144,7 +7145,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#messagebox\n{\n  overflow : scroll;\n  height : 35em;\n}\n\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: ;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#chattersbox\n{\n  overflow: auto;\n  height : auto;\n}\n#messagebox\n{\n  overflow: auto;\n  height : auto;\n}\n#profile-card\n{\n   background: rgb(2,0,36); background: linear-gradient(100deg, rgba(2,0,36,1) 0%, rgba(219,5,99,1) 0%, rgba(204,38,111,0.6978991425671831) 0%, rgba(254,219,219,1) 100%);\n}\n.chatbubble {\n\tposition: relative;\n\tbackground: #efefef;\n\tborder-radius: .4em;\n}\n.chatbubble:after {\n\tcontent: '';\n\tposition: absolute;\n\tleft: 0;\n\ttop: 50%;\n\twidth: 0;\n\theight: 0;\n\tborder: 22px solid transparent;\n\tborder-right-color: #efefef;\n\tborder-left: 0;\n\tborder-bottom: 0;\n\tmargin-top: -11px;\n\tmargin-left: -22px;\n}\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: ;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n", ""]);
 
 // exports
 
@@ -42793,7 +42794,12 @@ var render = function() {
     "div",
     {
       staticClass: "row text-center",
-      staticStyle: { height: "72vh" },
+      staticStyle: {
+        height: "auto",
+        background:
+          "radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(254,219,219,1) 0%, rgba(218,0,0,1) 100%)",
+        top: "0%"
+      },
       attrs: { id: "chatbox" }
     },
     [
@@ -42801,7 +42807,7 @@ var render = function() {
         ? _c(
             "div",
             {
-              staticClass: "col-lg-4 border w-100",
+              staticClass: "col-sm border-white-3",
               staticStyle: {
                 overflow: "auto",
                 "padding-left": "0px",
@@ -42816,7 +42822,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "col-12 overflow-auto",
-                    staticStyle: { height: "70vh" }
+                    staticStyle: { overflow: "auto", height: "65vh" }
                   },
                   _vm._l(_vm.conversations, function(conversation) {
                     return _c(
@@ -42840,7 +42846,7 @@ var render = function() {
                         _c("div", { staticClass: "row no-gutters border" }, [
                           _vm._m(1, true),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm " }, [
+                          _c("div", { staticClass: "col-sm-8 " }, [
                             _c("div", { staticClass: "col-12 border-bottom" }, [
                               _c("p", { staticClass: "text-red" }, [
                                 _vm._v(" Von " + _vm._s(conversation.member1)),
@@ -42885,28 +42891,34 @@ var render = function() {
         : _c(
             "div",
             {
-              staticClass: "col-lg-4 border w-100",
+              staticClass: "col-sm border border-white-3",
               staticStyle: {
-                overflow: "auto",
+                height: "70vh",
                 "padding-left": "0px",
                 "padding-right": "0px"
-              }
+              },
+              attrs: { idß: "" }
             },
             [
-              _c("div", { staticClass: "row bg-secondary " }, [
+              _c("div", { staticClass: "row" }, [
                 _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
                     staticClass: "col-12 overflow-auto",
-                    staticStyle: { height: "70vh" }
+                    staticStyle: {
+                      position: "relative",
+                      width: "100%",
+                      height: "63vh"
+                    },
+                    attrs: { id: "chattersbox" }
                   },
                   _vm._l(_vm.chatters, function(chatter) {
                     return _c(
                       "div",
                       {
-                        staticClass: "card bg-info text-white",
+                        staticClass: "card text-white",
                         attrs: { id: "profile-card" }
                       },
                       [
@@ -42934,41 +42946,41 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "col border border-white-3 text-center",
-          staticStyle: { top: "0%" }
+          staticClass: "col-lg-8 border border-white-3 text-center",
+          staticStyle: { height: "70vh" }
         },
         [
           _vm.chatConversation_id
             ? _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-12 bg-secondary text-white p-0" },
-                  [
-                    _c("h3", [
-                      _vm._v("Nachrichtenverlauf "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-outline bg-dark text-white btn-sm",
-                          staticStyle: { float: "right" },
-                          on: {
-                            click: function($event) {
-                              return _vm.logout()
-                            }
+                _c("div", { staticClass: "col-12 text-white p-0" }, [
+                  _c("h3", [
+                    _vm._v("Nachrichtenverlauf "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-outline bg-dark text-white btn-sm",
+                        staticStyle: { float: "right" },
+                        on: {
+                          click: function($event) {
+                            return _vm.logout()
                           }
-                        },
-                        [_vm._v(" Logout")]
-                      )
-                    ])
-                  ]
-                ),
+                        }
+                      },
+                      [_vm._v(" Logout")]
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "col-12 bg-dark",
-                    staticStyle: { width: "100%", height: "" },
+                    staticClass: "col-12",
+                    staticStyle: {
+                      position: "relative",
+                      width: "100%",
+                      height: "54vh"
+                    },
                     attrs: { id: "messagebox" }
                   },
                   _vm._l(_vm.messages, function(message) {
@@ -43058,6 +43070,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "row m-2 p-2" }, [
                       _c("div", { staticClass: "col" }, [
+                        _c("h3", [
+                          _vm._v("Gib deinen Namen an und nehme teil")
+                        ]),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -43222,7 +43238,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 text-white" }, [
-      _c("h3", [_vm._v("Chatter")])
+      _c("h3", [
+        _c("span", { staticClass: "text-danger" }, [_vm._v("❤️❤️❤️ ")]),
+        _vm._v(" Chatter "),
+        _c("span", { staticClass: "text-danger" }, [_vm._v("❤️❤️❤️")])
+      ])
     ])
   },
   function() {

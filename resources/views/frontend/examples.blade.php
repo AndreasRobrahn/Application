@@ -28,17 +28,24 @@
   {{$step = ''}}
 
 <div class="tab-content" id="myTabContent" >
-  <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-    <div class="container" >
-      <div class="row bg-dark text-white overflow-auto" style="height: 80vh">
-        <div class="col-12 text-center" style="height: 5vh">
-          <h2>The Eternal Chat </h2>
+  <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+    <div class="d-flex p-2 flex-column" >
+      <div class="container text-center main bg-dark text-white" style="height: auto">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>The Eternal Chat</h2>
+          </div>
         </div>
-        <div class="col-12 text-center">
+        <div class="row">
+          <div class="col-lg-12">
             <Chat version="user"></Chat>
+          </div>
         </div>
-        <div class="col-12 text-center" style="height: 3vh">
-          <p class="text-center"> Realisiert mit Laravel, vue.js und Bootstrap und MySQL</p>
+        <div class="row">
+          <div class="col-lg-12">
+              <h4>Realisiert mit Laravel, vue.js und Bootstrap und MySQL</h4>
+          </div>
+
         </div>
       </div>
     </div>
@@ -49,21 +56,19 @@
             <div class="card-header">
               Ein kleines Nutzer und Rechte System
             </div>
-            <div class="accordion" id="accordionUserRights">
-              <div class="card-body">
-                  <div class="col-12">
-                    <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionUserRights" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i>
-                    </button></h4>
-                  </div>
-                  <div class="col-12 collapse" id="collapseDescriptionUserRights" aria-labelledby="headingOne" data-parent="#accordionUserRights">
-                    <p>im Reiter "User " kannst du bis zu 3 User anlegen. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern als Beispiel Rechte für 3 Beispielaufgaben zuweisen.
-                    In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
-                  </div>
-                  <hr>
-                  <div class="col-lg-12">
-                      <userrolessystem></userrolessystem>
-                  </div>
-              </div>
+            <div class="card-body">
+                <div class="col-12">
+                <h3>Funktionsweise:</h3>
+                </div>
+                <div class="col-12">=
+                  <p>im Reiter "User "du kannst bis zu 3 user anlegen und Ihnen Rechte zuweisen, die Email ist optional. In dem Reiter "Userrechte festlegen" kannst du deinen erschaffenen Usern Schreib- und Leserechte für 3 Beispielaufgaben zuweisen.
+                  In Karteikarte 3 kannst du sehen wie das ganze funktioniert.Alle Daten werden beim Neuladen der Seite wieder gelöscht</p>
+                </div>
+                <hr>
+                <div class="col-lg-12">
+                    <userrolessystem></userrolessystem>
+                </div>
+
             </div>
             <div class="card-footer text-muted">
               <div class="col-lg-12">
@@ -185,73 +190,33 @@
                 <p></p></h2>
               </div>
           </div>
-          <div class="carousel-item">
-            <img src="{{asset('images/bjj07_01 Kopie.jpeg')}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block text-warning" style="top :5%">
-              <h2 class="font-weight-bold text-warning"> Gruppenfoto 07/18
-              <p>Sayonara altes Dojo</p></h2>
+          <div class="row bg-info text-white">
+            <div class="col-12 p-0">
+              <a href="{{route('example.teamyak')}}" class="text-reset" id='previewlink'><h5> eine Startseite</h5></a>
+            </div>
+            <div class="col-12 p-0">
+              <a href="#" class="text-reset">userforum</a>
+            </div>
+            <div class="col-12 p-0">
+              <a href="#" class="text-reset" >sonstige Elemente</a>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="carousel-caption d-none d-md-block text-warning" style="top :5%">
-              <h2 class="font-weight-bold text-warning"> Gruppenfoto 06/19
-              <p>Muuuuuuuhhhh!!!!!</p></h2>
+        </div>
+          <div class="col-lg-8 border border-white text-center">
+            <div class="row text-white bg-secondary">
+              <h2>Preview</h2>
             </div>
-            <img src="{{asset('images/bjj09_01 Kopie.jpeg')}}" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <div class="container bg-danger border-4 border-white rounded mt-5" id="AboutUs">
-        <h2> Team Yak </h2>
+            <div class="row">
+              <div class="container p-0" id="preview">
 
-        <p>Wer sind wir?</p>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        <p>Was machen wir?</p>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-      </div>
+              </div>
+            </div>
 
-      <div class="container bg-danger border-4 border-white rounded mt-5">
-        <h2 > Kontakt </h2>
-        <hr>
-        <div class="row">
-          <div class="col-2">
-            <h4>On Social Media</h4>
           </div>
-          <div class="col-10" id="contact" >
-            <a class="btn btn-info btn-social-icon btn-instagram" href="https://www.facebook.com/yak.bjj.flensburg"><span class="fa fa-instagram"></span></a>
-            <a class="btn btn-primary btn-social-icon btn-facebook" href="https://www.facebook.com/yak.bjj.flensburg"><span class="fa fa-facebook"></span></a>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-2">
-            <h4>Adresse</h/4>
-          </div>
-          <div class="col-10">
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-2 text-break">
-            <h4>Ansprechpartner</h/4>
-          </div>
-          <div class="col-10">
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-          </div>
-        </div>
+      </div>
     </div>
-  </div>
-  </div>
-  </div>
+</div>
+</div>
 </div>
 @endsection
 
@@ -262,6 +227,9 @@
   {
     height: 45em;
   }
+  .border {
+    border-width:3px !important;
+}
 </style>
 
 @endsection
