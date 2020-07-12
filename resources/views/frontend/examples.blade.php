@@ -78,7 +78,7 @@
           </div>
         </div>
       </div>
-  <div class="tab-pane fade show active" id="excel" role="tabpanel" aria-labelledby="roles-tab">
+      <div class="tab-pane fade show active" id="excel" role="tabpanel" aria-labelledby="roles-tab">
           <div class="d-flex p-2 flex-column">
           <div class="card text-center main">
             <div class="card-header">
@@ -102,17 +102,16 @@
 
                             <form action="{{ route('test.excel') }}" class="dropzone" id="excelUpload" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="profile" value="">
+
                 </form>
-                <small>Es sind ausschliesslich Bilddateien mit einer maximalen Größe von bis zu 2MB erlaubt.</small>
-                <button type="" id="buttonFotoUpload" class="btn btn-success btn-block mt-2">Fotos speichern</button>
 
-                          </div>
-                        </div>
-
-                      </div>
-                      <div class="container shadow-lg p-3 mt-3 bg-light rounded border border-dar" id="exceltable" >
-                        <table class="table table-bordered" >
+                <button type="" id="buttonFotoUpload" class="btn btn-success btn-block mt-2">Excel Datei anzeigen</button>
+              </div>
+            </div>
+            </div>
+              <div class="container shadow-lg p-3 mt-3 bg-light rounded border border-dar" id="exceltable" >
+                <h1>Das Ergebnis</h1>
+                    <table class="table table-bordered" >
                           <tr>
                             <td>test</td>
                             <td>test</td>
@@ -120,24 +119,6 @@
                           </tr>
                         </table>
                       </div>
-
-                  <!-- <div class="col-lg-12">
-                    <form class="" action="{{route('test.excel')}}" method="post" enctype="multipart/form-data">
-                      @csrf
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01">
-                          <label class="custom-file-label" for="inputGroupFile01">Datei wählen</label>
-                        </div>
-                        </div>
-                        <input type="submit" name="" value="ok">
-                    </form>
-
-                  </div> -->
-
               </div>
             </div>
             <div class="card-footer text-muted">
@@ -146,10 +127,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-  <div class="tab-pane fade " id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
+          <div class="tab-pane fade " id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
     <div class="container text-white">
 
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark border border-white">
@@ -246,8 +224,8 @@ Dropzone.options.excelUpload = {
   autoProcessQueue: false,
   addRemoveLinks: true,
   parallelUploads: 10,
-  dictDefaultMessage: 'Zum Hochladen klicken oder Fotos hinziehen',
-  dictRemoveFile: 'Doch nicht',
+  dictDefaultMessage: 'Dateien ablegen oder anklicken',
+  dictRemoveFile: 'Entfernen',
   dictFileTooBig: 'Dateigröße zu groß',
   ictMaxFilesExceeded: 'Zu viele Dateien hochgeladen',
   // maxThumbnailFilesize: 2,
@@ -257,10 +235,12 @@ Dropzone.options.excelUpload = {
   init: function () {
 
       var myDropzone = this;
+      let table = document.getElementById('exceltable')
       // Update selector to match your button
       $("#buttonFotoUpload").click(function (e) {
-          e.preventDefault();
 
+          e.preventDefault();
+          table.innerHTML = "";
           myDropzone.processQueue();
 
       });
@@ -277,11 +257,11 @@ Dropzone.options.excelUpload = {
       this.on('complete', function (response) {
         let data =response.xhr.response
         let table = document.getElementById('exceltable')
-        table.innerHTML = "";
+
 
         let htmlObject = JSON.parse(data)
         // console.log(data)
-        table.innerHTML = htmlObject
+        table.innerHTML += htmlObject
         console.log(table)
 
           // location.reload();
