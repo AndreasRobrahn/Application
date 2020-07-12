@@ -28,7 +28,7 @@
   {{$step = ''}}
 
 <div class="tab-content" id="myTabContent" >
-  <div class="tab-pane fade show active" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+  <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
     <div class="d-flex p-2 flex-column" >
       <div class="container text-center main bg-dark text-white" style="height: auto">
         <div class="row">
@@ -192,7 +192,7 @@
           </div>
           <div class="row bg-info text-white">
             <div class="col-12 p-0">
-              <a href="{{route('example.teamyak')}}" class="text-reset" id='previewlink'><h5> eine Startseite</h5></a>
+              <a href="" class="text-reset" id='previewlink'><h5> eine Startseite</h5></a>
             </div>
             <div class="col-12 p-0">
               <a href="#" class="text-reset">userforum</a>
