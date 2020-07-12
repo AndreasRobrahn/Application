@@ -9,7 +9,7 @@
           <div class="card" id="profile-card" v-on:click="changeConID(conversation.id)" v-bind:class="{'bg-light text-black' : conversation.id != chatConversation_id, 'bg-primary text-white' : conversation.id == chatConversation_id}" v-for="conversation in conversations">
             <div class="row no-gutters border">
               <div class="col-sm-4 border-right" id="conversationpicture">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img" alt="Hier sollte ein placeholder sein">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png" class="card-img rounded-pill" alt="Hier sollte ein placeholder sein">
               </div>
               <div class="col-sm ">
                 <div class="col-12 border-bottom">
@@ -51,10 +51,10 @@
         <div class="col-12 bg-secondary text-white p-0">
           <h3>Nachrichtenverlauf <button class="btn btn-outline bg-dark text-white btn-sm" v-on:click="logout()"style="float: right"> Logout</button></h3>
         </div>
-        <div class="col-12" id="messagebox" style="width: 100%; height: ">
+        <div class="col-12 bg-dark" id="messagebox" style="width: 100%; height: ">
           <div class="col-12" v-bind:class="{'d-flex justify-content-start p-0': message.username != conversation_username, 'd-flex justify-content-end p-0' : message.username == conversation_username}"v-for="message in messages" style="">
             <div  class="row mt-1" v-bind:class="{'bg-info': message.username == conversation_username, 'bg-secondary text-right' : message.username != conversation_username }" style="width: auto">
-              <div class="col-12 text-left ">
+              <div class="col-12 text-left bg-dark">
                 <small>{{message.username}} </small> <small style="float: right; padding-top: 4px"> {{message.created_at}} </small>
               </div>
               <div class="col-12 text-left text-dark bg-light">
@@ -65,12 +65,6 @@
         </div>
       </div>
       <div class="row d-flex justify-content-center"  v-else-if="version != 'admin'">
-        <div class="accordion" id="accordionChat">
-
-          <div class="col-12 collapse" id="collapseDescriptionChat" aria-labelledby="headingOne" data-parent="#accordionChat">
-            <p>Es gibt eine Unterhaltung an der beliebig viele Leute teilnehmen können. Alle Nachrichten werden verschlüsselt und lediglich der Username und das Datum der Nachricht wird angezeigt.</p>
-          </div>
-        </div>
 
         <div id="UserInput"  class="col-12" style="width: 100%;">
           <div class="row m-2 p-2">
@@ -145,7 +139,10 @@
             },2000);
           }
           else{
-            this.getUsers()
+            this.timer = setInterval(() => {
+              this.getUsers();
+            },2000);
+
           }
 
 
@@ -168,6 +165,12 @@
             this.timer = setInterval(() => {
               // this.getConversations();
               this.getMessages(this.chatConversation_id);
+
+              if(this.version == 'user')
+              {
+                this.getUsers();
+              }
+
             }, 3000);
 
           },
@@ -431,7 +434,7 @@
 {
   #messagebox
   {
-    background-color: black;
+    background-color: ;
     height : 20em;
   }
   #conversationpicture

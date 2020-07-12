@@ -1,4 +1,9 @@
 @extends('frontend.general_layout')
+@section('additional_css')
+
+<link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
+
+@endsection
 
 @section('content')
 <div class="container pt-2">
@@ -11,6 +16,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" id="portal-tab" data-toggle="tab" href="#portal" role="tab" aria-controls="portal" aria-selected="false">Portalsarbeit</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="excel-tab" data-toggle="tab" href="#excel" role="tab" aria-controls="excel" aria-selected="false">Excel Verarbeitung</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="xxo-tab" data-toggle="tab" href="#xxo" role="tab" aria-controls="xxo" aria-selected="false">XXO</a>
@@ -35,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane fade " id="roles" role="tabpanel" aria-labelledby="roles-tab">
+  <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
           <div class="d-flex p-2 flex-column">
           <div class="card text-center main">
             <div class="card-header">
@@ -65,8 +73,78 @@
           </div>
         </div>
       </div>
+  <div class="tab-pane fade show active" id="excel" role="tabpanel" aria-labelledby="roles-tab">
+          <div class="d-flex p-2 flex-column">
+          <div class="card text-center main">
+            <div class="card-header">
+              Excel Verarbeitung
+            </div>
+            <div class="accordion" id="Excel">
+              <div class="card-body">
+                  <div class="col-12">
+                    <h4>Funktionsweise <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDescriptionExcel" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-double-down"></i>
+                    </button></h4>
+                  </div>
+                  <div class="col-12 collapse" id="collapseDescriptionExcel" aria-labelledby="headingOne" data-parent="#collapseDescriptionExcel">
+                    <p>Füge Excel Dateien ein. (Da das System sehr einfach gehalten ist, können nur simple excel dateien eingelesen werden)</p>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+              <div class="container shadow-lg p-3 mt-3 bg-light rounded border border-dark" >
+                        <div class="row m-1 w-100">
+                          <div class="form-group-12 w-100">
 
-  <div class="tab-pane fade show active" id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
+                            <form action="{{ route('test.excel') }}" class="dropzone" id="excelUpload" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="profile" value="">
+                </form>
+                <small>Es sind ausschliesslich Bilddateien mit einer maximalen Größe von bis zu 2MB erlaubt.</small>
+                <button type="" id="buttonFotoUpload" class="btn btn-success btn-block mt-2">Fotos speichern</button>
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="container shadow-lg p-3 mt-3 bg-light rounded border border-dar" id="exceltable" >
+                        <table class="table table-bordered" >
+                          <tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                          </tr>
+                        </table>
+                      </div>
+
+                  <!-- <div class="col-lg-12">
+                    <form class="" action="{{route('test.excel')}}" method="post" enctype="multipart/form-data">
+                      @csrf
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" for="inputGroupFile01">Datei wählen</label>
+                        </div>
+                        </div>
+                        <input type="submit" name="" value="ok">
+                    </form>
+
+                  </div> -->
+
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              <div class="col-lg-12">
+                Realisiert mit Laravel, vue.js und Bootstrap und MySQL
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="tab-pane fade " id="portal" role="tabpanel" aria-labelledby="forum-tab" style="color: white:">
     <div class="container text-white">
 
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark border border-white">
@@ -188,9 +266,65 @@
 
 @endsection
 
+
 @section('additional_js')
-<script>
-console.log()
+
+<script type="text/javascript">
+
+
+Dropzone.options.excelUpload = {
+
+
+  autoProcessQueue: false,
+  addRemoveLinks: true,
+  parallelUploads: 10,
+  dictDefaultMessage: 'Zum Hochladen klicken oder Fotos hinziehen',
+  dictRemoveFile: 'Doch nicht',
+  dictFileTooBig: 'Dateigröße zu groß',
+  ictMaxFilesExceeded: 'Zu viele Dateien hochgeladen',
+  // maxThumbnailFilesize: 2,
+  maxFilesize: 2048,
+  acceptedFiles: '.xlsx',
+
+  init: function () {
+
+      var myDropzone = this;
+      // Update selector to match your button
+      $("#buttonFotoUpload").click(function (e) {
+          e.preventDefault();
+
+          myDropzone.processQueue();
+
+      });
+      this.on('sending', function (file, xhr, formData) {
+          // Append all form inputs to the formData Dropzone will POST
+          var data = $('#fotoUpload').serializeArray();
+          $.each(data, function (key, el) {
+              formData.append(el.name, el.value);
+          })
+      });
+      this.on("errormultiple", function (files, response) {
+        console.log(response)
+             });
+      this.on('complete', function (response) {
+        let data =response.xhr.response
+        let table = document.getElementById('exceltable')
+        table.innerHTML = "";
+
+        let htmlObject = JSON.parse(data)
+        // console.log(data)
+        table.innerHTML = htmlObject
+        console.log(table)
+
+          // location.reload();
+      });
+    }
+  };
+
+$(document).ready(function(){
+  console.log()
+
+});
 
 </script>
 @endsection

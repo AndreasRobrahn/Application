@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\exceleditor;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,5 +25,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('backend.ConfigIndex');
+    }
+    public function excel(Request $request)
+    {
+      if ( $xlsx = exceleditor::parse($request->file('file')) ) {
+        	// print_r( $xlsx->rows() );
+          return response()->json($xlsx->toHTML('table table-bordered'));
+          // foreach($xlsx->rows() as $row)
+          // {
+          //   print_r($xlsx);
+          // }
+        } else {
+        	return exceleditor::parseError();
+        }
+
+      // dd($request->file) ;
     }
 }

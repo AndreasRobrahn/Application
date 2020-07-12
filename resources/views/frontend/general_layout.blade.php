@@ -21,7 +21,7 @@
         <!-- Styles -->
         @yield('additional_css')
     </head>
-    <body class="p-3 mb-2 bg-white text-dark">
+    <body class="p-3 mb-2 text-dark">
       <ul class="nav justify-content-center">
         <li class="nav-item">
           <h5><a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">Lebenslauf</a></h5>

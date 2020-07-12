@@ -16,13 +16,13 @@
 	      </div>
 				<div class="row mt-2">
 					<div class="col">
-		        <img src="{{ asset('images/ARobrahn.jpg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
+		        <img src="{{ asset('images/WhatsApp Image 2020-05-08 at 23.30.42.jpeg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
 		      </div>
 		      <div class="col">
-		        <img src="{{ asset('images/ARobrahn.jpg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
+		        <img src="{{ asset('images/WhatsApp Image 2020-05-08 at 23.31.29.jpeg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
 		      </div>
 		      <div class="col">
-		        <img src="{{ asset('images/ARobrahn.jpg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
+		        <img src="{{ asset('images/WhatsApp Image 2020-05-08 at 23.31.36.jpeg')}}" alt="thumbnail" class="img-thumbnail img-fluid">
 		      </div>
 				</div>
 

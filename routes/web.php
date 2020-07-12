@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.landingpage');
+    return view('frontend.landingpage1');
 })->name('frontend.landingpage');
 
 // Route::view('/landingpage', 'frontend.landingpage');
@@ -81,7 +81,16 @@ Route::get('/curriculum', function(){
 Route::post('/comments/store', 'CommentController@store')->name('comment.store');
 Route::get('/likes/update', function(){
 
-  \DB::table('likes')->increment('likes', 1);
+  if(DB::table('likes')->value('likes') == null)
+  {
+    \DB::table('likes')->insert([
+      'likes' => 1,
+    ]);
+  }
+  else {
+    \DB::table('likes')->increment('likes', 1);
+  }
+
   return redirect()->route('frontend.curriculum');
 })->name('likes.update');
 
@@ -107,6 +116,7 @@ Route::get('/users/index', 'UserController@index')->name('exampleuser.index');
 Route::post('/users/rights', 'UserController@rights')->name('exampleuser.rights');
 
 Route::get('/test', 'UserController@index');
+Route::post('/testexcel', 'HomeController@excel')->name('test.excel');
 Route::view('/teamyak','frontend.TeamYak');
 
 Auth::routes();

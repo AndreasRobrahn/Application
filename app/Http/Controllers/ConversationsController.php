@@ -103,25 +103,19 @@ class ConversationsController extends Controller
       // $decrypted = $newEncrypter->decrypt( $encrypted );
 
       $conversation = new Conversation;
-      $conversation->member1 = $request->user;
-      $conversation->key = Hash::make($request->key);
+      $conversation->profile_id = $request->profileid;
+      $conversation->customer_id = $request->customerid;
+      // $conversation->key = Hash::make($request->key);
 
       // $decrypted = $newEncrypter->decrypt( $encrypted );
 
       $conversation->save();
 
-      $message2 = new Message;
-      $message2->conversation_id = $conversation->id;
-      $message2->direction = 0;
-
-      // $encrypted = $newEncrypter->encrypt( 'die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen' );
-      $message2->message = Crypt::encryptString('die Konversationsid ist '.$conversation->id. '. Bitte merke sie dir um sie wieder abzufragen');
-      $message2->save();
 
       $message = new Message;
       $message->conversation_id = $conversation->id;
       $message->direction = 0;
-      $message->message = Crypt::encryptString('Hallo '. $request->user);
+      $message->message = Crypt::encryptString($request->message);
       $message->save();
 
       return $conversation->id;
