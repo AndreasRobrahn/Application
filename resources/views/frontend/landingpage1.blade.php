@@ -9,179 +9,197 @@
 <script src="https://kit.fontawesome.com/c869b225f8.js" crossorigin="anonymous"></script>
 <!-- jquery-->
 <script  src="js/jquery-3.4.1.min.js"></script>
-
 <!-- Bootstrap js -->
 <script  src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('slick-1.8.1/slick/slick.css')}}"/>
 <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{{asset('css/landingpage1.css')}}"/>
+
+<script type="text/javascript" src="{{asset('slick-1.8.1/slick/slick.min.js')}}"></script>
 <script id="applicationScript" type="text/javascript" src="{{asset('js/landingpage1.js')}}"></script>
 
 </head>
 <body>
-<div id="Web_1920___1">
-	<img id="WhatsApp_Image_2020_05_08_at_2" src="{{asset('images/WhatsApp_Image_2020_05_08_at_2.png')}}" srcset="{{asset('images/WhatsApp_Image_2020_05_08_at_2.png')}} 1x, {{asset('images/WhatsApp_Image_2020_05_08_at_2@2x.png')}} 2x">
 
-<a class="nav-link text-white font-weight-bolder" href="#">
-	<svg class="Pfad_1" viewBox="0 0 197.042 197.527">
-		<path fill="rgba(102,14,204,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Pfad_1" d="M 98.52093505859375 0 C 152.9325408935547 0 197.0418701171875 44.21794891357422 197.0418701171875 98.76354217529297 C 197.0418701171875 153.3091278076172 152.9325408935547 197.5270843505859 98.52093505859375 197.5270843505859 C 44.10932922363281 197.5270843505859 0 153.3091278076172 0 98.76354217529297 C 0 75.5272216796875 8.004711151123047 54.16510772705078 21.54610443115234 37.11438751220703 C 39.45057678222656 14.56885051727295 67.28857421875 0 98.52093505859375 0 Z">
-		</path>
-	</svg>
-</a>
-<a class="nav-link text-white font-weight-bolder" href="{{route('frontend.examples')}}">
-	<svg class="Pfad_2" viewBox="0 0 197.042 197.527">
-		<path fill="rgba(102,14,204,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Pfad_2" d="M 98.52093505859375 0 C 152.9325408935547 0 197.0418701171875 44.21794891357422 197.0418701171875 98.76354217529297 C 197.0418701171875 153.3091278076172 152.9325408935547 197.5270843505859 98.52093505859375 197.5270843505859 C 44.10932922363281 197.5270843505859 0 153.3091278076172 0 98.76354217529297 C 0 75.5272216796875 8.004711151123047 54.16510772705078 21.54610443115234 37.11438751220703 C 39.45057678222656 14.56885051727295 67.28857421875 0 98.52093505859375 0 Z">
-		</path>
-	</svg>
-</a>
-<a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">
-	<svg class="Pfad_3" viewBox="0 0 197.042 197.527">
-		<path fill="rgba(102,14,204,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Pfad_3" d="M 98.52093505859375 0 C 152.9325408935547 0 197.0418701171875 44.21794891357422 197.0418701171875 98.76354217529297 C 197.0418701171875 153.3091278076172 152.9325408935547 197.5270843505859 98.52093505859375 197.5270843505859 C 44.10932922363281 197.5270843505859 0 153.3091278076172 0 98.76354217529297 C 0 75.5272216796875 8.004711151123047 54.16510772705078 21.54610443115234 37.11438751220703 C 39.45057678222656 14.56885051727295 67.28857421875 0 98.52093505859375 0 Z">
-		</path>
-	</svg>
-</a>
-	<a class="nav-link text-white font-weight-bolder" href="#">
-		<div id="Lebens_weisheiten">
-			<span>Lebens<br/>weisheiten</span>
-		</div>
-		<div id="_in_Bearbeitung_">
-			<span>(in Bearbeitung)</span>
-		</div>
-	</a>
-	<a class="nav-link text-white font-weight-bolder" href="{{route('frontend.curriculum')}}">
-		<div id="Lebens_lauf">
-			<span>Lebens<br/>lauf</span>
-		</div>
-	</a>
+	<div class="container-fluid maincolor rounded">
+	  <div class="row" id="headline">
+	    <div class="col">
+	      <h2 class="text-center text-white">Andreas Robrahn</h2>
+	    </div>
+	  </div>
+	  <div class="row justify-content-center mt-3" id="img-slider">
+			<div class="col-1 d-flex align-items-center nextarrow">
+				<i class="far fa-arrow-alt-circle-left fa-2x"></i>
+			</div>
+			<div class="col-10 img-slider w-100 d-flex justify-content-center">
+				<div class="d-flex justify-content-center ">
+		      <img class="img fluid picLandingpage2 cover"  src="{{asset('images/ARobrahn.jpg')}}"alt="Bewerbungsfoto">
+		    </div>
+		    <div class="d-flex justify-content-center">
+		      <img class="img-fluid picLandingpage2 cover"  src="{{asset('images/arob3.jpeg')}}"alt="Bewerbungsfoto">
+		    </div>
+		    <div class="d-flex justify-content-center">
+		      <img class="img-fluid picLandingpage2 cover" src="{{asset('images/arob5.jpeg')}}" alt="Bewerbungsfoto">
+		    </div>
 
-<a class="nav-link text-white font-weight-bolder" href="{{route('frontend.examples')}}">
-	<div id="Beispiele">
-		<span>Beispiele</span>
+		    <div class="d-flex justify-content-center">
+		      <img class="img-fluid picLandingpage2 cover"  src="{{asset('images/arob4.jpeg')}}"alt="Bewerbungsfoto">
+		    </div>
+			</div>
+			<div class="col-1 d-flex align-items-center prevarrow">
+					<i class="far fa-arrow-alt-circle-right fa-2x"></i>
+			</div>
+	  </div>
+	  <div class="row mt-4 justify-content-center ">
+	    <div class="col-6 text-dark bg-white rounded shadow-lg ">
+	      <h3 class="text-center">Über mich:</h3>
+	      <p>Sehr geehrter Besucher*innen,<br>
+	      willkommen auf meiner eigens designten, entwickelten und gehosteten Seite. Ich gebe dir hier eine bessere Einsicht um deine Entscheidung leichter zu machen, und stelle dir auch weniger subtil die Frage "stellst du lieber jemanden ein der gelernt hat wie man eine Website programmiert oder jemanden der eine Webseite programmiert hat?".
+	      Auf den folgenden Seiten präsentiere ich dir ein paar meiner bereits erworbenen Fähigkeiten, einen ausführlicheren Lebenslauf und einige relevante Ansichten meinerseits über Arbeit ansich und Erwartungen die ich selbst an dein Unternehmen richte.</p>
+	    </div>
+	  </div>
+	  <div class="row mt-5">
+	    <img class="img-fluid" alt="flensburg" style="width:100%; height: 550px; object-fit: cover; object-position: 0% 35%;" src="https://thumbs.dreamstime.com/z/flensburg-panorama-15224328.jpg" >
+	  </div>
+	  <div class="row mt-5 justify-content-center">
+	    <div class="col-sm-4 d-flex justify-content-center text-dark rounded shadow-lg m-1  bg-white">
+	      <img class="picLandingpage" src="https://media.istockphoto.com/photos/flensburg-in-germany-picture-id1264881211?b=1&k=6&m=1264881211&s=170667a&w=0&h=-ex_moiPWNOlLkWPqxfFsQUwXCvBqJ4W98kUfMCeflc=" alt="flensburgfoto">
+	    </div>
+	    <div class="col-sm-4 text-dark rounded shadow-lg m-1  d-flex align-items-center  bg-white">
+	      <p>Ich wohne nun seit mittlerweile 14 Jahren im nördlichsten Norden Deutschlands. Anfangs aus beruflichen Gründen immigriert, habe ich die Stadt im Laufe der Jahre liebgewonnen. Die Nähe zur Ostsee, die offene Gesellschaft sind nur einige der </p>
+	    </div>
+	  </div>
+	  <div class="row mt-5 justify-content-center p-2">
+	    <div class="col-sm-4 text-dark rounded shadow-lg m-1 d-flex align-items-center  bg-white">
+	        <p>Geboren und aufgewachsen bin ich am schönsten Flecken der Erde wenn man Natur mag. Wir haben sogar Nandus!</p>
+	    </div>
+	    <div class="col-sm-4 d-flex justify-content-center bg-white text-dark rounded shadow-lg m-1">
+	      <img class="picLandingpage" src="https://cdn.pixabay.com/photo/2019/11/20/13/18/flensburg-4640076_960_720.jpg" alt="nordwestmecklenburg foto">
+	    </div>
+	  </div>
+	  <div class="row mt-5">
+	    <img src="{{asset('images/flensburg.jpg')}}" class="img-fluid" alt="flensburg" style="width:100%; height: 300px; object-fit: cover;">
+	  </div>
+	  <div class="row ">
+	    <div class="col">
+	      <div class="row justify-content-center">
+	        <h4 class="text-center">Produktkarten</h4>
+	      </div>
+	      <div class="row">
+	        <div class="col">
+	          <div class="bg-white shadow-lg" style="max-width: 250px; ">
+	            <div class="row-0">
+	              <div class="col p-2 d-flex justify-content-center">
+	                <img class="img-fluid shadow-sm" alt="ProduktBild" style="object-fit:scale-down; margin-top: -30px; width: 90%; border-radius: 15px;" src="data:image/jpeg;base64,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" >
+	              </div>
+	            </div>
+	            <div class="row m-0 justify-content-center">
+	              <div class="col p-0 ">
+	                <h5 class="text-center">Auto2</h5>
+	              </div>
+	            </div>
+	            <div class="row m-0">
+	              <div class="col p-0">
+	                <a class="" data-toggle="collapse" href="#description2" role="button" aria-expanded="false" aria-controls="collapseExample">
+	                    <h5>Beschreibung</h5>
+	                </a>
+	                <div class="collapse" id="description2">
+	                  <div class="card card-body">
+	                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+	                  </div>
+	                </div>
+
+	              </div>
+	            </div>
+	            <div class="row m-0 mt-2">
+	              <div class="col-4 d-flex justify-content-center">
+	                <a href="#"><i class="far fa-id-card"></i></a>
+	              </div>
+	              <div class="col-4 d-flex justify-content-center">
+	                <a href="#"><i class="fas fa-ad"></i></a>
+	              </div>
+	              <div class="col-4 d-flex justify-content-center">
+	                <a href="#"><i class="far fa-id-card"></i></a>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col">
+	          <div class="bg-white shadow-lg" style="max-width: 250px; ">
+	            <div class="row-0">
+	              <div class="col p-2 d-flex justify-content-center">
+	                <img class="img-fluid shadow-sm" alt="ProduktBild" style="object-fit:scale-down; margin-top: -30px; width: 90%; height: 160px; border-radius: 15px;" src="https://lh3.googleusercontent.com/proxy/n-0cFcuX0Vur48BzgkMqUy4h8PSfIHBP8Z11Qji2dJhbZtBvQHc4ef_vplQofrDvtXm-nkl0QMXDESKpO-LWqixGMlwhjfWNuRvsj735HnEB1T1i1q2Wmlt_cobnhESjrUZHmVV2tFuTbt2Y" >
+	              </div>
+	            </div>
+	            <div class="row m-0 justify-content-center">
+	              <div class="col p-0 ">
+	                <h5 class="text-center">Auto1</h5>
+	              </div>
+	            </div>
+	            <div class="row m-0">
+	              <div class="col p-0">
+	                <a class="" data-toggle="collapse" href="#description1" role="button" aria-expanded="false" aria-controls="collapseExample">
+	                    <h5>Beschreibung</h5>
+	                </a>
+	                <div class="collapse" id="description1">
+	                  <div class="card card-body">
+	                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            <div class="row m-0 mt-2">
+	              <div class="col-4 bg-light d-flex justify-content-center border">
+	                <a href="#"><i class="far fa-id-card"></i></a>
+	              </div>
+	              <div class="col-4 bg-light d-flex justify-content-center border">
+	                <a href="#"><i class="fas fa-ad"></i></a>
+	              </div>
+	              <div class="col-4 bg-light d-flex justify-content-center border">
+	                <a href="#"><i class="far fa-id-card"></i></a>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+
+	      </div>
+	    </div>
+	  </div>
 	</div>
-</a>
-	<svg class="Rechteck_3">
-		<rect fill="#210E0E" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" shape-rendering="auto" id="Rechteck_3" rx="76.5" ry="76.5" x="0" y="0" width="1031" height="153">
-		</rect>
-	</svg>
-	<img id="csm_jensen_und_doering_immobil" src="{{asset('images/flensburg-433256_1920.jpg')}}" srcset="{{asset('images/flensburg-433256_1920.jpg')}} 1x">
-	<div id="Andreas_Robrahn">
-		<span>Andreas Robrahn</span>
-	</div>
-	<div id="Herzlich_Willkommen_auf_meiner">
-		<span>Herzlich Willkommen auf meiner Seite.<br/>Vermutlich hast du ein Link von mir in meiner Bewerbung erhalten. Lebensweisheiten ist selbstironisch gemeint und der Inhalt noch in Planung. Lebenslauf sollte selbsterklärend ein und unter Beispiele siehst du einen Katalog der Sachen die ich programmieren kann.Diese Seite wird von mir nur weiterentwickelt, wenns es die Zeit zulässt. Daher verzeihe mir Ihre Unfertigkeit. Trotzdem gibt sie einen guten Einblick in meinen aktuellen Entwicklungsstand.</span>
-	</div>
-	<div id="Hier_steht_nichts_Sinnvolles">
-		<span>Hier steht nichts Sinnvolles</span>
-	</div>
-	<svg class="Ellipse_1">
-		<ellipse fill="rgba(248,150,150,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Ellipse_1" rx="223" ry="220" cx="223" cy="220">
-		</ellipse>
-	</svg>
-	<svg class="Ellipse_2">
-		<ellipse fill="rgba(255,250,250,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Ellipse_2" rx="51.5" ry="51" cx="51.5" cy="51">
-		</ellipse>
-	</svg>
-	<svg class="Pfad_4" viewBox="0 0 103 102">
-		<path fill="rgba(255,250,250,0.871)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Pfad_4" d="M 51.5 0 C 79.94266510009766 0 103 22.8334789276123 103 51 C 103 79.16651916503906 79.94266510009766 102 51.5 102 C 23.05733680725098 102 0 79.16651916503906 0 51 C 0 22.8334789276123 23.05733680725098 0 51.5 0 Z">
-		</path>
-	</svg>
-	<svg class="Ellipse_4">
-		<ellipse fill="rgba(255,250,250,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Ellipse_4" rx="131" ry="15" cx="131" cy="15">
-		</ellipse>
-	</svg>
-	<svg class="Ellipse_5">
-		<ellipse fill="rgba(20,18,18,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Ellipse_5" rx="25" ry="24.5" cx="25" cy="24.5">
-		</ellipse>
-	</svg>
-	<svg class="Ellipse_6">
-		<ellipse fill="rgba(20,18,18,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Ellipse_6" rx="25" ry="24.5" cx="25" cy="24.5">
-		</ellipse>
-	</svg>
-</div>
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modalGiftsCreate" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Login</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('admin.login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-  </div>
-</div>
 <script type="text/javascript">
-
-  document.addEventListener('keydown', function(event) {
+$(document).ready(function(){
+  $('.img-slider').slick({
+		infinite: true,
+  	slidesToShow: 3,
+  	slidesToScroll: 1,
+		prevArrow: '.nextarrow',
+		nextArrow: '.prevarrow',
+		responsive: [
+    {
+      breakpoint: 1240,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        // dots: true
+      }
+    },
+    {
+      breakpoint: 850,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
+		// prevArrow: true,
+	});
+	document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.key === 'l') {
     $('#login').modal('show')
   }
 });
+});
+
 </script>
 </body>
 </html>
