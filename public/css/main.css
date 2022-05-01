@@ -2,13 +2,54 @@ body,html
 {
   height: 100%;
   margin: 0;
-  background-color: #0AD0FF;
+  /* background-color: rgba(138,239,255,0.48); */
   /* background-image: url('../images/Hintergrund4.jpg') ; */
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100% 100%;
   background-attachment: fixed;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
 
+}
+.textsize1
+{
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.profilepictureInIndex
+{
+  height:220px;
+  width:260px;
+  object-fit: cover;
+  object-position: 80% -20%;
+  border-radius: 50%;
+  border: solid 2px black;
+}
+.designpicture1
+{
+  object-fit:cover;
+  margin-top: -30px;
+  width: 90%;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+.designpicture2
+{
+  object-fit:cover;
+  width: 100%;
+  /* border: 2px solid black; */
+  border-radius: 5px;
+}
+.second{
+  background-color: rgb(31,14,14):
+}
+.secondO1{
+  background-color: rgba(31,14,14,0.5):
+}
+.maincolor
+{
+	background-color: rgba(138,239,255,0.48);
 }
 #promoimage
 {

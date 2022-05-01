@@ -138,7 +138,7 @@ class ConversationsController extends Controller
     public function getUsers()
     {
       $chatters = \DB::table('user_in_conversation')
-      ->select('username')
+      ->select('username','motto','avatarimg')
       ->get();
 
       // dd($chatters);
@@ -147,18 +147,34 @@ class ConversationsController extends Controller
 
     public function joinChat(Request $request)
     {
+      $filename =null;
+
       $validated = $request->validate([
         'username' => 'required',
       ]);
 
+      if($file = request()->file('image'))
+       {
+
+         $filename = time().'.'.$file->getClientOriginalExtension();
+         $file->move(public_path('ConImg'), $filename);
+         // $image->type = "Memo";
+         // $image->url = $filename;
+         // $image->memo_id = $memo->id;
+         // $image->save();
+       }
+
       if(\DB::table('user_in_conversation')->where('username',$request->username)->exists())
       {
-        return 1;
+        return "Fehler User existiert";
       }
       else {
         \DB::table('user_in_conversation')->insert([
 
           'username' => $request->username,
+          'motto' => $request->motto,
+          'avatarimg' => $filename,
+
           ]);
 
           return 2;

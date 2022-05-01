@@ -17,6 +17,8 @@ class UsersInConversationTable extends Migration
 
           $table->id();
           $table->string('username');
+          $table->string('motto')->nullable();
+          $table->string('avatarimg')->nullable();
           $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class UsersInConversationTable extends Migration
     public function down()
     {
         Schema::dropIfExists('likes');
-      
+
     }
 }

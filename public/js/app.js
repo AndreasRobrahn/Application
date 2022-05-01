@@ -2017,6 +2017,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['version'],
   data: function data() {
@@ -2025,6 +2052,8 @@ __webpack_require__.r(__webpack_exports__);
       chatConversation_id: null,
       message: '',
       conversation_username: '',
+      conversation_motto: '',
+      conversation_picture: '',
       conversation_id: '',
       conversation_key: '',
       conversations: null,
@@ -2076,21 +2105,64 @@ __webpack_require__.r(__webpack_exports__);
         }
       }, 3000);
     },
-    getMessages: function getMessages(conid) {
+    createUser: function createUser() {
       var _this4 = this;
 
+      var host = window.location.host;
+      var self = this;
+      var formData = new FormData();
+      formData.append('username', this.conversation_username);
+      formData.append('motto', this.conversation_motto);
+
+      if (document.getElementById("picture").files.length > 0) {
+        var image = $('#picture').prop('files')[0]; // console.log(image)
+
+        formData.append('image', image);
+      } // console.log( this.conversation_username)
+
+
+      axios.post('/joinConversation', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }, formData).then(function (response) {
+        // this.checkAvatar(this.user)
+        console.log(response.data);
+
+        _this4.changeConID(1);
+
+        _this4.getUsers();
+
+        setInterval(_this4.getMessages(_this4.chatConversation_id), 2000);
+      })["catch"](function (error) {
+        console.log(error.response); // console.log(error);
+      });
+    },
+    loadPreview: function loadPreview(event) {
+      var preview = $('#avatarPicMenu'); // console.log(preview)
+
+      var imgsrc = URL.createObjectURL(event.target.files[0]);
+      preview.attr("src", imgsrc);
+
+      preview.onload = function () {
+        URL.revokeObjectURL(output.src); // free memory
+      };
+    },
+    getMessages: function getMessages(conid) {
+      var _this5 = this;
+
       axios.get("/messages/conId/" + conid).then(function (response) {
-        _this4.messages = response.data;
+        _this5.messages = response.data;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
     getConversations: function getConversations() {
-      var _this5 = this;
+      var _this6 = this;
 
       // console.log('test timer')
       axios.get("/conversations").then(function (response) {
-        _this5.conversations = response.data; // console.log(this.conversations);
+        _this6.conversations = response.data; // console.log(this.conversations);
         // return response.data
       })["catch"](function (error) {
         console.log(error.response);
@@ -2104,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     sendMessage: function sendMessage(id) {
-      var _this6 = this;
+      var _this7 = this;
 
       if (!id) {
         alert('keine Konversation gewählt');
@@ -2124,9 +2196,9 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         axios.post('/sendMessage', params).then(function (response) {
-          _this6.getMessages(id);
+          _this7.getMessages(id);
 
-          _this6.message = '';
+          _this7.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2134,7 +2206,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     startConversation: function startConversation() {
-      var _this7 = this;
+      var _this8 = this;
 
       if (!this.conversation_username) {
         alert('bitte username eingeben, dieser wert ist notwendig');
@@ -2152,15 +2224,15 @@ __webpack_require__.r(__webpack_exports__);
       params.append("user", user);
       params.append("key", key);
       axios.post('/startConversation', params).then(function (response) {
-        _this7.changeConID(response.data);
+        _this8.changeConID(response.data);
 
-        setInterval(_this7.getMessages(_this7.chatConversation_id), 2000);
+        setInterval(_this8.getMessages(_this8.chatConversation_id), 2000);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       }); //console.log('axios')
     },
     getConversation: function getConversation() {
-      var _this8 = this;
+      var _this9 = this;
 
       var params = new URLSearchParams();
       params.append("conid", this.conversation_id);
@@ -2173,45 +2245,48 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response.data);
         }
 
-        _this8.changeConID(response.data);
+        _this9.changeConID(response.data);
       })["catch"](function (error) {
         console.log(error.response.data.message);
       });
     },
     getIntoConversation: function getIntoConversation() {
-      var _this9 = this;
+      var _this10 = this;
 
       window.addEventListener("beforeunload", function () {
-        _this9.logout();
+        _this10.logout();
 
         return null;
       });
       var username = this.conversation_username;
+      var motto = this.conversation_motto;
+      var pic = this.pictue;
       var params = new URLSearchParams();
       params.append("username", username);
+      params.append("motto", motto);
       axios.post('/joinConversation', params).then(function (response) {
         if (response.data == 1) {
           alert('username bereits vergeben');
         } else {
-          _this9.changeConID(1);
+          _this10.changeConID(1);
 
-          _this9.getUsers();
+          _this10.getUsers();
 
-          setInterval(_this9.getMessages(_this9.chatConversation_id), 2000);
+          setInterval(_this10.getMessages(_this10.chatConversation_id), 2000);
         }
       })["catch"](function (error) {
         console.log(error.response.data.message);
       });
     },
     getUsers: function getUsers() {
-      var _this10 = this;
+      var _this11 = this;
 
       axios.post('/getUsers').then(function (response) {
         if (response.data) {
           // this.changeConID(response.data)
           // this.chatters = response.data
           // console.log(response.data)÷\
-          _this10.chatters = response.data;
+          _this11.chatters = response.data;
         } else {
           console.log(response.data);
         }
@@ -2220,7 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     logout: function logout() {
-      var _this11 = this;
+      var _this12 = this;
 
       if (this.conversation_username) {
         var params = new URLSearchParams();
@@ -2230,10 +2305,10 @@ __webpack_require__.r(__webpack_exports__);
             alert('etwas ist schiefgelaufen');
             console.log(response.data);
           } else {
-            _this11.getUsers();
+            _this12.getUsers();
 
-            _this11.chatConversation_id = null;
-            _this11.conversation_username = '';
+            _this12.chatConversation_id = null;
+            _this12.conversation_username = '';
           }
         })["catch"](function (error) {
           console.log(error.response.data.message);
@@ -7145,7 +7220,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#chattersbox\n{\n  overflow: auto;\n  height : auto;\n}\n#messagebox\n{\n  overflow: auto;\n  height : auto;\n}\n#profile-card\n{\n   background: rgb(2,0,36); background: linear-gradient(100deg, rgba(2,0,36,1) 0%, rgba(219,5,99,1) 0%, rgba(204,38,111,0.6978991425671831) 0%, rgba(254,219,219,1) 100%);\n}\n.chatbubble {\n\tposition: relative;\n\tbackground: #efefef;\n\tborder-radius: .4em;\n}\n.chatbubble:after {\n\tcontent: '';\n\tposition: absolute;\n\tleft: 0;\n\ttop: 50%;\n\twidth: 0;\n\theight: 0;\n\tborder: 22px solid transparent;\n\tborder-right-color: #efefef;\n\tborder-left: 0;\n\tborder-bottom: 0;\n\tmargin-top: -11px;\n\tmargin-left: -22px;\n}\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: ;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.img2\n{\n  height: 90%;\n  width: 100%;\n  padding: 1px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.left\n{\n  padding-left : 3%;\n  color: white;\n}\n.right\n{\n  padding-left : 89%;\n  color: white;\n}\n#chatbox\n{\n  height: 90%\n}\n#messageInput\n{\n  position: relative;\n  bottom:0%;\n  width: 100%;\n}\n#chattersbox\n{\n  /* overflow: auto; */\n  height : auto;\n}\n#messagebox\n{\n  overflow: auto;\n  height : auto;\n}\n#profile-card\n{\n   background: rgba(0,0,0, 0.25);\n   color: white;\n   font-size: 1.1em;\n   font-weight: 650;\n}\n#profile-card:hover\n{\n   background: rgba(0,0,0, 0.9);\n}\n.chatbubble {\n\tposition: relative;\n\tbackground: #e2ceee;\n\tborder-radius: .4em;\n  margin-top: .25rem;\n  margin-bottom: .25rem;\n  border-radius: .5rem;\n    border-bottom-right-radius: 0.5rem;\n\n  padding: 1rem;\n}\n.chatbubble2 {\n\tposition: relative;\n\tbackground: rgba(255,113,0,0.8);\n\tborder-radius: .4em;\n  margin-top: .25rem;\n  margin-bottom: .25rem;\n  border-radius: .5rem;\n    border-bottom-right-radius: 0.5rem;\n\n  padding: 1rem;\n}\n\n\n/* for tablets etc. */\n@media only screen and (min-height: 601px)\n{\n#profile-card\n  {\n    height: auto;\n    margin: 0 0 0 0;\n}\n}\n@media only screen and (max-height: 600px)\n{\n#messagebox\n  {\n    background-color: ;\n    height : 20em;\n}\n#conversationpicture\n  {\n    display : none;\n}\n#profile-card\n  {\n    left:0;\n    padding: 0;\n    margin: 0;\n}\n}\n@media only screen and (min-width:400px) and (max-width: 960px)\n{\n#conversationpicture\n  {\n    display : none;\n}\n}\n@media only screen and (min-height: 415px)\n{\n#chattersbox\n  {\n    display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -42792,16 +42867,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "row text-center",
-      staticStyle: {
-        height: "auto",
-        background:
-          "radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(254,219,219,1) 0%, rgba(218,0,0,1) 100%)",
-        top: "0%"
-      },
-      attrs: { id: "chatbox" }
-    },
+    { staticClass: "row m-0 h-100 text-center", attrs: { id: "chatbox" } },
     [
       _vm.version == "admin"
         ? _c(
@@ -42815,32 +42881,24 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "row bg-secondary " }, [
+              _c("div", { staticClass: "row bg-secondary" }, [
                 _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "div",
-                  {
-                    staticClass: "col-12 overflow-auto",
-                    staticStyle: { overflow: "auto", height: "65vh" }
-                  },
+                  { staticClass: "col-12 overflow-auto" },
                   _vm._l(_vm.conversations, function(conversation) {
                     return _c(
                       "div",
                       {
-                        staticClass: "card",
+                        staticClass: "card ",
                         class: {
                           "bg-light text-black":
                             conversation.id != _vm.chatConversation_id,
                           "bg-primary text-white":
                             conversation.id == _vm.chatConversation_id
                         },
-                        attrs: { id: "profile-card" },
-                        on: {
-                          click: function($event) {
-                            return _vm.changeConID(conversation.id)
-                          }
-                        }
+                        attrs: { id: "profile-card" }
                       },
                       [
                         _c("div", { staticClass: "row no-gutters border" }, [
@@ -42891,68 +42949,122 @@ var render = function() {
         : _c(
             "div",
             {
-              staticClass: "col-sm border border-white-3",
-              staticStyle: {
-                height: "70vh",
-                "padding-left": "0px",
-                "padding-right": "0px"
-              },
-              attrs: { idß: "" }
+              staticClass:
+                "col-md d-sm-none d-md-block m-1 box-shadow-white h-100",
+              staticStyle: { overflow: "hidden" },
+              attrs: { id: "chattersbox" }
             },
             [
-              _c("div", { staticClass: "row" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "col-12 overflow-auto",
-                    staticStyle: {
-                      position: "relative",
-                      width: "100%",
-                      height: "63vh"
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "row m-0",
+                  staticStyle: { height: "95%", "overflow-y": "scroll" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-12 p-1",
+                      staticStyle: {
+                        position: "relative",
+                        width: "100%",
+                        height: "100%"
+                      }
                     },
-                    attrs: { id: "chattersbox" }
-                  },
-                  _vm._l(_vm.chatters, function(chatter) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass: "card text-white",
-                        attrs: { id: "profile-card" }
-                      },
-                      [
-                        _c("div", { staticClass: "row no-gutters border" }, [
-                          _vm._m(3, true),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm " }, [
-                            _c("div", { staticClass: "col-12 border-bottom" }, [
-                              _c("p", { staticClass: "text-left" }, [
-                                _vm._v(_vm._s(chatter.username)),
-                                _vm._m(4, true)
-                              ])
+                    _vm._l(_vm.chatters, function(chatter) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "card m-1 box-shadow-white",
+                          attrs: { id: "profile-card" }
+                        },
+                        [
+                          _c("div", { staticClass: "row no-gutters " }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "col-sm-4 p-1 center_items",
+                                attrs: { id: "conversationpicture" }
+                              },
+                              [
+                                !chatter.avatarimg
+                                  ? _c("img", {
+                                      staticClass:
+                                        "img2 border border-dark rounded-circle box-shadow-white",
+                                      attrs: {
+                                        src:
+                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png",
+                                        alt:
+                                          "Hier sollte ein Avatarbild erscheinen"
+                                      }
+                                    })
+                                  : _c("img", {
+                                      staticClass:
+                                        "img2 border border-dark rounded-circle box-shadow-white",
+                                      attrs: {
+                                        src: "ConImg/" + chatter.avatarimg,
+                                        alt: "Hier sollte ein placeholder sein"
+                                      }
+                                    })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm p-0" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col-12 p-0 d-flex align-items-center"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "wrapper ml-2 p-1 text-left"
+                                    },
+                                    [
+                                      _c("span", { staticClass: "text-left" }, [
+                                        _vm._v(_vm._s(chatter.username))
+                                      ]),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-left" },
+                                          [_vm._v(_vm._s(chatter.motto))]
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ]
+                              )
                             ])
                           ])
-                        ])
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]
+              )
             ]
           ),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "col-lg-8 border border-white-3 text-center",
-          staticStyle: { height: "70vh" }
+          staticClass: "col-md-9 box-shadow-white m-1 text-center",
+          staticStyle: { height: "100%" },
+          attrs: { id: "chatbox" }
         },
         [
           _vm.chatConversation_id
             ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 text-white p-0" }, [
+                _c("div", { staticClass: "col-12 p-0" }, [
                   _c("h3", [
                     _vm._v("Nachrichtenverlauf "),
                     _c(
@@ -42987,7 +43099,7 @@ var render = function() {
                     return _c(
                       "div",
                       {
-                        staticClass: "col-12",
+                        staticClass: "row m-1",
                         class: {
                           "d-flex justify-content-start p-0":
                             message.username != _vm.conversation_username,
@@ -42999,55 +43111,41 @@ var render = function() {
                         _c(
                           "div",
                           {
-                            staticClass: "row mt-1",
+                            staticClass: "d-block border-rounded ",
                             class: {
-                              "bg-info":
+                              "chatbubble2 box-shadow-white text-right":
                                 message.username == _vm.conversation_username,
-                              "bg-secondary text-right":
+                              "chatbubble text-left box-shadow-white":
                                 message.username != _vm.conversation_username
-                            },
-                            staticStyle: { width: "auto" }
+                            }
                           },
                           [
-                            _c(
-                              "div",
-                              { staticClass: "col-12 text-left bg-dark" },
-                              [
-                                _c("small", [
-                                  _vm._v(_vm._s(message.username) + " ")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "small",
-                                  {
-                                    staticStyle: {
-                                      float: "right",
-                                      "padding-top": "4px"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      " " + _vm._s(message.created_at) + " "
-                                    )
-                                  ]
-                                )
-                              ]
-                            ),
+                            _c("div", { staticClass: "row m-0" }, [
+                              _c("div", { staticClass: "col p-0 text-dark" }, [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(message.decrypted_message) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ])
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "col-12 text-left text-dark bg-light"
-                              },
-                              [
+                            _c("hr"),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row m-0" }, [
+                              _c("div", { staticClass: "col p-0 text-dark" }, [
                                 _vm._v(
                                   "\n                  " +
-                                    _vm._s(message.decrypted_message) +
-                                    "\n              "
-                                )
-                              ]
-                            )
+                                    _vm._s(message.username) +
+                                    " "
+                                ),
+                                _c("small", [
+                                  _vm._v(" " + _vm._s(message.created_at) + " ")
+                                ])
+                              ])
+                            ])
                           ]
                         )
                       ]
@@ -43057,57 +43155,119 @@ var render = function() {
                 )
               ])
             : _vm.version != "admin"
-            ? _c("div", { staticClass: "row d-flex justify-content-center" }, [
+            ? _c("div", { staticClass: "row h-100 center_items" }, [
                 _c(
                   "div",
                   {
-                    staticClass: "col-12",
+                    staticClass: "col-10",
                     staticStyle: { width: "100%" },
                     attrs: { id: "UserInput" }
                   },
                   [
-                    _c("div", { staticClass: "row m-2 p-2" }),
+                    _vm._m(3),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row m-2 p-2" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c("h3", [
-                          _vm._v("Gib deinen Namen an und nehme teil")
-                        ]),
+                    _c("div", { staticClass: "row m-1 text-left" }, [
+                      _c("div", { staticClass: "col-6 p-0 center_items" }, [
+                        _c("div", {}, [
+                          _c("label", { attrs: { for: "name" } }, [
+                            _vm._v("Name:")
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.conversation_username,
+                                expression: "conversation_username"
+                              }
+                            ],
+                            staticClass: "input1",
+                            attrs: {
+                              type: "text",
+                              id: "name",
+                              placeholder: "Andi..."
+                            },
+                            domProps: { value: _vm.conversation_username },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.conversation_username = $event.target.value
+                              }
+                            }
+                          }),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "motto" } }, [
+                            _vm._v("Motto:")
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.conversation_motto,
+                                expression: "conversation_motto"
+                              }
+                            ],
+                            staticClass: "input1",
+                            attrs: {
+                              type: "text",
+                              id: "motto",
+                              placeholder: "Carpe Noctem..."
+                            },
+                            domProps: { value: _vm.conversation_motto },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.conversation_motto = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-6 center_items" }, [
+                        _vm._m(4),
                         _vm._v(" "),
                         _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.conversation_username,
-                              expression: "conversation_username"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "dein Name" },
-                          domProps: { value: _vm.conversation_username },
+                          staticClass: "input1",
+                          staticStyle: { display: "none" },
+                          attrs: {
+                            type: "file",
+                            id: "picture",
+                            accept: ".png,.jpg,.jpeg"
+                          },
                           on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.conversation_username = $event.target.value
+                            change: function($event) {
+                              return _vm.loadPreview($event)
                             }
                           }
-                        })
+                        }),
+                        _c("br")
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row m-2 p-2" }, [
-                      _c("div", { staticClass: "col" }, [
+                    _c("hr", { staticClass: "m-4" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row m-1 center_items" }, [
+                      _c("div", { staticClass: "col-10  p-0 " }, [
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-primary",
+                            staticClass:
+                              "btn btn-block bg-border border border-white",
                             attrs: { type: "submit" },
                             on: {
                               click: function($event) {
-                                return _vm.getIntoConversation()
+                                return _vm.createUser()
                               }
                             }
                           },
@@ -43217,13 +43377,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "col-sm-4 border-right",
-        attrs: { id: "conversationpicture" }
-      },
+      { staticClass: "col-sm-4 ", attrs: { id: "conversationpicture" } },
       [
         _c("img", {
-          staticClass: "card-img rounded-pill",
+          staticClass: "card-img rounded-circle",
           attrs: {
             src:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png",
@@ -43237,11 +43394,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 text-white" }, [
-      _c("h3", [
-        _c("span", { staticClass: "text-danger" }, [_vm._v("❤️❤️❤️ ")]),
-        _vm._v(" Chatter "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v("❤️❤️❤️")])
+    return _c("div", { staticClass: "row m-0 " }, [
+      _c("h5", { staticClass: "text-white w-100 text-center" }, [
+        _vm._v("Chatter ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row m-1" }, [
+      _c("h5", { staticClass: "w-100 text-center" }, [
+        _vm._v("Erstell dir deinen Avatar:")
       ])
     ])
   },
@@ -43250,30 +43415,37 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "label",
       {
-        staticClass: "col-sm-4 border-right",
-        attrs: { id: "conversationpicture" }
+        staticClass: "w-100 h-100 d-flex align-items-end",
+        attrs: { for: "picture" }
       },
       [
-        _c("img", {
-          staticClass: "card-img",
-          attrs: {
-            src:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/2000px-Placeholder_no_text.svg.png",
-            alt: "Hier sollte ein placeholder sein"
-          }
-        })
+        _c(
+          "div",
+          {
+            staticClass:
+              "border-white center_items text-center position-relative",
+            staticStyle: { height: "75%", width: "60%", "border-radius": "5%" }
+          },
+          [
+            _c("img", {
+              staticClass: "position-absolute h-100 w-100",
+              attrs: {
+                src:
+                  "https://www.nicepng.com/png/detail/741-7413169_placeholder-female.png",
+                id: "avatarPicMenu",
+                alt: "Placeholder"
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "position-absolute text-dark" }, [
+              _vm._v("Wähle dein Bild")
+            ])
+          ]
+        )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticStyle: { float: "right" } }, [
-      _c("small", [_vm._v("test")])
-    ])
   },
   function() {
     var _vm = this
